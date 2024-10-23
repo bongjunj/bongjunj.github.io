@@ -1,8 +1,6 @@
 <header>
-  <center>
-    <a href="{{ .Site.BaseURL }}">
-      <h1> {{ .Site.Title }} </h1>
-    </a>
-  </center>
+  <a href="{{ .Site.BaseURL }}">
+    {{ .Site.Title }}
+  </a>
   {{ with .Site.Menus.main }} {{ end }}
 </header>
