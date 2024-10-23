@@ -1,9 +1,8 @@
 {{ define "main" }}
 <main>
   <div id="personal">
-    <img id="my-pic" src="{{- (resources.Get
-    "/images/bongjun-ankuk-station.jpg").RelPermalink -}}" width="60%"
-    alt="bongjun-in-washington-dc" />
+    <img id="my-pic" src="{{- (resources.Get "/images/bongjun-washington-monument.jpg").RelPermalink -}}"
+      alt="bongjun-in-washington-dc" />
 
     <section id="info">
       <h3>Contacts</h3>
@@ -13,22 +12,49 @@
       </ul>
 
       <h3>Research Interest</h3>
-      <p>Programming Languages, Fuzzing, Compilers</p>
+      <ul>
+        <li> Programming Languages </li>
+        <li> Fuzzing </li>
+        <li> Compilers </li>
+      </ul>
 
       <h3>Education</h3>
-      <p>
-        <strong>B.S.</strong> in Computer Science, Minor in Cybersecurity<br />
-        KAIST, Korea (2018 - Present)
-      </p>
+      <ul>
+        <li>
+          <strong>B.S.</strong> in Computer Science, KAIST, Korea (2018 - 2024)<br />
+          <ul>
+            <li>
+              Minor in Cybersecurity
+            </li>
+          </ul>
+        </li>
+      </ul>
 
       <h3>Experience</h3>
-      <p>Software Developer, Datamaker (2020)</p>
-      <p>
-        Served as a KATUSA tanker in Republic of Korea Army (2021.02 - 2022.08)
-      </p>
+      <ul>
+        <li>Undergraduate Researcher</li>
+          <ul>
+            <li>Programming Systems Laboratory</li>
+            <li>KAIST (2024.01 - Present)</li>
+          </ul>
+        <li>Software Developer</li>
+        <ul>
+          <li>
+            Datamaker (2020)
+          </li>
+        </ul>
+        <li>
+          Served as a KATUSA tanker in Republic of Korea Army (2021.02 - 2022.08)
+      </ul>
+      </li>
     </section>
   </div>
 
+  <div id="contents">
+  <h2>Publications</h2>
+  <ul>
+    <li>Work In Process...</li>
+  </ul>
   <h2>Posts</h2>
   <table>
     <thead>
@@ -77,5 +103,6 @@
     <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
     {{ end }}
   </ol>
+  </div>
 </main>
 {{ end }}
