@@ -6,9 +6,10 @@ body {
 header {
     font-family: 'Cascadia Code', sans-serif;
     font-size: large;
-    max-width: 800px;
+    margin: 0 auto;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    max-width: 800px;
 }
 
 
