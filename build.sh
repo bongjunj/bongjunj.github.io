@@ -12,7 +12,7 @@ echo "Deploying updates to GitHub..."
 hugo
 
 # Go to public submodule
-cd public
+pushd public
 
 # stage newly built site
 git add .
@@ -31,10 +31,10 @@ git commit -m "$msg"
 git push "$REMOTE" "$BRANCH" --force
 
 # Come Back up to the Project Root
-cd ..
+popd
 
 # you need this to bump the public submodule
-git add .
+git add public
 
 git commit -m "[Bump] bump newly built site"
 git push "$REMOTE" "$BRANCH"
