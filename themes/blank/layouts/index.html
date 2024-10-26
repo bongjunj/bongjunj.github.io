@@ -60,7 +60,6 @@
     <thead>
       <tr>
         <th>Date</th>
-        <th>Category</th>
         <th>Title</th>
       </tr>
     </thead>
@@ -68,11 +67,6 @@
       {{ range where .Site.RegularPages "Type" "posts" }}
       <tr>
         <td>{{ .Date.Format "2006 Jan 2" }}</td>
-        <td>
-          {{ if .Params.categories }} {{ range .Params.categories }}
-          <a href="{{ `categories/` | urlize }}{{ . | urlize }}">{{ . }}</a>
-          {{ end }} {{ end }}
-        </td>
         <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
       </tr>
       {{ end }}
