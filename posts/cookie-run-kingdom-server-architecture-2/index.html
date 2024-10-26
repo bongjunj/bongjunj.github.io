@@ -55,21 +55,26 @@ F#으로 CRUD를 나타내보면 다음과 같은 코드로 나타낼 수 있을
 <p>Event Sourcing은 CRUD와 다른 방식으로 데이터를 다룬다.
 CRUD 이외에 데이터를 다루는 방법이 있다는 것부터 생소한 개념이다.
 CRUD의 직관적인 모델과는 다른 면이 있다.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_320x0_resize_box_3.png 320w,
-                /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_600x0_resize_box_3.png 600w,
-                /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_900x0_resize_box_3.png 900w,
-                /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -99,21 +104,26 @@ CRUD의 직관적인 모델과는 다른 면이 있다.</p>
 <p>그런데 이벤트는 항상 valid해야 한다.
 잔고가 100 USD인데 120USD가 출금되는 이벤트는 발생하면 안된다는 뜻이다.
 여기서 Command라는 개념이 나온다.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_320x0_resize_box_3.png 320w,
-                /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_600x0_resize_box_3.png 600w,
-                /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_900x0_resize_box_3.png 900w,
-                /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 

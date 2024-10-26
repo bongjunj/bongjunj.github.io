@@ -24,21 +24,26 @@
 	<article>
 		<h1>컴퓨터와 시간</h1>
 		<time datetime=" 2021-08-28T12:35:23">2021 Aug 28</time>
-		   
+		
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_320x0_resize_q75_box.jpg 320w,
-                /posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_600x0_resize_q75_box.jpg 600w,
-                /posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_900x0_resize_q75_box.jpg 900w,
-                /posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_1200x0_resize_q75_box.jpg 1200x'
+    /posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_320x0_resize_q75_box.jpg 320w,
+    /posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_600x0_resize_q75_box.jpg 600w,
+    /posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_900x0_resize_q75_box.jpg 900w,
+    /posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_1200x0_resize_q75_box.jpg 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/computer-and-time/pat_sync_hua82cae5545e1d9667d6f8a2de1beb378_140870_600x0_resize_q75_box.jpg'
       alt=""
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -66,21 +71,26 @@
 <p>시간을 재는 측정 방법 자체가 완벽하지 않고, 시간을 공유하는 방법도 완벽할 수가 없기 때문이다. 우리가 가장 흔히 쓰는 시계인 컴퓨터는 어떻게 시간을 관리하는 지 알아보면서 문제를 좀 더 자세히 파악해보자.</p>
 <p>컴퓨터들도 서울과 뉴욕에 있는 두 친구처럼 각자 시계를 본다. 컴퓨터는 두 개의 시계를 가지고 있는데, 하나는 마더보드에 딸린 CMOS Clock이다. CMOS Clock은 컴퓨터의 전원이 꺼져도 배터리를 이용해 시간을 계속해서 잴 수 있다. 또 하나는 CPU의 Clock Frequency다. CPU가 1초에 얼마나 많은 명령어를 처리할 수 있는지를 이용해서 시간을 잰다. 이런 식으로 시간의 일정한 간격을 잴 수 있다.</p>
 <p>컴퓨터의 전원이 켜지고 운영체제가 실행되면, 운영체제가 시간을 관리하기 시작한다. 운영체제가 관리하는 시간을 System Time이라고 한다. System Time은 특정 시간(epoch)을 기준으로 얼마나 많이 시간이 흘렀는지를 이용해 시간을 잰다. Unix 시스템의 경우 1970년 1월 1일 00:00 UTC를 기준으로 한다.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_320x0_resize_box_3.png 320w,
-                /posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_600x0_resize_box_3.png 600w,
-                /posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_900x0_resize_box_3.png 900w,
-                /posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_1200x0_resize_box_3.png 1200x'
+    /posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_320x0_resize_box_3.png 320w,
+    /posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_600x0_resize_box_3.png 600w,
+    /posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_900x0_resize_box_3.png 900w,
+    /posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/computer-and-time/system_time_config_hu92969d2f118dfcf0a81d96209efb51a6_118730_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p>System Time은 변경될 수 있다</p>
-  </figcaption>
+    <figcaption>
+      <p>System Time은 변경될 수 있다</p>
+    </figcaption>
+  </center>
 </figure>
 
 

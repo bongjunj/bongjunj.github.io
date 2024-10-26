@@ -24,21 +24,26 @@
 	<article>
 		<h1>액터 모델 실습</h1>
 		<time datetime=" 2021-11-29T08:54:51">2021 Nov 29</time>
-		   
+		
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_320x0_resize_box_3.png 320w,
-                /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_600x0_resize_box_3.png 600w,
-                /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_900x0_resize_box_3.png 900w,
-                /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_1200x0_resize_box_3.png 1200x'
+    /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_320x0_resize_box_3.png 320w,
+    /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_600x0_resize_box_3.png 600w,
+    /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_900x0_resize_box_3.png 900w,
+    /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p>Elixir Programming Language</p>
-  </figcaption>
+    <figcaption>
+      <p>Elixir Programming Language</p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -134,21 +139,26 @@ Actor가 필요한 Stateful 시스템을 구현한다면 Elixir만큼 편리한 
 <p><code>Agent</code>를 이용해 상태 관리를 위한 Actor Model를 구현했다.
 하지만 <code>Agent</code> 모듈에는 Actor Model의 메시지 큐(Message Queue, 혹은 메일 박스) 개념이 잘 드러나 있지 않다.
 이에 반해 <code>GenServer</code>는 Actor Model의 메시지 큐, 행동방식(Behavior)까지 쉽게 구현할 수 있게 되어있다.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_320x0_resize_box_3.png 320w,
-                /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_600x0_resize_box_3.png 600w,
-                /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_900x0_resize_box_3.png 900w,
-                /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_1200x0_resize_box_3.png 1200x'
+    /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_320x0_resize_box_3.png 320w,
+    /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_600x0_resize_box_3.png 600w,
+    /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_900x0_resize_box_3.png 900w,
+    /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p>Actor Model 다이어그램</p>
-  </figcaption>
+    <figcaption>
+      <p>Actor Model 다이어그램</p>
+    </figcaption>
+  </center>
 </figure>
 
 

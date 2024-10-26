@@ -54,16 +54,16 @@ However, if you look closely to the information you can access, you will find th
 <p>But, in this scheme, the encryption is too weak to be attacked by the chosen plaintext attack. This first thing I tried was to <strong>substract the ciphertext by a plaintext</strong>. Since it is poly-alphabetic substitution cipher, the result of the substraction will be a key stream. If you get the key, you just decrypt the whole ciphertext, right?</p>
 <p>The example below shows the result of substraction of ciphertext by plaintexts.
 The repeating <code>2, 3, 4, 1</code> cleary shows that that is the key.</p>
-<pre tabindex="0"><code>C: [4, 4, 22, 14, 11, 8, 23, 21, 2, 11, 5, 20, 22, 8, 23, 1, 21, 19, 5, 5]
-P: [2, 1, 18, 13, 9, 5, 19, 20, 0, 8, 1, 19, 20, 5, 19, 0, 19, 16, 1, 4]
-D: [2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1]
-</code></pre><p>But this example is more interesting: there is no repeating pattern in the difference.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>C: [4, 4, 22, 14, 11, 8, 23, 21, 2, 11, 5, 20, 22, 8, 23, 1, 21, 19, 5, 5]
+</span></span><span style="display:flex;"><span>P: [2, 1, 18, 13, 9, 5, 19, 20, 0, 8, 1, 19, 20, 5, 19, 0, 19, 16, 1, 4]
+</span></span><span style="display:flex;"><span>D: [2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1]
+</span></span></code></pre></div><p>But this example is more interesting: there is no repeating pattern in the difference.
 But if you remove the 4-th character (0-based) in the ciphertext, you can see the repeating pattern.
 We now can tell that is the random character inserted!</p>
-<pre tabindex="0"><code>C: [6, 8, 18, 22, 11, 16, 6, 13, 2, 22, 12, 13, 19, 15, 2, 6, 12, 19, 17, 14]
-P: [4, 5, 14, 21, 14, 3, 9, 1, 20, 9, 15, 14, 0, 3, 8, 18, 15, 14, 1, 24]
-D: [2, 3, 4, 1, 24, 13, 24, 12, 9, 13, 24, 26, 19, 12, 21, 15, 24, 5, 16, 17]
-</code></pre><h2 id="attacking-the-random-characters">Attacking the random characters</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>C: [6, 8, 18, 22, 11, 16, 6, 13, 2, 22, 12, 13, 19, 15, 2, 6, 12, 19, 17, 14]
+</span></span><span style="display:flex;"><span>P: [4, 5, 14, 21, 14, 3, 9, 1, 20, 9, 15, 14, 0, 3, 8, 18, 15, 14, 1, 24]
+</span></span><span style="display:flex;"><span>D: [2, 3, 4, 1, 24, 13, 24, 12, 9, 13, 24, 26, 19, 12, 21, 15, 24, 5, 16, 17]
+</span></span></code></pre></div><h2 id="attacking-the-random-characters">Attacking the random characters</h2>
 <p>Thus, if we are able to tell whether a character is a random character or not, it is now so trivial to decrypt the ciphertext.
 Then how can we tell that?</p>
 <p>I used two methods for the question:</p>
@@ -86,21 +86,26 @@ Surely, it insertes random characters with a given probability.</p>
 since the number of plaintexts in the set is 5.
 That is, i-th ciphertext of key length k is encrypted from i-th plaintext of the set.</p>
 <h2 id="is-entropy-a-good-method">Is entropy a good method?</h2>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_320x0_resize_box_3.png 320w,
-                /posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_600x0_resize_box_3.png 600w,
-                /posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_900x0_resize_box_3.png 900w,
-                /posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_1200x0_resize_box_3.png 1200x'
+    /posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_320x0_resize_box_3.png 320w,
+    /posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_600x0_resize_box_3.png 600w,
+    /posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_900x0_resize_box_3.png 900w,
+    /posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/breaking-extended-vigenere-cipher/entropy_plot_30_hua6c7780057ac03b91ed3f84e61ad3a49_484661_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -120,21 +125,26 @@ because it increases entropies of all the differences derived from the ciphertex
 <h2 id="again-entropy">Again, entropy</h2>
 <p>So, to recover the repeating pattern in the difference, I used again entropy!
 A simple idea that if a random character is removed entropy will decrease is used here.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_320x0_resize_box_3.png 320w,
-                /posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_600x0_resize_box_3.png 600w,
-                /posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_900x0_resize_box_3.png 900w,
-                /posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_1200x0_resize_box_3.png 1200x'
+    /posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_320x0_resize_box_3.png 320w,
+    /posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_600x0_resize_box_3.png 600w,
+    /posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_900x0_resize_box_3.png 900w,
+    /posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/breaking-extended-vigenere-cipher/entropy_and_removal_entropy_hu06a1c0d6e12357110f9bb1433b2cadfe_38939_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -146,21 +156,26 @@ We can observe a V-shaped local minimum around the correct answer, which removes
 <p>Removing characters at the local minima, we might reveal the hidden repeating pattern.
 But we need more evidence the numbers are repeating or not.</p>
 <h2 id="fourier-transform">Fourier Transform</h2>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_320x0_resize_box_3.png 320w,
-                /posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_600x0_resize_box_3.png 600w,
-                /posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_900x0_resize_box_3.png 900w,
-                /posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_1200x0_resize_box_3.png 1200x'
+    /posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_320x0_resize_box_3.png 320w,
+    /posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_600x0_resize_box_3.png 600w,
+    /posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_900x0_resize_box_3.png 900w,
+    /posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/breaking-extended-vigenere-cipher/fft-pattern_hu82d360cfdbb2298e569c7d76fd4efdb5_9154_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -174,21 +189,26 @@ I don&rsquo;t know how Fourier Transform works, but it was a clear pattern when 
 <li>If not, try removing a character with entropy change and run FFT test.</li>
 <li>If failed to find a repeating pattern, just pick the one with the lowest entropy.</li>
 </ol>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_320x0_resize_box_3.png 320w,
-                /posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_600x0_resize_box_3.png 600w,
-                /posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_900x0_resize_box_3.png 900w,
-                /posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_1200x0_resize_box_3.png 1200x'
+    /posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_320x0_resize_box_3.png 320w,
+    /posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_600x0_resize_box_3.png 600w,
+    /posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_900x0_resize_box_3.png 900w,
+    /posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/breaking-extended-vigenere-cipher/result1_hu8c95ba5131d2c5fb140f2ee797c792f0_51438_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -207,21 +227,26 @@ The difference contains difference we looking for. Now all we have to do is just
 <p>For the first 48 characters of the ciphertext (which is the minimum length for the repeating pattern to appear even for the longest key length, or 24), run entropy test to ciphertexts with 2~4 characters removed.
 If there is a significantly low entropy, run FFT test.</p>
 <p>Now the result is more satisfactory.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_320x0_resize_box_3.png 320w,
-                /posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_600x0_resize_box_3.png 600w,
-                /posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_900x0_resize_box_3.png 900w,
-                /posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_1200x0_resize_box_3.png 1200x'
+    /posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_320x0_resize_box_3.png 320w,
+    /posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_600x0_resize_box_3.png 600w,
+    /posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_900x0_resize_box_3.png 900w,
+    /posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/breaking-extended-vigenere-cipher/result2_hu8534ec92f9b9164d2a49d124f5102a05_51549_600x0_resize_box_3.png'
       alt=""
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 

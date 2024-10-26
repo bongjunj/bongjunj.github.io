@@ -28,21 +28,26 @@
 영상에서 소개되는 &lsquo;프로그램&rsquo;이라는 개념은 함수형 프로그래밍의 &lsquo;순수 함수&rsquo;라는 개념과 동일하다.
 또한 Scala의 DSL 기능이 보이는데, 어떻게 작동하는지 다시 살펴보자. 기억이 가물가물하다.</p>
 <h2 id="pure-function순수-함수">Pure Function(순수 함수)</h2>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_320x0_resize_box_3.png 320w,
-                /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png 600w,
-                /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_900x0_resize_box_3.png 900w,
-                /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png'
       alt="pure function diagram"
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -50,21 +55,26 @@
 여기서 부작용이란 함수의 &lsquo;보이지 않는 결과값&rsquo;이라고 할 수 있는데, 함수 외부의 가변 변수를 수정한다든지, 시스템의 상태를 변경시킨다던지 하는 것들을 말한다.
 순수 함수를 통해 우리는 함수가 오로지 입력과 결과값만을 통해 외부와 소통할 수 있음을 보장할 수 있다.</p>
 <p>아주 단순한 예시를 들어서 순수 함수와 비순수 함수를 이해해보자.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_320x0_resize_box_3.png 320w,
-                /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_600x0_resize_box_3.png 600w,
-                /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_900x0_resize_box_3.png 900w,
-                /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_600x0_resize_box_3.png'
       alt="impure function"
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -75,21 +85,26 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 흘러가고 있는 시간이 이 함수의 &#39;보이지 않는 입력&#39;이다.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> currentTime () <span style="color:#f92672">=</span> System.DateTime.UtcNow
 </span></span></code></pre></div><p>다른 예시를 들어보자.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_320x0_resize_box_3.png 320w,
-                /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_600x0_resize_box_3.png 600w,
-                /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_900x0_resize_box_3.png 900w,
-                /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_600x0_resize_box_3.png'
       alt="impure function of connecting db"
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
@@ -111,21 +126,26 @@
 순수함수로 구현하는 것은 사실 위에서 든 예시와 같이 데이터베이스, 유저 입력 관리가 아니라 프로그램의 핵심 로직이다.
 프로그램의 핵심 로직에 필요한 입력을 비순수 함수로부터 가져와서 입력하고,
 핵심 로직을 통해 얻은 결과값을 비순수 함수를 통해 저장하는 것과 같은 일을 하는 것이다.</p>
-   
+
+
+
+
 <figure>
+  <center>
     <img
       srcset='
-                /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_320x0_resize_box_3.png 320w,
-                /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_600x0_resize_box_3.png 600w,
-                /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_900x0_resize_box_3.png 900w,
-                /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
       src='/posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_600x0_resize_box_3.png'
       alt="pure program does not have a side effect"
     />
-  <figcaption>
-    <p></p>
-  </figcaption>
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
 </figure>
 
 
