@@ -2,7 +2,7 @@
 title: "Breaking Extended Vigenere Cipher"
 date: 2023-10-13T14:59:17-04:00
 categories:
-    - Random
+  - Random
 ---
 
 For Appliced cryptography Course for this semester in NYU Tandon,
@@ -45,7 +45,7 @@ But, in this scheme, the encryption is too weak to be attacked by the chosen pla
 The example below shows the result of substraction of ciphertext by plaintexts.
 The repeating `2, 3, 4, 1` cleary shows that that is the key.
 
-```
+```text
 C: [4, 4, 22, 14, 11, 8, 23, 21, 2, 11, 5, 20, 22, 8, 23, 1, 21, 19, 5, 5]
 P: [2, 1, 18, 13, 9, 5, 19, 20, 0, 8, 1, 19, 20, 5, 19, 0, 19, 16, 1, 4]
 D: [2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1]
@@ -55,7 +55,7 @@ But this example is more interesting: there is no repeating pattern in the diffe
 But if you remove the 4-th character (0-based) in the ciphertext, you can see the repeating pattern.
 We now can tell that is the random character inserted!
 
-```
+```text
 C: [6, 8, 18, 22, 11, 16, 6, 13, 2, 22, 12, 13, 19, 15, 2, 6, 12, 19, 17, 14]
 P: [4, 5, 14, 21, 14, 3, 9, 1, 20, 9, 15, 14, 0, 3, 8, 18, 15, 14, 1, 24]
 D: [2, 3, 4, 1, 24, 13, 24, 12, 9, 13, 24, 26, 19, 12, 21, 15, 24, 5, 16, 17]
