@@ -12,11 +12,25 @@ header {
     max-width: 800px;
 }
 
+section#info {
+    h4 {
+        margin: 0.5rem 0;
+    }
+
+    ul {
+        padding-inline-start: 1rem;
+    }
+}
+
 
 main {
     margin: 0 auto;
     max-width: 800px;
     padding: 1rem;
+}
+
+footer {
+    text-align: center;
 }
 
 img#my-pic {
