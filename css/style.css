@@ -47,8 +47,19 @@ main {
     border: 1px solid gray;
 }
 
+main {
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+}
+
 main table th {
     text-align: left;
+}
+
+table td {
+    padding: 0.25rem 0;
 }
 
 article figure {
