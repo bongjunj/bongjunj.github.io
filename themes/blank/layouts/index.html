@@ -59,15 +59,15 @@
   <table>
     <thead>
       <tr>
-        <th>Date</th>
         <th>Title</th>
+        <th style="text-align: right;">Date</th>
       </tr>
     </thead>
     <tbody>
       {{ range where .Site.RegularPages "Type" "posts" }}
       <tr>
-        <td>{{ .Date.Format "2006 Jan 2" }}</td>
         <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+        <td style="text-align: right;">{{ .Date.Format "2006 Jan 2" }}</td>
       </tr>
       {{ end }}
     </tbody>
@@ -77,15 +77,15 @@
   <table>
     <thead>
       <tr>
-        <th>Date</th>
         <th>Title</th>
+        <th style="text-align: right;">Date</th>
       </tr>
     </thead>
     <tbody>
       {{ range where .Site.RegularPages "Type" "wiki" }}
       <tr>
-        <td>{{ .Date.Format "2006 Jan 2" }}</td>
         <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+        <td style="text-align: right;">{{ .Date.Format "2006 Jan 2" }}</td>
       </tr>
       {{ end }}
     </tbody>
