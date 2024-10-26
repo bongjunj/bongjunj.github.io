@@ -1,9 +1,30 @@
 body {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Cascadia Mono', sans-serif;
+    font-size: medium;
 }
 
-code {
-    font-family: 'Consolas';
+header {
+    font-family: 'Cascadia Mono', sans-serif;
+    font-size: large;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    max-width: 800px;
+}
+
+
+main {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 1rem;
+}
+
+img#my-pic {
+    width: 50%;
+}
+
+Mono {
+    font-family: 'Cascadia Mono';
 
 }
 
@@ -11,7 +32,7 @@ div .highlight {
     border-radius: 5%;
 }
 
-div .highlight > pre {
+div .highlight>pre {
     padding: 1em;
 }
 
@@ -21,8 +42,12 @@ body {
     margin: 0 auto;
 }
 
-body header {
-    font-family: 'Times New Roman';
+main {
+    border: 1px solid gray;
+}
+
+main table th {
+    text-align: left;
 }
 
 article figure {
@@ -31,11 +56,7 @@ article figure {
 }
 
 figure img {
-  width: 100%;
-}
-
-#my-pic {
-    max-width: 8rem;
+    width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -43,6 +64,8 @@ figure img {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
+
+    #contents {}
 
     #my-pic {
         grid-column: 1 / 2;

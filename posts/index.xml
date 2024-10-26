@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Bongjun Jang</title>
-    <link>https://bongjunjang.com/posts/</link>
+    <link>https://bongjunj.github.com/posts/</link>
     <description>Recent content in Posts on Bongjun Jang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Fri, 02 Feb 2024 22:43:16 +0900</lastBuildDate><atom:link href="https://bongjunjang.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Feb 2024 22:43:16 +0900</lastBuildDate><atom:link href="https://bongjunj.github.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>기계 학습과 지향성 실행탐험기</title>
-      <link>https://bongjunjang.com/posts/machine-learning-and-fuzzing/</link>
+      <link>https://bongjunj.github.com/posts/machine-learning-and-fuzzing/</link>
       <pubDate>Fri, 02 Feb 2024 22:43:16 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/machine-learning-and-fuzzing/</guid>
+      <guid>https://bongjunj.github.com/posts/machine-learning-and-fuzzing/</guid>
       <description>이 글에서는 컴퓨터 과학에서 부르는 Fuzzing을 실행탐험, Fuzzer를 실행탐험기라고 부릅니다.
 지금 인공지능 분야를 이끄는 기계학습은 컴퓨터 프로그램이 데이터를 학습하는 기틀을 제공한다. 이 학습의 틀은 다음과 같다.
 데이터를 알맞은 형식에 맞게 준비한다. 이 때, 입력 데이터와 정답 데이터를 구분한다. 입력 데이터에서 결과물을 도출하는 모형 함수를 정의한다. 이 때, 함수는 계수(Parameter)를 가진다. 모형함수의 결과값과 정답 데이터를 비교해 평가하는 손실함수(Loss Function)를 정의한다. 손실함수값이 줄어들도록 모형함수의 계수를 조절한다. 입력 데이터를 모형함수에 넣고, 손실함수값을 통해 모형함수를 계속해서 조절해나가는 것이 기계학습의 핵심이다.</description>
@@ -20,29 +20,29 @@
     
     <item>
       <title>What is Randomness?</title>
-      <link>https://bongjunjang.com/posts/what-is-random/</link>
+      <link>https://bongjunj.github.com/posts/what-is-random/</link>
       <pubDate>Tue, 12 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://bongjunjang.com/posts/what-is-random/</guid>
+      <guid>https://bongjunj.github.com/posts/what-is-random/</guid>
       <description>Short Answer: You call something is random because the best thing you can tell about it is just a guess.
 Long Answer An intesting example that enligntened me was the famous coin toss problem. We believe that the coin toss is a 50/50 experiment. That&amp;rsquo;s why we toss coin for deciding which side will take the turn first in a game. We believe it is fair. But recent findings suggest that our belief could be wrong: the experiment is not 50/50.</description>
     </item>
     
     <item>
       <title>Breaking Extended Vigenere Cipher</title>
-      <link>https://bongjunjang.com/posts/breaking-extended-vigenere-cipher/</link>
+      <link>https://bongjunj.github.com/posts/breaking-extended-vigenere-cipher/</link>
       <pubDate>Fri, 13 Oct 2023 14:59:17 -0400</pubDate>
       
-      <guid>https://bongjunjang.com/posts/breaking-extended-vigenere-cipher/</guid>
+      <guid>https://bongjunj.github.com/posts/breaking-extended-vigenere-cipher/</guid>
       <description>For Appliced cryptography Course for this semester in NYU Tandon, I have been assigned a project to break a vigenere cipher but an extended version. Since I had already done a homework in KAIST, which was to write Kasiski examination program in OCaml, I thought it was going to be a piece of cake. However, the little tweak in the encryption scheme made it a lot more interesting. It was quite painful to come up with other techniques to break the cipher, but knowledges gained the hard way dies hard.</description>
     </item>
     
     <item>
       <title>Odroid 개발보드에서 Zig와 C를 같이 사용하기</title>
-      <link>https://bongjunjang.com/posts/using-zig-with-c-1/</link>
+      <link>https://bongjunj.github.com/posts/using-zig-with-c-1/</link>
       <pubDate>Thu, 29 Jun 2023 13:00:00 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/using-zig-with-c-1/</guid>
+      <guid>https://bongjunj.github.com/posts/using-zig-with-c-1/</guid>
       <description>Odroid-N2&amp;#43; 개발 보드
 Odroid-N2+ 개발 보드를 구입해서 네트워크 연결을 관리하는 프로그램을 작성하는 실험을 해보고 있다. 개발 보드에 설치된 우분투 리눅스에서 블루투스나 ZigBee 등 네트워크 프로그래밍을 어떻게 하는지 방법을 찾아보고 있다.
 제일 먼저 리눅스의 블루투스 서브시스템인 BlueZ를 사용해보고 싶었다. ZigBee 도 사용해보고 싶은데 ZigBee 동글과 센서를 알리에서 주문했더니 배송이 꽤 걸린다고 해서 블루투스 먼저 시도해봤다.
@@ -51,20 +51,20 @@ Odroid-N2+ 개발 보드를 구입해서 네트워크 연결을 관리하는 프
     
     <item>
       <title>모든 프레임워크는 새로운 언어다</title>
-      <link>https://bongjunjang.com/posts/2023-02-01-every-new-framework-is-new-language/</link>
+      <link>https://bongjunj.github.com/posts/2023-02-01-every-new-framework-is-new-language/</link>
       <pubDate>Wed, 01 Feb 2023 12:00:00 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/2023-02-01-every-new-framework-is-new-language/</guid>
+      <guid>https://bongjunj.github.com/posts/2023-02-01-every-new-framework-is-new-language/</guid>
       <description>웹 개발의 세계에는 수백 수천 가지의 프레임워크가 있고, 아마 지금도 새로운 프레임워크가 탄생하고 있을 것이다. 프레임워크는 웹 어플리케이션을 작성하는 데 필요한 기능을 제공하고, 프로그래머는 프레임워크가 제공하는 기능을 이용해서 웹 어플리케이션을 작성한다.
 프레임워크가 흥미로운 점은, 웹 어플리케이션을 작성하기 위해 특정한 관점을 제공한다는 점이다. 리액트(React)는 클라이언트의 UI를 컴포넌트 단위로 구성해야한다는 관점을 제공하고, 장고(Django)나 ASP.NET Core는 웹 어플리케이션을 모델-뷰-컨트롤러 단위로 구성해야한다는 관점을 제시한다. 그리고 프로그래머는 프레임워크를 사용하면서 대부분의 시간을 이러한 관점에 따라 웹 어플리케이션을 작성하면서 보낸다.</description>
     </item>
     
     <item>
       <title>KENS 내부 들여다보기</title>
-      <link>https://bongjunjang.com/posts/2022-10-26-reading-kens-internals/</link>
+      <link>https://bongjunj.github.com/posts/2022-10-26-reading-kens-internals/</link>
       <pubDate>Wed, 26 Oct 2022 12:56:00 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/2022-10-26-reading-kens-internals/</guid>
+      <guid>https://bongjunj.github.com/posts/2022-10-26-reading-kens-internals/</guid>
       <description>2022년 가을학기 전산망 개론에서 KENS 프로젝트를 통해 TCP/IP의 3-Way Handshaking과 Reliable Data Transfer를 구현하였다.
 교수님의 판단으로 Flow Control은 스킵.
 KENS는 꽤 신기한 프로그램이다. 교육용으로 설계되어 deterministic하게 동작한다. 내 생각에 실제 네트워크 노드들을 실행시켜 테스트하면 OS 등 여러 비결정적 요소들 때문에 절대로 deterministic하게 작동할 수 없는데, KENS에서는 그런 일이 일어나지 않는다.
@@ -74,10 +74,10 @@ KENS 내부 구조 System&amp;rsquo;s Properties System은 KENS에서 네트워�
     
     <item>
       <title>액터 모델 실습</title>
-      <link>https://bongjunjang.com/posts/actor-model-in-practice/</link>
+      <link>https://bongjunj.github.com/posts/actor-model-in-practice/</link>
       <pubDate>Mon, 29 Nov 2021 08:54:51 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/actor-model-in-practice/</guid>
+      <guid>https://bongjunj.github.com/posts/actor-model-in-practice/</guid>
       <description>Elixir Programming Language
 요즘 나의 프로그래밍 공부는 Elixir를 공부하는 데 치중되어 있다. Elixir는 강타입(Strongly typed), 동적타입(Dynamically typed), 함수형(Functional) 프로그래밍 언어다. 컴파일(elixirc) 뿐 아니라 인터랙티브 쉘(iex)과 스크립팅(exs)도 지원하기 때문에 함수형 언어인 것만 제외하면 파이썬이나 루비와 같은 스크립트 언어처럼 사용할 수 있다. 실제로 문법도 루비와 매우 흡사하기 때문에 파이썬이나 루비를 배웠던 사람이라면 큰 어려움없이 흡수할 수 있다.
 함수형 언어에 한번 빠지니 다시 돌아가기가 너무 어렵다. Elixir 전에는 F#을 주로 썼는데 F#은 아쉬운 점이 많았다.</description>
@@ -85,10 +85,10 @@ KENS 내부 구조 System&amp;rsquo;s Properties System은 KENS에서 네트워�
     
     <item>
       <title>비트코인을 지탱하는 원동력</title>
-      <link>https://bongjunjang.com/posts/what-runs-bitcoin-network/</link>
+      <link>https://bongjunj.github.com/posts/what-runs-bitcoin-network/</link>
       <pubDate>Mon, 22 Nov 2021 21:23:00 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/what-runs-bitcoin-network/</guid>
+      <guid>https://bongjunj.github.com/posts/what-runs-bitcoin-network/</guid>
       <description>비트코인으로 대표되는 블록체인은 집중형 시스템과는 확실히 차별점이 있는 방식이다. 전통적인 방식에서는 모든 데이터를 저장하는 서버가 있고 클라이언트들의 요청을 알맞게 처리해 서버가 데이터를 제공했다. 하지만 블록체인에서는 데이터가 네트워크 참여자들에게 모두 분산되어 저장된다. (분산 원장, Distributed Ledger) 또한 데이터는 P2P(peer-to-peer) 형식으로 공유된다.
 이런 점 때문에 비트코인은 비트토렌트와 닮았다. 중앙 서버 없이 네트워크 참여자들끼리(peer-to-peer) 데이터가 공유되며, 네트워크 참여자들의 노력을 통해 네트워크가 유지되기 때문이다.
 하지만 비트토렌트와 비트코인 사이에는 결정적인 차이점이 있다. 비트코인은 네트워크 참가자들에게 인센티브를 제공하지만 비트토렌트는 그렇지 않다는 점이다.</description>
@@ -96,19 +96,19 @@ KENS 내부 구조 System&amp;rsquo;s Properties System은 KENS에서 네트워�
     
     <item>
       <title>베이비 시팅 쿠폰 실험</title>
-      <link>https://bongjunjang.com/posts/baby-sitting-coupon-experiment/</link>
+      <link>https://bongjunj.github.com/posts/baby-sitting-coupon-experiment/</link>
       <pubDate>Wed, 17 Nov 2021 15:53:34 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/baby-sitting-coupon-experiment/</guid>
+      <guid>https://bongjunj.github.com/posts/baby-sitting-coupon-experiment/</guid>
       <description>우리가 일상에서 겪는 모든 경제활동에서 우리는 값을 치를 때 화폐(money)를 사용한다. 맥도날드에서 햄버거를 사먹을 때, 쿠팡에서 생필품을 주문할 때, 월급을 받을 때, 용돈을 받을 때 화폐를 사용하지 않는 곳이 없다. 우리가 거래를 할 때 사용되는 모든 것들을 화폐로 본다면 KRW, USD, EUR와 같이 일반적으로 떠오르는 종이화폐 외에도 금이나 은, 암호화폐 등 모든 것이 화폐가 될 수 있다. 역사를 보면 전쟁이나 대공황 같은 때에는 응급약품, 술, 마약, 간편식품(라면 등), 물이 화폐로 기능하기도 했다.</description>
     </item>
     
     <item>
       <title>2019 Vagabonder 3</title>
-      <link>https://bongjunjang.com/posts/2019-vagabonder-3/</link>
+      <link>https://bongjunj.github.com/posts/2019-vagabonder-3/</link>
       <pubDate>Thu, 07 Oct 2021 17:36:51 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/2019-vagabonder-3/</guid>
+      <guid>https://bongjunj.github.com/posts/2019-vagabonder-3/</guid>
       <description>이르쿠츠크의 앙가라 강
 이르쿠츠크의 야경
 이르쿠츠크 9월 4일, 바이칼 호수 투어를 마치고 이르쿠츠크로 돌아온 승민이와 나. 에어비엔비 숙소 위치가 헷갈려서 같은 곳을 계속 빙빙 돌았다.
@@ -117,10 +117,10 @@ KENS 내부 구조 System&amp;rsquo;s Properties System은 KENS에서 네트워�
     
     <item>
       <title>2019 Vagabonder 2</title>
-      <link>https://bongjunjang.com/posts/2019-vagabonder-2/</link>
+      <link>https://bongjunj.github.com/posts/2019-vagabonder-2/</link>
       <pubDate>Thu, 23 Sep 2021 15:57:31 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/2019-vagabonder-2/</guid>
+      <guid>https://bongjunj.github.com/posts/2019-vagabonder-2/</guid>
       <description>바이칼 호수와 새들
 바이칼 호수 곳곳에 있는 샤머니즘 기둥
 바이칼 호수를 내려다보며
@@ -130,10 +130,10 @@ KENS 내부 구조 System&amp;rsquo;s Properties System은 KENS에서 네트워�
     
     <item>
       <title>2019 Vagabonder 1</title>
-      <link>https://bongjunjang.com/posts/2019-vagabonder-1/</link>
+      <link>https://bongjunj.github.com/posts/2019-vagabonder-1/</link>
       <pubDate>Mon, 20 Sep 2021 21:12:00 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/2019-vagabonder-1/</guid>
+      <guid>https://bongjunj.github.com/posts/2019-vagabonder-1/</guid>
       <description>기억에 남지 않는 것을 써라.
 &amp;lt;타이탄의 도구들&amp;gt; 중에서
 여행을 하며 많은 사진을 남겼지만 정작 글로 남긴 것이 많이 없다. 여행을 마친지 거의 2년이 다 되어 가는데! 나의 기억력을 믿고 치일피일 미루던 것이 지금까지 오고야 말았다. 기억을 되살리고자 마음을 다잡고 이 프로젝트를 시작한다. 만 나이 20세, 나의 123일 유라시아 여행기.
@@ -142,20 +142,20 @@ KENS 내부 구조 System&amp;rsquo;s Properties System은 KENS에서 네트워�
     
     <item>
       <title>쿠키런 킹덤 서버 아키텍처 3</title>
-      <link>https://bongjunjang.com/posts/cookie-run-kingdom-server-architecture-3/</link>
+      <link>https://bongjunj.github.com/posts/cookie-run-kingdom-server-architecture-3/</link>
       <pubDate>Tue, 31 Aug 2021 14:55:09 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/cookie-run-kingdom-server-architecture-3/</guid>
+      <guid>https://bongjunj.github.com/posts/cookie-run-kingdom-server-architecture-3/</guid>
       <description>세번쨰 주제에서 함수형 프로그래밍에 대한 이야기가 눈에 띈다. 영상에서 소개되는 &amp;lsquo;프로그램&amp;rsquo;이라는 개념은 함수형 프로그래밍의 &amp;lsquo;순수 함수&amp;rsquo;라는 개념과 동일하다. 또한 Scala의 DSL 기능이 보이는데, 어떻게 작동하는지 다시 살펴보자. 기억이 가물가물하다.
 Pure Function(순수 함수) 함수가 순수하다는 말은 함수가 같은 입력에 대해서 항상 같은 결과값을 만들며, 부작용(side effect)이 없다는 뜻이다. 여기서 부작용이란 함수의 &amp;lsquo;보이지 않는 결과값&amp;rsquo;이라고 할 수 있는데, 함수 외부의 가변 변수를 수정한다든지, 시스템의 상태를 변경시킨다던지 하는 것들을 말한다. 순수 함수를 통해 우리는 함수가 오로지 입력과 결과값만을 통해 외부와 소통할 수 있음을 보장할 수 있다.</description>
     </item>
     
     <item>
       <title>쿠키런 킹덤 서버 아키텍처 2</title>
-      <link>https://bongjunjang.com/posts/cookie-run-kingdom-server-architecture-2/</link>
+      <link>https://bongjunj.github.com/posts/cookie-run-kingdom-server-architecture-2/</link>
       <pubDate>Mon, 30 Aug 2021 20:19:15 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/cookie-run-kingdom-server-architecture-2/</guid>
+      <guid>https://bongjunj.github.com/posts/cookie-run-kingdom-server-architecture-2/</guid>
       <description>이번 포스트에서 다룰 내용은 CRUD와 Event Sourcing이다. 이 주제는 데이터를 다루는 방법에 대한 이야기다.
 가장 간단한 예로 은행 계좌를 관리하는 어플리케이션을 생각해보자. 은행 계좌는 잔액를 관리해야하며 계좌 간의 송금 기능을 구현해야 한다. 이를 CRUD와 Event Sourcing으로 각각 구현해보자.
 CRUD CRUD는 Create, Read, Update and Delete의 약어로 데이터를 생성하고 읽고 수정하고 삭제하는 기능을 말한다. F#으로 CRUD를 나타내보면 다음과 같은 코드로 나타낼 수 있을 것이다.
@@ -164,10 +164,10 @@ CRUD CRUD는 Create, Read, Update and Delete의 약어로 데이터를 생성하
     
     <item>
       <title>쿠키런 킹덤 서버 아키텍처 1</title>
-      <link>https://bongjunjang.com/posts/cookie-run-kingdom-server-architecture-1/</link>
+      <link>https://bongjunj.github.com/posts/cookie-run-kingdom-server-architecture-1/</link>
       <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/cookie-run-kingdom-server-architecture-1/</guid>
+      <guid>https://bongjunj.github.com/posts/cookie-run-kingdom-server-architecture-1/</guid>
       <description>Actor Model에 대해서 정리하며 포스트를 쓰려다가 예전에 봤던 NDC21-프로그래밍, 쿠키런 킹덤 서버 아키텍처 뜯어먹기가 떠올라서 리뷰해보려고 한다. 서버 아키텍처에 대해 많은 내용을 배울 수 있는 자료라서 좋은 공부가 될 것 같다.
 일단 영상의 주요 내용은 다음과 같다. (영상 1분 16초 참고)
 Stateful vs. Stateless, and Actor Model CRUD vs. Event Sourcing 함수형 프로그래밍과 DSL로 콘텐츠 구현 유저간 상호 작용 구현하기: 2PC vs. SAGA 이벤트 기반 아키텍처를 바탕으로 확장하기 이번 포스트에서는 첫번째 내용을 다뤄보려고 한다.</description>
@@ -175,10 +175,10 @@ Stateful vs. Stateless, and Actor Model CRUD vs. Event Sourcing 함수형 프로
     
     <item>
       <title>컴퓨터와 시간</title>
-      <link>https://bongjunjang.com/posts/computer-and-time/</link>
+      <link>https://bongjunj.github.com/posts/computer-and-time/</link>
       <pubDate>Sat, 28 Aug 2021 12:35:23 +0900</pubDate>
       
-      <guid>https://bongjunjang.com/posts/computer-and-time/</guid>
+      <guid>https://bongjunj.github.com/posts/computer-and-time/</guid>
       <description>거대한 시차 해외로 가는 비행기표를 찾아볼 때 우리는 우리의 표준시와 도착지의 표준시를 비교한다. 서울은 뉴욕보다 14시간 빠르다. 일광절약제가 적용되는 때에는 13시간 빠르다. 그래서 인천에서 출발할 때의 시각은 한국표준시로 읽고 뉴욕에 도착할 때의 시각은 동부시간대로 읽는다. 지구 상에 어디에 있든, 시간대는 아주 정확하게 구분되어 있고 일정한 간격으로 흘러가고 있다.
 현대 사회에서 시각을 읽는 것은 아주 쉬운 일이다. 스마트 워치를 사용하거나, 스마트폰을 열거나 랩탑이나 데스크탑을 키면 1초단위로 시각을 아주 정확하게 보여준다. 콘서트 티케팅이나 대학 수강신청처럼 1초 단위로 희비가 갈리는 이벤트에 있어서도 다들 디지털 시계를 가지고 있기 때문에 티케팅 서버나 대학 서버 시각을 정확하게 맞춰서 접속할 수 있다.</description>
     </item>
