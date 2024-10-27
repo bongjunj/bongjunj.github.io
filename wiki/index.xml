@@ -6,7 +6,18 @@
     <description>Recent content in Wikis on Bongjun Jang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sat, 13 Jul 2024 18:24:59 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/wiki/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Oct 2024 16:50:20 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/wiki/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Calculus of Computation</title>
+      <link>https://bongjunj.github.io/wiki/calculus-of-computation/</link>
+      <pubDate>Sun, 27 Oct 2024 16:50:20 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/wiki/calculus-of-computation/</guid>
+      <description>My summary of the book &amp;ldquo;Calculus of Computation&amp;rdquo; by Aaron R. Bradley and Zohar Manna.
+Ch5. Program Correctness: Mechanics Partial correctness guarantees the function obeys its specification when it terminates. Total correctness then ensures that the function terminates on top of partial correctness. Proof of partial correctness Useful formulae will appear in the followings:
+Function Specification (Precondition, Postcondition) Loop Invariant (Invariants that hold at the beggining of each iteration, before condition check) Note that recursive functions&amp;rsquo; preconditions and postconditions will do the same job as loop invariants.</description>
+    </item>
+    
     <item>
       <title>Mastering Vscode</title>
       <link>https://bongjunj.github.io/wiki/mastering-vscode/</link>
