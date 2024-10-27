@@ -7,3 +7,14 @@ theme = 'blank'
 [params.author]
 name = "Bongjun Jang"
 email = "bongjun.jang [at] kaist.ac.kr"
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.extensions]
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)']]
+[params]
+math = true
