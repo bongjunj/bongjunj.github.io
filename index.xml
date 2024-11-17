@@ -6,7 +6,18 @@
     <description>Recent content on Bongjun Jang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sun, 27 Oct 2024 16:50:20 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Nov 2024 13:22:56 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>태어나서 처음 논문 제출</title>
+      <link>https://bongjunj.github.io/posts/my-first-paper-submission/</link>
+      <pubDate>Sun, 17 Nov 2024 13:22:56 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/my-first-paper-submission/</guid>
+      <description>이틀 전 태어나 처음으로 학회에 논문을 제출했다. 우리 팀이 생각하기에 꽤나 재미있는 아이디어를 담은 논문인데 통과될지는 아직 잘 모르겠다. 아이디어를 정리하고 실험할 때는 현존하는 기술 중에 가장 진보한 기술이라는 확신이 있었는데, 막상 제출하고 &amp;ldquo;Submitted&amp;rdquo;(제출함)이라는 글자를 보니 별 생각이 다 든다. 논문 제출의 여운이 가시기 전에 내가 프로젝트에 10달 동안 참여하며 느낀 점들을 정리해보고자 글을 써본다.
+아만보가 아니라 보만안 아는 만큼 보이는 게 아니라 보는 만큼 안다
+전체적으로 소프트웨어 공학 연구는 (1) 아이디어 탐색 및 (2) 간단한 도구 작성 후 (3) 벤치마크 대상으로 성능을 평가하는 과정을 거친다.</description>
+    </item>
+    
     <item>
       <title>Calculus of Computation</title>
       <link>https://bongjunj.github.io/wiki/calculus-of-computation/</link>
