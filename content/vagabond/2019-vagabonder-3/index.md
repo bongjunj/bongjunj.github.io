@@ -1,6 +1,5 @@
 ---
-title: 2019 Vagabonder 3
-subtitle: 아름다운 이르쿠츠크를 떠나 노보시비르스크로
+title: 2019 유라시아 일주 - 아름다운 이르쿠츠크를 떠나 노보시비르스크로
 date: 2021-10-07T17:36:51+09:00
 categories: ["Vagabonder"]
 featuredImagePreview: music-in-train.jpg

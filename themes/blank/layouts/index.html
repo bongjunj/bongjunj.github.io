@@ -21,7 +21,10 @@
       <h4>Education</h4>
       <ul>
         <li>
-          <strong>B.S.</strong> in Computer Science, KAIST, Korea (2018 - 2024)<br />
+          <strong>M.S.</strong> in Computer Science, KAIST, Korea (2025 Feb. - 2027 Feb. expected) <br />
+        </li>
+        <li>
+          <strong>B.S.</strong> in Computer Science, KAIST, Korea (2018 - 2025. Feb)<br />
           <ul>
             <li>
               Minor in Cybersecurity
@@ -32,19 +35,10 @@
 
       <h4>Experience</h4>
       <ul>
-        <li>Undergraduate Researcher</li>
-          <ul>
-            <li>Programming Systems Laboratory</li>
-            <li>KAIST (2024.01 - Present)</li>
-          </ul>
-        <li>Software Developer</li>
-        <ul>
-          <li>
-            Datamaker (2020)
-          </li>
-        </ul>
+        <li>Programming Systems Laboratory, KAIST (2024 Jan - present)</li>
+        <li>Software Developer, Datamaker (2020) </li>
         <li>
-          Served as a KATUSA tanker in Republic of Korea Army (2021.02 - 2022.08)
+          Served as a KATUSA tanker in Republic of Korea Army (2021 Feb - 2022 Aug)
       </ul>
       </li>
     </section>
@@ -57,12 +51,6 @@
   </ul>
   <h2>Posts</h2>
   <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th style="text-align: right;">Date</th>
-      </tr>
-    </thead>
     <tbody>
       {{ range where .Site.RegularPages "Type" "posts" }}
       <tr>
@@ -73,14 +61,20 @@
     </tbody>
   </table>
 
+  <h2>Vagabond</h2>
+  <table>
+    <tbody>
+      {{ range where .Site.RegularPages "Type" "vagabond" }}
+      <tr>
+        <td><a href="{{ .RelPermalink }}">{{ .Title }}</a></td>
+        <td style="text-align: right;">{{ .Date.Format "2006 Jan 2" }}</td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+
   <h2>Wiki</h2>
   <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th style="text-align: right;">Date</th>
-      </tr>
-    </thead>
     <tbody>
       {{ range where .Site.RegularPages "Type" "wiki" }}
       <tr>
