@@ -6,7 +6,16 @@
     <description>Recent content on Bongjun Jang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Sun, 17 Nov 2024 13:22:56 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Feb 2025 18:08:01 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Just Use Argparse</title>
+      <link>https://bongjunj.github.io/posts/just-use-argparse/</link>
+      <pubDate>Sat, 08 Feb 2025 18:08:01 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/just-use-argparse/</guid>
+      <description>Writing Python scripts is probably one of the most useful skills as a software engineer. As a project grows, we find ourselves dumping loads of scripts everywhere, making it hard to resist the urge to manage them somehow. One way to manage scripts better is by turning them into CLI applications. By letting them take arguments rather than hard-coding the configuration values in the scripts such as filepaths, we can re-use them anytime we need some jobs done.</description>
+    </item>
+    
     <item>
       <title>태어나서 처음 논문 제출</title>
       <link>https://bongjunj.github.io/posts/my-first-paper-submission/</link>
