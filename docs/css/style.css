@@ -1,0 +1,105 @@
+body {
+    font-family: 'Cascadia Code', sans-serif;
+    font-size: medium;
+}
+
+header {
+    font-family: 'Cascadia Code', sans-serif;
+    font-size: large;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    max-width: 800px;
+}
+
+section#info {
+    h4 {
+        margin: 0.5rem 0;
+    }
+
+    ul {
+        padding-inline-start: 1rem;
+    }
+}
+
+
+main {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 1rem;
+}
+
+footer {
+    text-align: center;
+}
+
+img#my-pic {
+    width: 50%;
+}
+
+Code {
+    font-family: 'Cascadia Code';
+
+}
+
+div.highlight {
+    border-radius: 5%;
+}
+
+div.highlight>pre {
+    padding: 1em;
+    border-radius: 0.5rem;
+}
+
+body {
+    width: 85%;
+    max-width: calc(100% - 2rem);
+    margin: 0 auto;
+}
+
+main {
+    border: 1px solid gray;
+}
+
+main {
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+}
+
+main table th {
+    text-align: left;
+}
+
+table td {
+    padding: 0.25rem 0;
+}
+
+article figure {
+    border: 1px red;
+    margin: 0;
+}
+
+figure img {
+    width: 80%;
+}
+
+@media screen and (min-width: 768px) {
+    #personal {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #contents {}
+
+    #my-pic {
+        grid-column: 1 / 2;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    #info {
+        grid-column: 2 / 2;
+    }
+}

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Odroid 개발보드에서 Zig와 C를 같이 사용하기</title>
+	
+	<meta name="author" content="map[email:bongjun.jang [at] kaist.ac.kr name:Bongjun Jang]">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
+	
+</head>
+<body>
+	<header>
+  <center>
+    <a href="https://bongjunj.github.io/">
+      Bongjun Jang
+    </a>
+  </center>
+  
+</header>
+	
+<main>
+	<article>
+		<h1>Odroid 개발보드에서 Zig와 C를 같이 사용하기</h1>
+		<time datetime=" 2023-06-29T13:00:00">2023 Jun 29</time>
+		
+
+
+
+<figure>
+  <center>
+    <img
+      srcset='
+    /posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_320x0_resize_q75_box.jpg 320w,
+    /posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_600x0_resize_q75_box.jpg 600w,
+    /posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_900x0_resize_q75_box.jpg 900w,
+    /posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_1200x0_resize_q75_box.jpg 1200x'
+      sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
+      src='/posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_600x0_resize_q75_box.jpg'
+      alt="Odroid-N2&#43; Development Board"
+    />
+    <figcaption>
+      <p>Odroid-N2&#43; 개발 보드</p>
+    </figcaption>
+  </center>
+</figure>
+
+
+<p><a href="https://www.hardkernel.com/shop/odroid-n2-with-4gbyte-ram-2/">Odroid-N2+</a> 개발 보드를 구입해서 네트워크 연결을 관리하는 프로그램을 작성하는 실험을 해보고 있다.
+개발 보드에 설치된 우분투 리눅스에서 블루투스나 ZigBee 등 네트워크 프로그래밍을 어떻게 하는지 방법을 찾아보고 있다.</p>
+<p>제일 먼저 리눅스의 블루투스 서브시스템인 <a href="http://www.bluez.org/about/">BlueZ</a>를 사용해보고 싶었다.
+ZigBee 도 사용해보고 싶은데 ZigBee 동글과 센서를 알리에서 주문했더니 배송이 꽤 걸린다고 해서 블루투스 먼저 시도해봤다.</p>
+<p>지금 사용하는 N2+ 보드는 성능이 꽤 나오는 보드이지만, 더 성능이 제한되는 소형 보드에서도 실행 가능한 프로그램이면 좋겠어서 C나 C++의 성능이 나오는 프로그래밍 언어를 찾아보았다.</p>
+<h2 id="zig를-선택하고-빌드-시스템-구축하기">Zig를 선택하고 빌드 시스템 구축하기</h2>
+<p>제일 먼저 내가 익숙해하면서도 빠른 개발이 가능한 Python을 검토해보았다.
+Python도 저수준의 프로그래밍이 가능하지만, 파이썬에서 BlueZ를 사용할 수 있는 <a href="https://github.com/pybluez/pybluez">pybluez</a> 프로젝트가 개발이 중단되어 있는 상태라 Python은 제외하였다.</p>
+<p>C나 C++를 사용해야 싶었지만 언어의 개발 경험이 좋지도 않고 최근 C나 C++을 대체할 수 있는 언어가 많이 나와있기 때문에 대체 언어들을 찾아보았다.</p>
+<p>제일 먼저 살펴본 언어는 그 유명한 Rust다.
+Rust는 C와 상호운용이 가능하면서도 메모리 안전한 프로그램을 작성하고, 성능도 준수한 프로그램을 작성할 수 있다.
+그런데 C로 작성된 BlueZ 라이브러리를 사용하려면 C로 작성된 프로그램과 Rust로 작성한 프로그램을 링킹하는 과정이 필요하다.
+이러면 Rust 컴파일러와 C 컴파일러를 같이 사용하면서 빌드 시스템이 복잡해질 수 있기 때문에 일단 여기까지 조사하고 넘어갔다.</p>
+
+
+
+
+<figure>
+  <center>
+    <img
+      srcset='
+    /posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_320x0_resize_box_3.png 320w,
+    /posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_600x0_resize_box_3.png 600w,
+    /posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_900x0_resize_box_3.png 900w,
+    /posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_1200x0_resize_box_3.png 1200x'
+      sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
+      src='/posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_600x0_resize_box_3.png'
+      alt="Zig Programming Language"
+    />
+    <figcaption>
+      <p>Zig Programming Language</p>
+    </figcaption>
+  </center>
+</figure>
+
+
+<p>그 다음 살펴본 언어는 <a href="https://ziglang.org/">Zig</a> 다.
+Zig는 Rust처럼 C 스타일 프로그래밍 언어로, 메모리 안전성과 명시적인 제어 흐름, 컴파일시간 계산이 특징인 언어다.
+Zig의 강점은 C, C++ 등 다른 언어로 작성된 프로그램과 상호운용이 아주 쉽다는 점이다.
+Zig의 빌드 시스템(<code>zig build</code>)을 이용하면 C, C++로 작성된 언어를 쉽게 Zig 프로그램과 통합할 수 있다.
+프로그래밍하는 것처럼 빌드 시스템을 꾸릴 수 있기 때문에 빌드 시스템을 구축하는 것도 어렵지 않다.</p>
+<h2 id="zig-프로젝트와-bluez-통합하기">Zig 프로젝트와 BlueZ 통합하기</h2>
+<p>BlueZ 라이브러리를 Zig 코드와 통합해보자.
+일단 <a href="http://www.bluez.org/download/">BlueZ » Download</a> 에서 유저 공간에서 사용할 수 있는 BlueZ 패키지를 내려받고 프로젝트에 위치시킨다.
+프로젝트 구조는 다음과 같다. (<code>tree -L 2</code>)</p>
+<pre tabindex="0"><code>.
+|-- build.zig
+|-- libs
+|   `-- bluez-5.66
+|       |-- ...
+|       |-- lib
+|       |-- src
+|       |-- test
+|       |-- tools
+|       `-- unit
+|-- src
+    |-- bluetoothlib.zig
+    `-- main.zig
+</code></pre><p>libs 폴더를 두어 여기에 <code>bluez-5.66</code> 패키지를 위치시켰다. BlueZ에서 제공하는 라이브러리를 사용할 것이므로 <code>bluez-5.66/lib</code>에 있는 <code>bluetooth.c</code>, <code>uuid.c</code>, <code>sdp.c</code>, <code>hci.c</code>를 컴파일해야 한다.
+이 소스코드들은 <code>bluez-5.66</code>에 있는 헤더파일들에 선언된 프로토타입과 전처리 매크로가 필요하므로 컴파일 옵션에 <code>-I</code>로 추가한다.
+또한 BlueZ는 libc에 의존성이 있으므로 <code>exe.linkLibc()</code>를 통해 링킹해준다.
+libc의 함수들을 사용할 수 있도록 <code>/usr/include</code> 또한 <code>-I</code> 옵션으로 포함시켜준다.
+Zig의 빌드시스템에는 암묵적으로 libc가 포함되지 않아 모두 명시적으로 링킹해주어야한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// build.zig
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> build(b<span style="color:#f92672">:</span> <span style="color:#f92672">*</span>std.Build) <span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> target <span style="color:#f92672">=</span> b.standardTargetOptions(.{});
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> optimize <span style="color:#f92672">=</span> b.standardOptimizeOption(.{});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> exe <span style="color:#f92672">=</span> b.addExecutable(.{
+</span></span><span style="display:flex;"><span>        .name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;opera&#34;</span>,
+</span></span><span style="display:flex;"><span>        .root_source_file <span style="color:#f92672">=</span> .{ .path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;src/main.zig&#34;</span> },
+</span></span><span style="display:flex;"><span>        .target <span style="color:#f92672">=</span> target,
+</span></span><span style="display:flex;"><span>        .optimize <span style="color:#f92672">=</span> optimize,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    exe.linkLibC();
+</span></span><span style="display:flex;"><span>    exe.addCSourceFiles(<span style="color:#f92672">&amp;</span>.{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;./libs/bluez-5.66/lib/bluetooth.c&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;./libs/bluez-5.66/lib/hci.c&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;./libs/bluez-5.66/lib/uuid.c&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;./libs/bluez-5.66/lib/sdp.c&#34;</span>,
+</span></span><span style="display:flex;"><span>    }, <span style="color:#f92672">&amp;</span>.{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;-Ilibs/bluez-5.66&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;-I/usr/include&#34;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    b.installArtifact(exe);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_cmd <span style="color:#f92672">=</span> b.addRunArtifact(exe);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    run_cmd.step.dependOn(b.getInstallStep());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (b.args) <span style="color:#f92672">|</span>args<span style="color:#f92672">|</span> {
+</span></span><span style="display:flex;"><span>        run_cmd.addArgs(args);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_step <span style="color:#f92672">=</span> b.step(<span style="color:#e6db74">&#34;run&#34;</span>, <span style="color:#e6db74">&#34;Run the app&#34;</span>);
+</span></span><span style="display:flex;"><span>    run_step.dependOn(<span style="color:#f92672">&amp;</span>run_cmd.step);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> unit_tests <span style="color:#f92672">=</span> b.addTest(.{
+</span></span><span style="display:flex;"><span>        .root_source_file <span style="color:#f92672">=</span> .{ .path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;src/main.zig&#34;</span> },
+</span></span><span style="display:flex;"><span>        .target <span style="color:#f92672">=</span> target,
+</span></span><span style="display:flex;"><span>        .optimize <span style="color:#f92672">=</span> optimize,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_unit_tests <span style="color:#f92672">=</span> b.addRunArtifact(unit_tests);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> test_step <span style="color:#f92672">=</span> b.step(<span style="color:#e6db74">&#34;test&#34;</span>, <span style="color:#e6db74">&#34;Run unit tests&#34;</span>);
+</span></span><span style="display:flex;"><span>    test_step.dependOn(<span style="color:#f92672">&amp;</span>run_unit_tests.step);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>시스템에 연결된 블루투스 디바이스를 찾아 소켓을 여는 간단한 프로그램을 작성해보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// main.zig
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> btlib <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;bluetoothlib.zig&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> main() <span style="color:#f92672">!</span><span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> dev_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> btlib.get_route();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> sock <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> btlib.get_socket(dev_id);
+</span></span><span style="display:flex;"><span>    std.debug.print(<span style="color:#e6db74">&#34;dev_id = {d}, sock = {d}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, .{ dev_id, sock });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>bluetoothlib.zig</code>에서는 BlueZ Library에서 정의한 함수에 접근할 수 있도록
+C 구조체와 함수의 프로토타입을 지정한다.
+그리고 Zig 스타일의 함수로 감싸 퍼블릭 함수로 제공한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// bluetoothlib.zig
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// C API for the Linux Bluetooth stack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/// Bluetooth device address is a contiguous 6-byte array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">const</span> bdaddr_t <span style="color:#f92672">=</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    b<span style="color:#f92672">:</span> [<span style="color:#ae81ff">6</span>]<span style="color:#66d9ef">u8</span> <span style="color:#66d9ef">align</span>(<span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> hci_get_route(bdaddr<span style="color:#f92672">:</span> <span style="color:#f92672">?*</span>bdaddr_t) <span style="color:#66d9ef">c_int</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> hci_devid(str<span style="color:#f92672">:</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">c_int</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> get_route() <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> dev_id <span style="color:#f92672">=</span> hci_get_route(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (dev_id <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> BluetoothError.AdapterNotFound;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @as(<span style="color:#66d9ef">i32</span>, dev_id);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> get_socket(dev_id<span style="color:#f92672">:</span> <span style="color:#66d9ef">i32</span>) <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> sock <span style="color:#f92672">=</span> hci_open_dev(dev_id);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (sock <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> BluetoothError.CantOpenSocket;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @as(<span style="color:#66d9ef">i32</span>, sock);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="크로스-컴파일-개발-환경-만들기">크로스 컴파일 개발 환경 만들기</h2>
+<p>내 랩탑은 x86 리눅스이므로 <code>zig build</code>를 실행하면 <code>x86-64-linux-gnu</code> 로 컴파일된다.
+컴파일 속도는 내 랩탑이 빠르므로 내 랩탑에서 빌드하고 그 결과를 개발 보드에서 실행하고 싶다.
+따라서 빌드 시에 컴파일 대상을 <code>aarch64-linux-gnu</code>로 변경한다.
+aarch64 리눅스 시스템의 GNU LIBC(GLIBC)를 사용한다는 뜻이다.
+다음과 같이 Makefile을 작성해 ssh를 이용해 개발 보드에서 실행해보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Makefile" data-lang="Makefile"><span style="display:flex;"><span>TARGET_BINARY <span style="color:#f92672">=</span> ./zig-out/bin/opera
+</span></span><span style="display:flex;"><span>TARGET_MACHINE <span style="color:#f92672">=</span> /* REDACTED */
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">.PHONY</span><span style="color:#f92672">:</span> build send run connect
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">all</span><span style="color:#f92672">:</span> build send run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">build</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	zig build -Dtarget<span style="color:#f92672">=</span>aarch64-linux-gnu
+</span></span><span style="display:flex;"><span>	@echo <span style="color:#e6db74">&#34;Build complete.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">send</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	scp <span style="color:#66d9ef">$(</span>TARGET_BINARY<span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>TARGET_MACHINE<span style="color:#66d9ef">)</span>:~
+</span></span><span style="display:flex;"><span>	@echo <span style="color:#e6db74">&#34;Binary sent to target machine.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">run</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	ssh <span style="color:#66d9ef">$(</span>TARGET_MACHINE<span style="color:#66d9ef">)</span> ~/opera
+</span></span><span style="display:flex;"><span>	@echo <span style="color:#e6db74">&#34;Target binary executed on target machine.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">connect</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	ssh <span style="color:#66d9ef">$(</span>TARGET_MACHINE<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><pre tabindex="0"><code>&gt;&gt; make
+dev_id = 0, sock = 3
+</code></pre><p>잘 된다!</p>
+<h2 id="배운-것들">배운 것들</h2>
+<ul>
+<li>실행 파일을 빌드할 때 서로의 프로토타입을 가진 오브젝트끼리 링크해야 한다.</li>
+<li>프로토타입은 헤더 파일이나 <code>extern ...</code> 등을 이용해 선언할 수 있다.</li>
+</ul>
+
+	</article>
+  <script src="https://giscus.app/client.js"
+        data-repo="bongjunj/bongjunj.github.io"
+        data-repo-id="R_kgDOJyjOIw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJyjOI84CmS8t"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
+				
+				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
+				
+				<li><a href="/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a></li>
+				
+				<li><a href="/posts/what-is-random/">What is Randomness?</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+</main>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']]                  
+    }
+  };
+</script>
+
+	<footer>
+	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+</footer>
+
+</body>
+</html>

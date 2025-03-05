@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bookmarks on Bongjun Jang</title>
+    <link>https://bongjunj.github.io/bookmarks/</link>
+    <description>Recent content in Bookmarks on Bongjun Jang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Sun, 25 Aug 2024 15:07:00 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/bookmarks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Program Analysis and Testing</title>
+      <link>https://bongjunj.github.io/bookmarks/program-analysis-and-testing/</link>
+      <pubDate>Sun, 25 Aug 2024 15:07:00 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/bookmarks/program-analysis-and-testing/</guid>
+      <description>Good Introductions Symbolic Execution: https://dl.acm.org/doi/pdf/10.1145/2408776.2408795 </description>
+    </item>
+    
+    <item>
+      <title>Compilers</title>
+      <link>https://bongjunj.github.io/bookmarks/compilers/</link>
+      <pubDate>Thu, 18 Jul 2024 14:15:37 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/bookmarks/compilers/</guid>
+      <description>This page contains posts and papers which discuss various topics related to compilers. I continue to update this page as I find more interesting resources, so some of the links can be gone if I find them irrelevant or outdated. So, please make sure that save them if you find them interested.
+Courses These are the courses that KAIST offer as an introduction to programming languages:
+https://www.coursera.org/learn/programming-languages-1 https://www.coursera.org/learn/programming-languages2 These lecture define a simple arithmetic language and grow it gradually to introduce concepts in PL world: AST, scoping, type checking, type inference, polymorphism, and so on.</description>
+    </item>
+    
+  </channel>
+</rss>

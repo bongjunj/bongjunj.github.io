@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Just Use Argparse</title>
+	
+	<meta name="author" content="map[email:bongjun.jang [at] kaist.ac.kr name:Bongjun Jang]">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
+	
+</head>
+<body>
+	<header>
+  <center>
+    <a href="https://bongjunj.github.io/">
+      Bongjun Jang
+    </a>
+  </center>
+  
+</header>
+	
+<main>
+	<article>
+		<h1>Just Use Argparse</h1>
+		<time datetime=" 2025-02-08T18:08:01">2025 Feb 8</time>
+		<p>Writing Python scripts is probably one of the most useful skills as a software engineer.
+As a project grows, we find ourselves dumping loads of scripts everywhere,
+making it hard to resist the urge to manage them somehow.
+One way to manage scripts better is by turning them into CLI applications.
+By letting them take arguments rather than hard-coding the configuration values in the scripts such as filepaths,
+we can re-use them anytime we need some jobs done.</p>
+<p>For the sake of this, Python provides you a built-in which is <code>argparse</code>.
+It lets us parse command-line arguments so that we can easily convert the scripts for project-specific applications.
+While <code>argparse</code> is built-in, other libraries like <code>click</code> aim to simplify the process.
+And they are obviously easy to use.
+For example, to write a simple greetings application, <code>click</code> provides a lot simpler way as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser()
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;name&#39;</span>, type<span style="color:#f92672">=</span>str, help<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;what&#39;s your name?&#34;</span>)
+</span></span><span style="display:flex;"><span>args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello</span>(name):
+</span></span><span style="display:flex;"><span>    print(name)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>hello(args<span style="color:#f92672">.</span>name)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@click.command</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@click.argument</span>(<span style="color:#e6db74">&#39;name&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello</span>(name):
+</span></span><span style="display:flex;"><span>    click<span style="color:#f92672">.</span>echo(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Hello </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">!&#34;</span>)
+</span></span></code></pre></div><p>With <code>click</code>, the command hello remains a self-contained function with clear decorators, whereas in <code>argparse</code>, you have to manage the argument parser separately.
+Hhow beautiful it is to keep a command <code>hello</code> as a python function with self-explanatory decorators!
+It is quite easy to think that managing command lines is way easier with <code>click</code> than with <code>argparse</code>.
+However, from my experience for the past year, it seems that the opposite is true for several reasons.</p>
+<p>First, the most painful drawback of <code>click</code> is that it uses decorators heavily.
+A decorator turns a python function into somewhat else.
+In turn, you can&rsquo;t call the function directly. If you need call them, you end up using the API <code>ctx.invoke(hello, ...args)</code>.
+I found it annoying when I want just a simple python script to get a job done.
+Even for one-off scripts, you might be forced to use <code>@click.pass_context</code>, adding extra complexity.
+As a result, you need to one more argument (<code>ctx</code>) in the function.
+In addition, a decorator breaks the editor support.
+I use VSCode, and its type analysis does not work for decorator-wrapped functions.
+It makes me go back and forth to see which arguments the function needs.</p>
+<p>Second, it adds an extra dependency to the project.
+I get that, even with the drawbacks I described earlier, using <code>click</code> can help developing projects.
+However, at the point you want to publish your work, you need to consider dependencies.
+For this, no other options can beat <code>argparse</code>! Because <code>argparse</code> is built-in, users don’t need to install anything.
+Using <code>click</code> means potential setup issues—leading to unexpected GitHub issues or extra emails to your inbox.</p>
+<p>Furthurmore, here are some ways to manage Python scripts with <code>argparse</code> more efficiently in a project:</p>
+<ul>
+<li><code>lib</code>: utility modules</li>
+<li><code>tool</code>: you implement <code>argparse</code>-applications using modules in <code>lib</code></li>
+<li><code>scripts</code>: you manage your one-off scripts here. bash, python whatever.</li>
+</ul>
+<p>This way, you can manage CLI applications just like using <code>@click.group()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tool/command.py <span style="color:#f92672">[</span>args<span style="color:#f92672">]</span> <span style="color:#75715e"># instead of ./tool.py command [args]</span>
+</span></span></code></pre></div><p>And your python utils are just python functions which do not need an extra <code>ctx</code> object
+and they come with decent editor supports!</p>
+
+	</article>
+  <script src="https://giscus.app/client.js"
+        data-repo="bongjunj/bongjunj.github.io"
+        data-repo-id="R_kgDOJyjOIw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJyjOI84CmS8t"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
+				
+				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
+				
+				<li><a href="/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a></li>
+				
+				<li><a href="/posts/what-is-random/">What is Randomness?</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+</main>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']]                  
+    }
+  };
+</script>
+
+	<footer>
+	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+</footer>
+
+</body>
+</html>

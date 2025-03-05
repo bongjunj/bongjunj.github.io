@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>쿠키런 킹덤 서버 아키텍처 3</title>
+	
+	<meta name="author" content="map[email:bongjun.jang [at] kaist.ac.kr name:Bongjun Jang]">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
+	
+</head>
+<body>
+	<header>
+  <center>
+    <a href="https://bongjunj.github.io/">
+      Bongjun Jang
+    </a>
+  </center>
+  
+</header>
+	
+<main>
+	<article>
+		<h1>쿠키런 킹덤 서버 아키텍처 3</h1>
+		<time datetime=" 2021-08-31T14:55:09">2021 Aug 31</time>
+		<p>세번쨰 주제에서 함수형 프로그래밍에 대한 이야기가 눈에 띈다.
+영상에서 소개되는 &lsquo;프로그램&rsquo;이라는 개념은 함수형 프로그래밍의 &lsquo;순수 함수&rsquo;라는 개념과 동일하다.
+또한 Scala의 DSL 기능이 보이는데, 어떻게 작동하는지 다시 살펴보자. 기억이 가물가물하다.</p>
+<h2 id="pure-function순수-함수">Pure Function(순수 함수)</h2>
+
+
+
+
+<figure>
+  <center>
+    <img
+      srcset='
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_1200x0_resize_box_3.png 1200x'
+      sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
+      src='/posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png'
+      alt="pure function diagram"
+    />
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
+</figure>
+
+
+<p>함수가 순수하다는 말은 함수가 같은 입력에 대해서 항상 같은 결과값을 만들며, 부작용(side effect)이 없다는 뜻이다.
+여기서 부작용이란 함수의 &lsquo;보이지 않는 결과값&rsquo;이라고 할 수 있는데, 함수 외부의 가변 변수를 수정한다든지, 시스템의 상태를 변경시킨다던지 하는 것들을 말한다.
+순수 함수를 통해 우리는 함수가 오로지 입력과 결과값만을 통해 외부와 소통할 수 있음을 보장할 수 있다.</p>
+<p>아주 단순한 예시를 들어서 순수 함수와 비순수 함수를 이해해보자.</p>
+
+
+
+
+<figure>
+  <center>
+    <img
+      srcset='
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_1200x0_resize_box_3.png 1200x'
+      sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
+      src='/posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_600x0_resize_box_3.png'
+      alt="impure function"
+    />
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
+</figure>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#75715e">// a와 b가 같다면 add a b의 값은 항상 같다 (순수 함수)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> add a b <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 5초마다 이 함수를 실행해본다고 생각해보자, 함수의 결과값이 항상 달라진다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 흘러가고 있는 시간이 이 함수의 &#39;보이지 않는 입력&#39;이다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> currentTime () <span style="color:#f92672">=</span> System.DateTime.UtcNow
+</span></span></code></pre></div><p>다른 예시를 들어보자.</p>
+
+
+
+
+<figure>
+  <center>
+    <img
+      srcset='
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_1200x0_resize_box_3.png 1200x'
+      sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
+      src='/posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_600x0_resize_box_3.png'
+      alt="impure function of connecting db"
+    />
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
+</figure>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> insertUser user <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// DbConnection can fail
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">use</span> db <span style="color:#f92672">=</span> DbConnection ()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Insert also can fail
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    db<span style="color:#f92672">.</span>insertInto<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;users&#34;</span><span style="color:#f92672">).</span>values<span style="color:#f92672">([</span>user<span style="color:#f92672">]).</span>execute()
+</span></span></code></pre></div><p><code>insertUser</code>는 순수하지 않은 함수다. 우선, <code>db</code> 값을 보자.
+외부에서 가져와 입력으로 받은 값이 아닌, 함수 내부에서 생성된 값이다. 데이터베이스와 연결에 문제가 생길 경우 함수가 어떤 행동을 할지 보장할 수 없다.
+또한 함수가 하는 일 또한 함수 외부에 있는 데이터베이스의 상태를 변경시키는 일이다. 함수의 보이지 않는 출력이다.</p>
+<p>이런 식으로 함수가 비순수해지면, 함수가 어떤 결과를 가져올지 쉽게 예측할 수 없다. 소프트웨어의 구조를 쉽게 이해할 수 없다는 뜻이다.
+또한 객체와 객체 사이, 함수와 함수 사이에 의존성이 크게 증가한다. 따라서 소프트웨어를 쉽게 변경할 수 없다.
+순수함수를 이용하면 함수가 서로 입력과 결과값으로만 외부와 소통할 수 있기 때문에 프로그램의 흐름이 명확해진다는 장점이 있다.</p>
+<p>여기서 한가지 질문을 할 수 있다. 순수함수를 통해 명확한 프로그램을 작성하면 정말 좋은 일일텐데.
+데이터베이스에 연결하는 것도 순수하지 않은 일이고, 유저에게 입력을 받는 것도 순수하지 않는 일인데
+순수함수로만 프로그램을 어떻게 구성한다는 말일까?</p>
+<p>사실 그런 일은 가능하지 않다. 애당초 순수하지 않은 것을 순수하게 만드는 것이 말이 안된다.
+순수함수로 구현하는 것은 사실 위에서 든 예시와 같이 데이터베이스, 유저 입력 관리가 아니라 프로그램의 핵심 로직이다.
+프로그램의 핵심 로직에 필요한 입력을 비순수 함수로부터 가져와서 입력하고,
+핵심 로직을 통해 얻은 결과값을 비순수 함수를 통해 저장하는 것과 같은 일을 하는 것이다.</p>
+
+
+
+
+<figure>
+  <center>
+    <img
+      srcset='
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_1200x0_resize_box_3.png 1200x'
+      sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
+      src='/posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_600x0_resize_box_3.png'
+      alt="pure program does not have a side effect"
+    />
+    <figcaption>
+      <p></p>
+    </figcaption>
+  </center>
+</figure>
+
+
+<p>순수 함수를 이용하는 이유는 이렇게 프로그램의 핵심 로직을 비순수한 외부 시스템으로부터 격리시키고 수정가능하게 만드는 데에 있다.
+영상에서 나오듯이 프로그램의 핵심 로직과 외부 시스템에 의존관계가 강하지 않다보니 소프트웨어를 보다 유연하고 자유롭게 수정할 수 있다.</p>
+<h2 id="dsldomain-specific-language">DSL(Domain Specific Language)</h2>
+<p>영상에서 쿠키런 개발팀이 Scala의 for comprehension를 이용해 콘텐츠 로직을 작성하는 장면이 나온다.
+영상의 설명에 따르면 이 기능을 통해 콘텐츠 로직을 작성하기 위한 DSL을 이용하고 있다고 한다.</p>
+<p>DSL이란 Domain Specific Language 즉, 특정 도메인의 문제를 해결하기 위해 고안된 언어라는 뜻이다.
+프로그래밍으로 해결 가능한 모든 문제를 해결할 수 있는 General Purpose Language 와는 다른 측면이 있다.</p>
+<p>DSL의 예는 다음과 같다.</p>
+<ol>
+<li>웹 어플리케이션의 프론트엔드를 구현하기 위해 설계된 HTML, CSS</li>
+<li>데이터베이스 사용을 위해 설계된 SQL</li>
+<li>C 언어로 작성된 프로그램을 빌드하기 위한 makefile</li>
+<li>인프라스트럭처 관리를 위한 Terraform</li>
+</ol>
+<p>DSL을 사용하면 다음과 같은 장점이 있다.</p>
+<ol>
+<li>특정 도메인의 문제를 정교하게 표현할 수 있으며,</li>
+<li>특정 도메인의 문제를 해결하고 목적을 달성하기 위한 규칙 등을 기술할 수 있다.</li>
+</ol>
+<h3 id="scalas-for-comprehension">Scala&rsquo;s for comprehension</h3>
+<p>쿠키런 개발팀이 사용중인 Scala의 for comprehension을 어떻게 DSL 구현에 사용할 수 있는지 살펴보자.
+Scala의 for comprehension을 사용하기 위해서는 사용하고자 하는 타입이 <code>map</code>과 <code>flatMap</code> 함수를 구현하고 있어야 한다.
+(<code>forEach</code>와 <code>withFilter</code>도 구현해야 하지만 설명을 짧게 하고 넘어가기 위해 생략한다.)
+<code>map</code>과 <code>flatMap</code>을 이해해보자. 이 함수들은 wrapping type에 대해서 구현된다. 스칼라 문법에 익숙치 않아서 F#으로 작성한다.</p>
+<p>Wrapping type 이란 말 그대로 어떤 타입을 감싸는 타입이다.
+예를 들어보면 <code>List</code>나 <code>Set</code>처럼 여러 값의 콜렉션이 될 수도 있고, <code>Option</code>이나 <code>Result</code>처럼 하나의 값을 감싸는 타입일 수도 있다.
+결국 <code>T</code>라는 타입을 감싸서 <code>Wrap&lt;T&gt;</code>와 같은 구조가 되면 된다.</p>
+<ol>
+<li><code>int</code>를 <code>List</code>로 감싸면 <code>List&lt;int&gt;</code>가 된다. (list of integers)</li>
+<li><code>float</code>을 <code>Set</code>으로 감싸면 <code>Set&lt;float&gt;</code>가 된다. (set of floating numbers)</li>
+<li><code>char</code>를 <code>Option</code>으로 감싸면 <code>Option&lt;char&gt;</code>가 된다.</li>
+<li><code>HttpResponse</code>를 <code>Result</code>로 <code>Result&lt;HttpResponse, HttpError&gt;</code> 처럼 감쌀 수 있다.</li>
+</ol>
+<p><code>map</code>은 두 타입 <code>T, U</code>에 대해서 <code>Wrap&lt;T&gt;</code>을 입력으로 받아 <code>Wrap&lt;U&gt;</code>을 내보내는 함수다.
+그리고 <code>flatMap</code>은 <code>T, U</code>에 대해서 <code>Wrap&lt;Wrap&lt;T&gt;&gt;</code>을 입력으로 받아 <code>Wrap&lt;U&gt;</code>을 내보내는 함수다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> map<span style="color:#f92672">:</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">&#39;</span>T <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">&#39;</span>U<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> Wrap<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">&#39;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">-&gt;</span> Wrap<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">&#39;</span>U<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> flatMap<span style="color:#f92672">:</span> <span style="color:#f92672">(</span>Wrap<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">&#39;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">-&gt;</span> Wrap<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">&#39;</span>U<span style="color:#f92672">&gt;)</span> <span style="color:#f92672">-&gt;</span> Wrap<span style="color:#f92672">&lt;</span>Wrap<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">&#39;</span>T<span style="color:#f92672">&gt;&gt;</span> <span style="color:#f92672">-&gt;</span> Wrap<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">&#39;</span>U<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 좀 더 일반적이고 간결하게 (&#39;T -&gt; Wrap&lt;&#39;U&gt;) -&gt; &#39;T -&gt; Wrap&lt;&#39;U&gt; 로 쓸 수도 있다. (&#39;T를 Wrap&lt;&#39;T&gt;로 치환하면 동등하다)
+</span></span></span></code></pre></div><p>정의만 보면 이해가 힘드니 예시를 들어보자.
+list of floats를 list of int로 map하는 예다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> floats <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span><span style="color:#ae81ff">5</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">.</span><span style="color:#ae81ff">3</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">.</span><span style="color:#ae81ff">7</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">.</span><span style="color:#ae81ff">4</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>floats
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|&gt;</span> List.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> r <span style="color:#f92672">-&gt;</span> int r<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// returns [1; 2; 9; 6]
+</span></span></span></code></pre></div><p>다음은 list of (list of floats)를 list of int로 flatMap(collect)하는 예다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> floats <span style="color:#f92672">=</span> <span style="color:#f92672">[[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span><span style="color:#ae81ff">5</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">.</span><span style="color:#ae81ff">3</span><span style="color:#f92672">];</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">9</span><span style="color:#f92672">.</span><span style="color:#ae81ff">7</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">.</span><span style="color:#ae81ff">4</span><span style="color:#f92672">]]</span>
+</span></span><span style="display:flex;"><span>floats
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|&gt;</span> List.collect <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> xs <span style="color:#f92672">-&gt;</span> xs <span style="color:#f92672">|&gt;</span> List.map int<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// returns [1; 2; 9; 6]
+</span></span></span></code></pre></div><p>왜 <code>map</code>과 <code>flatMap</code>을 구현해야 하는걸까?
+Scala의 for comprehension 코드를 보면 이유를 알 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    i <span style="color:#66d9ef">&lt;-</span> numbers1
+</span></span><span style="display:flex;"><span>    j <span style="color:#66d9ef">&lt;-</span> numbers2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">yield</span> max<span style="color:#f92672">(</span>i<span style="color:#f92672">,</span> j<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>위의 코드는 아래로 번역된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span>numbers1<span style="color:#f92672">.</span>flatMap<span style="color:#f92672">(</span>i <span style="color:#66d9ef">=&gt;</span> numbers2<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>j <span style="color:#66d9ef">=&gt;</span> max<span style="color:#f92672">(</span>i<span style="color:#f92672">,</span> j<span style="color:#f92672">)))</span>
+</span></span></code></pre></div><p><code>map</code>과 <code>flatMap</code>을 구현한다면, <code>numbers3</code>처럼 enumerator를 더 많이 for comprehension에 넣어도 valid한 코드가 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    i <span style="color:#66d9ef">&lt;-</span> numbers1
+</span></span><span style="display:flex;"><span>    j <span style="color:#66d9ef">&lt;-</span> numbers2
+</span></span><span style="display:flex;"><span>    k <span style="color:#66d9ef">&lt;-</span> numbers3
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">yield</span> max<span style="color:#f92672">(</span>i<span style="color:#f92672">,</span> j<span style="color:#f92672">,</span> k<span style="color:#f92672">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span>numbers1<span style="color:#f92672">.</span>flatMap<span style="color:#f92672">(</span>i <span style="color:#66d9ef">=&gt;</span> numbers2<span style="color:#f92672">.</span>flatMap<span style="color:#f92672">(</span>j <span style="color:#66d9ef">=&gt;</span> numbers3<span style="color:#f92672">.</span>map<span style="color:#f92672">(</span>j <span style="color:#66d9ef">=&gt;</span> max<span style="color:#f92672">(</span>i<span style="color:#f92672">,</span> j<span style="color:#f92672">,</span> k<span style="color:#f92672">))))</span>
+</span></span></code></pre></div><p><code>forEach</code>와 <code>withFilter</code>도 구현하면 enumerator에 대해서 사이드 이펙트와, enumerator의 값을 골라내는 기능을 구현할 수도 있다.
+<code>map</code>과 <code>flatMap</code>을 이용해 for comprehension을 enumerator가 아니라 다른 분야에도 사용할 수 있는데
+다음 자료를 참고해보자.</p>
+<ul>
+<li><a href="https://1ambda.github.io/scala/reactive-programming-1/#for-expression">https://1ambda.github.io/scala/reactive-programming-1/#for-expression</a></li>
+<li><a href="https://www.coursera.org/learn/scala-functional-programming">https://www.coursera.org/learn/scala-functional-programming</a> (강추)</li>
+</ul>
+<p>결론적으로 다음과 같은 DSL를 작성할 수 있게 되는 것이다. (영상 내용에서 발췌)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scala" data-lang="scala"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    quest <span style="color:#66d9ef">&lt;-</span> getNormalQuest<span style="color:#f92672">(</span>questId<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    questData <span style="color:#66d9ef">&lt;-</span> inquireQuest<span style="color:#f92672">(</span>quest<span style="color:#f92672">.</span>dataId<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">&lt;-</span> assertQuestClearable<span style="color:#f92672">(</span>quest<span style="color:#f92672">).</span>unlessA<span style="color:#f92672">(</span>ignoreRequirements<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    payments <span style="color:#66d9ef">&lt;-</span> pay<span style="color:#f92672">(</span>questData<span style="color:#f92672">.</span>payments<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    rewards <span style="color:#66d9ef">&lt;-</span> receive<span style="color:#f92672">(</span>questData<span style="color:#f92672">.</span>rewards<span style="color:#f92672">,</span> <span style="color:#a6e22e">CurrencyInfo</span><span style="color:#f92672">.</span>free<span style="color:#f92672">,</span> <span style="color:#a6e22e">InventoryPolicy</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Ignore</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">&lt;-</span> liftEvent<span style="color:#f92672">(</span><span style="color:#a6e22e">QuestCleared</span><span style="color:#f92672">(</span>questId<span style="color:#f92672">,</span> quest<span style="color:#f92672">.</span>dataId<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">yield</span> <span style="color:#a6e22e">ClearQuestResult</span><span style="color:#f92672">(</span>questId<span style="color:#f92672">,</span> rewards<span style="color:#f92672">,</span> payments<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p><code>questId</code>를 통해 <code>quest</code> 데이터를 가져오고 이를 통해 <code>quest</code>가 클리어가능한지, 지불내용과 보상내용 등을 확인하고 그 결과를 만들어낸다.(라고 추정한다)
+이런식으로 for comprehension을 활용하면 <code>quest</code> 뿐만 아니라 게임을 구성하는 데이터를 이용해 로직을 작성하는 게 간결해진다.</p>
+<h3 id="fs-computation-expression">F#&rsquo;s computation expression</h3>
+<p>영상의 내용에는 나오지 않았지만 F#의 computation expression을 이용하면 좀 더 expressive한 DSL을 구현할 수 있다.
+글이 길어지니 참고 자료만 남기고 나중에 정리해야겠다.</p>
+<ul>
+<li>The &ldquo;F# Computation Expression&rdquo; series: <a href="https://fsharpforfunandprofit.com/series/computation-expressions/">https://fsharpforfunandprofit.com/series/computation-expressions/</a></li>
+<li>F# Computation Expression으로 Lego Mindstorm DSL 구현하기: <a href="https://thinkbeforecoding.com/post/2020/12/03/applicative-computation-expressions-3">https://thinkbeforecoding.com/post/2020/12/03/applicative-computation-expressions-3</a></li>
+</ul>
+
+	</article>
+  <script src="https://giscus.app/client.js"
+        data-repo="bongjunj/bongjunj.github.io"
+        data-repo-id="R_kgDOJyjOIw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJyjOI84CmS8t"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
+				
+				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
+				
+				<li><a href="/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a></li>
+				
+				<li><a href="/posts/what-is-random/">What is Randomness?</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+</main>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']]                  
+    }
+  };
+</script>
+
+	<footer>
+	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+</footer>
+
+</body>
+</html>

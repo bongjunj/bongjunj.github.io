@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Random on Bongjun Jang</title>
+    <link>https://bongjunj.github.io/categories/random/</link>
+    <description>Recent content in Random on Bongjun Jang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Fri, 02 Feb 2024 22:43:16 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/categories/random/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>기계 학습과 지향성 실행탐험기</title>
+      <link>https://bongjunj.github.io/posts/machine-learning-and-fuzzing/</link>
+      <pubDate>Fri, 02 Feb 2024 22:43:16 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/machine-learning-and-fuzzing/</guid>
+      <description>이 글에서는 컴퓨터 과학에서 부르는 Fuzzing을 실행탐험, Fuzzer를 실행탐험기라고 부릅니다.
+지금 인공지능 분야를 이끄는 기계학습은 컴퓨터 프로그램이 데이터를 학습하는 기틀을 제공한다. 이 학습의 틀은 다음과 같다.
+데이터를 알맞은 형식에 맞게 준비한다. 이 때, 입력 데이터와 정답 데이터를 구분한다. 입력 데이터에서 결과물을 도출하는 모형 함수를 정의한다. 이 때, 함수는 계수(Parameter)를 가진다. 모형함수의 결과값과 정답 데이터를 비교해 평가하는 손실함수(Loss Function)를 정의한다. 손실함수값이 줄어들도록 모형함수의 계수를 조절한다. 입력 데이터를 모형함수에 넣고, 손실함수값을 통해 모형함수를 계속해서 조절해나가는 것이 기계학습의 핵심이다.</description>
+    </item>
+    
+    <item>
+      <title>What is Randomness?</title>
+      <link>https://bongjunj.github.io/posts/what-is-random/</link>
+      <pubDate>Tue, 12 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/what-is-random/</guid>
+      <description>Short Answer: You call something is random because the best thing you can tell about it is just a guess.
+Long Answer An intesting example that enligntened me was the famous coin toss problem. We believe that the coin toss is a 50/50 experiment. That&amp;rsquo;s why we toss coin for deciding which side will take the turn first in a game. We believe it is fair. But recent findings suggest that our belief could be wrong: the experiment is not 50/50.</description>
+    </item>
+    
+    <item>
+      <title>Breaking Extended Vigenere Cipher</title>
+      <link>https://bongjunj.github.io/posts/breaking-extended-vigenere-cipher/</link>
+      <pubDate>Fri, 13 Oct 2023 14:59:17 -0400</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/breaking-extended-vigenere-cipher/</guid>
+      <description>For Appliced cryptography Course for this semester in NYU Tandon, I have been assigned a project to break a vigenere cipher but an extended version. Since I had already done a homework in KAIST, which was to write Kasiski examination program in OCaml, I thought it was going to be a piece of cake. However, the little tweak in the encryption scheme made it a lot more interesting. It was quite painful to come up with other techniques to break the cipher, but knowledges gained the hard way dies hard.</description>
+    </item>
+    
+    <item>
+      <title>모든 프레임워크는 새로운 언어다</title>
+      <link>https://bongjunj.github.io/posts/2023-02-01-every-new-framework-is-new-language/</link>
+      <pubDate>Wed, 01 Feb 2023 12:00:00 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/2023-02-01-every-new-framework-is-new-language/</guid>
+      <description>웹 개발의 세계에는 수백 수천 가지의 프레임워크가 있고, 아마 지금도 새로운 프레임워크가 탄생하고 있을 것이다. 프레임워크는 웹 어플리케이션을 작성하는 데 필요한 기능을 제공하고, 프로그래머는 프레임워크가 제공하는 기능을 이용해서 웹 어플리케이션을 작성한다.
+프레임워크가 흥미로운 점은, 웹 어플리케이션을 작성하기 위해 특정한 관점을 제공한다는 점이다. 리액트(React)는 클라이언트의 UI를 컴포넌트 단위로 구성해야한다는 관점을 제공하고, 장고(Django)나 ASP.NET Core는 웹 어플리케이션을 모델-뷰-컨트롤러 단위로 구성해야한다는 관점을 제시한다. 그리고 프로그래머는 프레임워크를 사용하면서 대부분의 시간을 이러한 관점에 따라 웹 어플리케이션을 작성하면서 보낸다.</description>
+    </item>
+    
+    <item>
+      <title>KENS 내부 들여다보기</title>
+      <link>https://bongjunj.github.io/posts/2022-10-26-reading-kens-internals/</link>
+      <pubDate>Wed, 26 Oct 2022 12:56:00 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/2022-10-26-reading-kens-internals/</guid>
+      <description>2022년 가을학기 전산망 개론에서 KENS 프로젝트를 통해 TCP/IP의 3-Way Handshaking과 Reliable Data Transfer를 구현하였다.
+교수님의 판단으로 Flow Control은 스킵.
+KENS는 꽤 신기한 프로그램이다. 교육용으로 설계되어 deterministic하게 동작한다. 내 생각에 실제 네트워크 노드들을 실행시켜 테스트하면 OS 등 여러 비결정적 요소들 때문에 절대로 deterministic하게 작동할 수 없는데, KENS에서는 그런 일이 일어나지 않는다.
+그래서 과제가 끝나고 숨돌릴 시간이 있을 무렵 KENS의 내부 구조를 들여다보았다.
+KENS 내부 구조 System&amp;rsquo;s Properties System은 KENS에서 네트워크를 구성하는 중요한 클래스다.</description>
+    </item>
+    
+    <item>
+      <title>비트코인을 지탱하는 원동력</title>
+      <link>https://bongjunj.github.io/posts/what-runs-bitcoin-network/</link>
+      <pubDate>Mon, 22 Nov 2021 21:23:00 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/what-runs-bitcoin-network/</guid>
+      <description>비트코인으로 대표되는 블록체인은 집중형 시스템과는 확실히 차별점이 있는 방식이다. 전통적인 방식에서는 모든 데이터를 저장하는 서버가 있고 클라이언트들의 요청을 알맞게 처리해 서버가 데이터를 제공했다. 하지만 블록체인에서는 데이터가 네트워크 참여자들에게 모두 분산되어 저장된다. (분산 원장, Distributed Ledger) 또한 데이터는 P2P(peer-to-peer) 형식으로 공유된다.
+이런 점 때문에 비트코인은 비트토렌트와 닮았다. 중앙 서버 없이 네트워크 참여자들끼리(peer-to-peer) 데이터가 공유되며, 네트워크 참여자들의 노력을 통해 네트워크가 유지되기 때문이다.
+하지만 비트토렌트와 비트코인 사이에는 결정적인 차이점이 있다. 비트코인은 네트워크 참가자들에게 인센티브를 제공하지만 비트토렌트는 그렇지 않다는 점이다.</description>
+    </item>
+    
+    <item>
+      <title>베이비 시팅 쿠폰 실험</title>
+      <link>https://bongjunj.github.io/posts/baby-sitting-coupon-experiment/</link>
+      <pubDate>Wed, 17 Nov 2021 15:53:34 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/baby-sitting-coupon-experiment/</guid>
+      <description>우리가 일상에서 겪는 모든 경제활동에서 우리는 값을 치를 때 화폐(money)를 사용한다. 맥도날드에서 햄버거를 사먹을 때, 쿠팡에서 생필품을 주문할 때, 월급을 받을 때, 용돈을 받을 때 화폐를 사용하지 않는 곳이 없다. 우리가 거래를 할 때 사용되는 모든 것들을 화폐로 본다면 KRW, USD, EUR와 같이 일반적으로 떠오르는 종이화폐 외에도 금이나 은, 암호화폐 등 모든 것이 화폐가 될 수 있다. 역사를 보면 전쟁이나 대공황 같은 때에는 응급약품, 술, 마약, 간편식품(라면 등), 물이 화폐로 기능하기도 했다.</description>
+    </item>
+    
+  </channel>
+</rss>

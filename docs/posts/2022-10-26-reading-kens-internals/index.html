@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>KENS 내부 들여다보기</title>
+	
+	<meta name="author" content="map[email:bongjun.jang [at] kaist.ac.kr name:Bongjun Jang]">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
+	
+</head>
+<body>
+	<header>
+  <center>
+    <a href="https://bongjunj.github.io/">
+      Bongjun Jang
+    </a>
+  </center>
+  
+</header>
+	
+<main>
+	<article>
+		<h1>KENS 내부 들여다보기</h1>
+		<time datetime=" 2022-10-26T12:56:00">2022 Oct 26</time>
+		<p>2022년 가을학기 전산망 개론에서 KENS 프로젝트를 통해
+TCP/IP의 3-Way Handshaking과 Reliable Data Transfer를 구현하였다.</p>
+<p>교수님의 판단으로 Flow Control은 스킵.</p>
+<p>KENS는 꽤 신기한 프로그램이다.
+교육용으로 설계되어 deterministic하게 동작한다.
+내 생각에 실제 네트워크 노드들을 실행시켜 테스트하면
+OS 등 여러 비결정적 요소들 때문에
+절대로 deterministic하게 작동할 수 없는데,
+KENS에서는 그런 일이 일어나지 않는다.</p>
+<p>그래서 과제가 끝나고 숨돌릴 시간이 있을 무렵
+KENS의 내부 구조를 들여다보았다.</p>
+<h2 id="kens-내부-구조">KENS 내부 구조</h2>
+<h3 id="systems-properties"><code>System</code>&rsquo;s Properties</h3>
+<p><code>System</code>은 KENS에서 네트워크를 구성하는 중요한 클래스다.
+아래 코드에서 <code>System</code>이 관리하는 데이터들을 살펴보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>unordered_set<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>Runnable<span style="color:#f92672">&gt;&gt;</span> runnableReady;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>unordered_map<span style="color:#f92672">&lt;</span>ModuleID, std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>Module<span style="color:#f92672">&gt;&gt;</span> registeredModule;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>priority_queue<span style="color:#f92672">&lt;</span>TimerContainer, std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>TimerContainer<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>                      TimerContainerLess<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      timerQueue;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>unordered_map<span style="color:#f92672">&lt;</span>UUID, TimerContainer<span style="color:#f92672">&gt;</span> activeTimer;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>unordered_set<span style="color:#f92672">&lt;</span>UUID<span style="color:#f92672">&gt;</span> activeUUID;
+</span></span></code></pre></div><p><code>System</code>은 <code>Runnable</code>, <code>Module</code>, <code>TimerContainer</code>를 관리하고 있다.
+일단 이름을 통해 유추해보면 <code>Runnable</code> 실행가능한 함수 또는 프로그램일 것이다.
+조금 더 들여다보자.</p>
+<h3 id="runnable"><code>Runnable</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Runnable</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> main() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// main program logic
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() <span style="color:#66d9ef">final</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">State</span> {
+</span></span><span style="display:flex;"><span>    CREATED,
+</span></span><span style="display:flex;"><span>    STARTING,
+</span></span><span style="display:flex;"><span>    READY,
+</span></span><span style="display:flex;"><span>    RUNNING,
+</span></span><span style="display:flex;"><span>    WAITING,
+</span></span><span style="display:flex;"><span>    TERMINATED,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start</span>() <span style="color:#66d9ef">final</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">virtual</span> State <span style="color:#a6e22e">wake</span>() <span style="color:#66d9ef">final</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ready</span>() <span style="color:#66d9ef">final</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">System</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  State state;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>mutex stateMtx;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>unique_lock<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>mutex<span style="color:#f92672">&gt;</span> threadLock; <span style="color:#75715e">//  for thread
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>unique_lock<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>mutex<span style="color:#f92672">&gt;</span> schedLock;  <span style="color:#75715e">//  for scheduler
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  std<span style="color:#f92672">::</span>condition_variable cond;
+</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span><span style="color:#66d9ef">thread</span> <span style="color:#66d9ef">thread</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>첫번째 과제였던 <code>EchoAssignment</code> 클래스가 <code>Runnable</code> 클래스를 상속하고 있다.
+아하! <code>Runnable</code>은 실행가능한 프로그램을 의미하는 것 같다.</p>
+<p><code>Runnable</code>을 상속하는 클래스는 <code>main</code> 메소드를 구현해 프로그램의 메인 로직을 정의하고,
+<code>Runnable</code> 인스턴스는 실행, 대기, 종료 등 상태를 가진다.</p>
+<p>KENS 스케쥴러에 의해 상태 전환이 일어나고, <code>mutex</code>, <code>condvar</code> 를 이용해 실행이 제어된다.</p>
+<p><code>Runnable</code>의 사용예제를 보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SystemCallApplication<span style="color:#f92672">::</span>initialize() { start(); }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> SystemCallApplication<span style="color:#f92672">::</span>E_Syscall(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> SystemCallInterface<span style="color:#f92672">::</span>SystemCallParameter <span style="color:#f92672">&amp;</span>param) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>host.isRunning())
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  syscallRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  host.issueSystemCall(pid, param);
+</span></span><span style="display:flex;"><span>  wait();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> syscallRet;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SystemCallApplication<span style="color:#f92672">::</span>returnSyscall(<span style="color:#66d9ef">int</span> retVal) {
+</span></span><span style="display:flex;"><span>  syscallRet <span style="color:#f92672">=</span> retVal;
+</span></span><span style="display:flex;"><span>  ready();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>SystemCallApplication</code> 클래스는 <code>Runnable</code>을 상속한다.
+<code>initialize()</code>가 <code>start()</code>를, <code>E_Syscall</code>이 <code>wait()</code>를, <code>returnSyscall()</code>이 <code>ready()</code>를 각각 호출하는 것을 볼 수 있다.
+<code>E_Syscall()</code>과 <code>returnSyscall()</code>은 <code>Runnable</code>이 제공하는 상태 제어 기능을 이용해
+시스템콜의 blocking behavior를 구현한다.
+실제 커널 시스템콜과 같이 시스템콜이 반환하기 전까지
+유저 프로그램이 실행되지 않는 것을 표현하는 것이다.</p>
+<p><code>E_Syscall()</code>을 통해 <code>wait()</code> 가 호출되면
+<code>Runnable</code> 인스턴스의 실행이 중단되고,
+<code>System</code>의 <code>run()</code>을 통해 어떤 인스턴스가 다음에 실행될지 결정된다!</p>
+<p>이는 협동 스케쥴링(Cooperative Scheduling)에서
+쓰레드(혹은 태스크)가 양보(yield)하는 것을 의미한다.</p>
+<h3 id="module"><code>Module</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Module</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  System <span style="color:#f92672">&amp;</span>system;
+</span></span><span style="display:flex;"><span>  ModuleID id;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p><code>Module</code>은 <code>System</code>에/으로부터 <code>Message</code>를 송수신할 수 있는 인터페이스다.</p>
+<p>다음 콜백이 정의되어 있다.</p>
+<ol>
+<li><code>Message</code>가 목적지 모듈에 도착했을 때</li>
+<li>목적지 모듈에서 처리가 끝났을 때</li>
+<li>처리가 되기 전에 취소되었을 때</li>
+</ol>
+<h3 id="message"><code>Message</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MessageBase</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  MessageBase() {}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>MessageBase() {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EmptyMessage</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> MessageBase {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> EmptyMessage <span style="color:#f92672">&amp;</span>shared();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">==</span>(<span style="color:#66d9ef">const</span> EmptyMessage <span style="color:#f92672">&amp;</span>b) <span style="color:#66d9ef">const</span> { <span style="color:#66d9ef">return</span> true; }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Message <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>unique_ptr<span style="color:#f92672">&lt;</span>MessageBase<span style="color:#f92672">&gt;</span>;
+</span></span></code></pre></div><p><code>Message</code>는 그냥 타입 지정을 위한 빈(empty) 클래스다.</p>
+<h3 id="timercontainer"><code>TimerContainer</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TimerContainerInner</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> ModuleID from;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> ModuleID to;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">bool</span> canceled;
+</span></span><span style="display:flex;"><span>  Time wakeup;
+</span></span><span style="display:flex;"><span>  Module<span style="color:#f92672">::</span>Message message;
+</span></span><span style="display:flex;"><span>  UUID uuid;
+</span></span><span style="display:flex;"><span>  TimerContainerInner(<span style="color:#66d9ef">const</span> ModuleID from, <span style="color:#66d9ef">const</span> ModuleID to, <span style="color:#66d9ef">bool</span> canceled,
+</span></span><span style="display:flex;"><span>                      Time wakeup, Module<span style="color:#f92672">::</span>Message message, UUID uuid)
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">:</span> from(from), to(to), canceled(canceled), wakeup(wakeup),
+</span></span><span style="display:flex;"><span>        message(std<span style="color:#f92672">::</span>move(message)), uuid(uuid) {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">using</span> TimerContainer <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>TimerContainerInner<span style="color:#f92672">&gt;</span>;
+</span></span></code></pre></div><p><code>TimerContainer</code>는 <code>System</code>의 내부 클래스로 정의되어 있다.
+메시지의 출발지/도착지, 시간정보가 담겨져있다.</p>
+<p><code>TimerContainerLess</code>라는 클래스도 정의되어 있는데, 위에서 보았듯이 <code>System</code>에서 <code>timerQueue</code>의 우선순위를 정하기 위해 사용한다.
+<code>wakeup</code>의 값이 큰 순서대로 <code>pop</code>되도록 지정된 것 같다. (확실하지 않다는 이야기, 하지만 보통 less로 비교가 이뤄지면 높은 값부터 pop한다.)</p>
+<h3 id="systems-run-method"><code>System</code>&rsquo;s <code>run</code> method</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> System<span style="color:#f92672">::</span>run(Time till) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> (true) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>runnableReady.empty()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> r <span style="color:#f92672">=</span> runnableReady.begin(); r <span style="color:#f92672">!=</span> runnableReady.end();) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">auto</span> next <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>r)<span style="color:#f92672">-&gt;</span>wake();
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (next <span style="color:#f92672">!=</span> Runnable<span style="color:#f92672">::</span>State<span style="color:#f92672">::</span>READY) {
+</span></span><span style="display:flex;"><span>            r <span style="color:#f92672">=</span> runnableReady.erase(r);
+</span></span><span style="display:flex;"><span>          } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">++</span>r;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (till <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> timerQueue.top()<span style="color:#f92672">-&gt;</span>wakeup <span style="color:#f92672">&gt;</span> till)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    TimerContainer current <span style="color:#f92672">=</span> timerQueue.top();
+</span></span><span style="display:flex;"><span>    assert(current);
+</span></span><span style="display:flex;"><span>    timerQueue.pop();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>currentTime <span style="color:#f92672">=</span> current<span style="color:#f92672">-&gt;</span>wakeup;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// for(TimerContainer* container : sameTime)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>      TimerContainer container <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(current);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>container<span style="color:#f92672">-&gt;</span>canceled) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// invoke `messageReceived` at `to` Module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Module<span style="color:#f92672">::</span>Message ret <span style="color:#f92672">=</span> registeredModule[container<span style="color:#f92672">-&gt;</span>to]<span style="color:#f92672">-&gt;</span>messageReceived(
+</span></span><span style="display:flex;"><span>            container<span style="color:#f92672">-&gt;</span>from, <span style="color:#f92672">*</span>container<span style="color:#f92672">-&gt;</span>message);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// invoke `messageFinished` at `from` Module
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        registeredModule[container<span style="color:#f92672">-&gt;</span>from]<span style="color:#f92672">-&gt;</span>messageFinished(
+</span></span><span style="display:flex;"><span>            container<span style="color:#f92672">-&gt;</span>to, std<span style="color:#f92672">::</span>move(container<span style="color:#f92672">-&gt;</span>message),
+</span></span><span style="display:flex;"><span>            ret <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">?</span> <span style="color:#f92672">*</span>ret : Module<span style="color:#f92672">::</span>EmptyMessage<span style="color:#f92672">::</span>shared());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Also, if there is a feedback from the receiver,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// invoke `messageFinished` callback on the sender side
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (ret <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>)
+</span></span><span style="display:flex;"><span>          registeredModule[container<span style="color:#f92672">-&gt;</span>to]<span style="color:#f92672">-&gt;</span>messageFinished(
+</span></span><span style="display:flex;"><span>              container<span style="color:#f92672">-&gt;</span>to, std<span style="color:#f92672">::</span>move(ret), Module<span style="color:#f92672">::</span>EmptyMessage<span style="color:#f92672">::</span>shared());
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        registeredModule[container<span style="color:#f92672">-&gt;</span>from]<span style="color:#f92672">-&gt;</span>messageCancelled(
+</span></span><span style="display:flex;"><span>            container<span style="color:#f92672">-&gt;</span>to, std<span style="color:#f92672">::</span>move(container<span style="color:#f92672">-&gt;</span>message));
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// We are now done with current timer container
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>activeTimer.erase(container<span style="color:#f92672">-&gt;</span>uuid);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>activeUUID.erase(container<span style="color:#f92672">-&gt;</span>uuid);
+</span></span><span style="display:flex;"><span>      assert(container.use_count() <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>System</code>의 메인 루프다.
+각 루프마다 <code>runnableReady</code>에 있는 모든 <code>Runnable</code> 인스턴스를 <code>wake()</code>시킨다.
+<code>READY</code> 상태인 <code>Runnable</code> 인스턴스만 남도록 지속적으로 관리한다.
+<code>timerQueue</code>에서 <code>TimerContainer</code> 데이터를 가져와서 메시지를 이동시킨다.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>KENS의 프로젝트는 (1) 네트워크 소켓 프로그래밍 (2) 네트워크 관련 시스템콜로 구성되어 있다.
+과제를 구현할 때 시스템콜을 리턴하지 않으면 다른 프로그램(예를 들어, 네트워크 피어)가
+실행되지 않는다는 사실이 디버깅에 꽤 유용하게 쓰였다.
+또한 <code>System</code>에 정의된 스케줄링 알고리즘을 보면
+타이머 큐에서 특정조건이 만족되지 않으면 시뮬레이션이 종료되지 않는데
+이유는 이 글을 읽는 여러분들이 직접 찾아보기 바란다. (이유가 기억이 안난다&hellip;)</p>
+
+	</article>
+  <script src="https://giscus.app/client.js"
+        data-repo="bongjunj/bongjunj.github.io"
+        data-repo-id="R_kgDOJyjOIw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJyjOI84CmS8t"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
+				
+				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
+				
+				<li><a href="/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a></li>
+				
+				<li><a href="/posts/what-is-random/">What is Randomness?</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+</main>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']]                  
+    }
+  };
+</script>
+
+	<footer>
+	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+</footer>
+
+</body>
+</html>

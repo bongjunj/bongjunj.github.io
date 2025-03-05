@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SWE on Bongjun Jang</title>
+    <link>https://bongjunj.github.io/categories/swe/</link>
+    <description>Recent content in SWE on Bongjun Jang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Thu, 29 Jun 2023 13:00:00 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/categories/swe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Odroid 개발보드에서 Zig와 C를 같이 사용하기</title>
+      <link>https://bongjunj.github.io/posts/using-zig-with-c-1/</link>
+      <pubDate>Thu, 29 Jun 2023 13:00:00 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/using-zig-with-c-1/</guid>
+      <description>Odroid-N2&amp;#43; 개발 보드
+Odroid-N2+ 개발 보드를 구입해서 네트워크 연결을 관리하는 프로그램을 작성하는 실험을 해보고 있다. 개발 보드에 설치된 우분투 리눅스에서 블루투스나 ZigBee 등 네트워크 프로그래밍을 어떻게 하는지 방법을 찾아보고 있다.
+제일 먼저 리눅스의 블루투스 서브시스템인 BlueZ를 사용해보고 싶었다. ZigBee 도 사용해보고 싶은데 ZigBee 동글과 센서를 알리에서 주문했더니 배송이 꽤 걸린다고 해서 블루투스 먼저 시도해봤다.
+지금 사용하는 N2+ 보드는 성능이 꽤 나오는 보드이지만, 더 성능이 제한되는 소형 보드에서도 실행 가능한 프로그램이면 좋겠어서 C나 C++의 성능이 나오는 프로그래밍 언어를 찾아보았다.</description>
+    </item>
+    
+  </channel>
+</rss>

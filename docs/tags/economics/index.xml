@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>economics on Bongjun Jang</title>
+    <link>https://bongjunj.github.io/tags/economics/</link>
+    <description>Recent content in economics on Bongjun Jang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko</language>
+    <lastBuildDate>Wed, 17 Nov 2021 15:53:34 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/tags/economics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>베이비 시팅 쿠폰 실험</title>
+      <link>https://bongjunj.github.io/posts/baby-sitting-coupon-experiment/</link>
+      <pubDate>Wed, 17 Nov 2021 15:53:34 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/baby-sitting-coupon-experiment/</guid>
+      <description>우리가 일상에서 겪는 모든 경제활동에서 우리는 값을 치를 때 화폐(money)를 사용한다. 맥도날드에서 햄버거를 사먹을 때, 쿠팡에서 생필품을 주문할 때, 월급을 받을 때, 용돈을 받을 때 화폐를 사용하지 않는 곳이 없다. 우리가 거래를 할 때 사용되는 모든 것들을 화폐로 본다면 KRW, USD, EUR와 같이 일반적으로 떠오르는 종이화폐 외에도 금이나 은, 암호화폐 등 모든 것이 화폐가 될 수 있다. 역사를 보면 전쟁이나 대공황 같은 때에는 응급약품, 술, 마약, 간편식품(라면 등), 물이 화폐로 기능하기도 했다.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>액터 모델 실습</title>
+	
+	<meta name="author" content="map[email:bongjun.jang [at] kaist.ac.kr name:Bongjun Jang]">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
+	
+</head>
+<body>
+	<header>
+  <center>
+    <a href="https://bongjunj.github.io/">
+      Bongjun Jang
+    </a>
+  </center>
+  
+</header>
+	
+<main>
+	<article>
+		<h1>액터 모델 실습</h1>
+		<time datetime=" 2021-11-29T08:54:51">2021 Nov 29</time>
+		
+
+
+
+<figure>
+  <center>
+    <img
+      srcset='
+    /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_320x0_resize_box_3.png 320w,
+    /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_600x0_resize_box_3.png 600w,
+    /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_900x0_resize_box_3.png 900w,
+    /posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_1200x0_resize_box_3.png 1200x'
+      sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
+      src='/posts/actor-model-in-practice/elixir-lang_hua77e38e9e2544974e0eca48ff58c19e8_55382_600x0_resize_box_3.png'
+      alt=""
+    />
+    <figcaption>
+      <p>Elixir Programming Language</p>
+    </figcaption>
+  </center>
+</figure>
+
+
+<p>요즘 나의 프로그래밍 공부는 Elixir를 공부하는 데 치중되어 있다.
+Elixir는 강타입(Strongly typed), 동적타입(Dynamically typed), 함수형(Functional) 프로그래밍 언어다.
+컴파일(<code>elixirc</code>) 뿐 아니라 인터랙티브 쉘(<code>iex</code>)과 스크립팅(<code>exs</code>)도 지원하기 때문에
+함수형 언어인 것만 제외하면 파이썬이나 루비와 같은 스크립트 언어처럼 사용할 수 있다.
+실제로 문법도 루비와 매우 흡사하기 때문에 파이썬이나 루비를 배웠던 사람이라면 큰 어려움없이 흡수할 수 있다.</p>
+<p>함수형 언어에 한번 빠지니 다시 돌아가기가 너무 어렵다.
+Elixir 전에는 F#을 주로 썼는데 F#은 아쉬운 점이 많았다.
+Pattern Matching, Active Pattern이나 Algebraic Data Type 등 언어의 기능이
+매우 강력해서 원하는 로직을 구현하는 것이 아주 즐거웠지만,
+실제로 시스템을 구현하기 위해 C#으로 구현된 닷넷 에코시스템에 의존해야 했기 때문이다.
+F#에서 C#으로 작성된 라이브러리를 사용할 수 있기는 하지만 Interop이 부자연스럽고 불편한 점이 많았다.
+게다가 F#으로 작성된 라이브러리는 완성도가 낮은 경우가 많았다.
+프로젝트를 실제로 진행하기에는 껄끄러운 점이 많았던 게 사실이다.
+차라리 함수형 패러다임을 기꺼이 버리고 C#을 사용하는 게 나을 지경이다.</p>
+<p>한편 Elixir는 erlang을 기반으로 작성되었고
+동적 타입이라는 큰 차이점을 제외하면 F#처럼 언어적 특성이 매우 뛰어나다.
+Phoenix, Ecto, Oban 등 Elixir로 작성된 프레임워크가
+완성도가 매우 높고 프로젝트에서 실제로 사용하기에 무리가 없다.
+Python이나 Ruby를 사용한 경험이 있다면 사고의 경계를 확장하기 위해
+다음 언어로 Elixir를 배우는 것은 아주 좋은 선택이 될 것 같다.</p>
+<h1 id="actor-model-in-elixir">Actor Model in Elixir</h1>
+<p>Elixir는 언어적 단계에서 Actor Model을 지원한다. Akka와 같은 프레임워크가 필요없다.
+Actor가 필요한 Stateful 시스템을 구현한다면 Elixir만큼 편리한 언어가 없을 것이다.</p>
+<p>Elixir는 기본적으로 <code>Process</code> 모듈을 통해 프로세스를 관리한다.
+여기서 프로세스란 OS에서 제공되는 프로세스가 아니라 어플리케이션 레벨의 경량 프로세스를 말한다.
+<code>Process</code>는 각자 상태(State), 메시지 큐(Message Queue), 메시지 전송(Message Sending) 기능을
+가지고 있고 다른 프로세스와 고립되어(기본적으로 에러를 전파하지 않는다) Elixir Actor Model의 가장 기초적인 뼈대가 된다.</p>
+<p>다음을 통해 <code>Process</code>를 이해해보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#75715e"># This spawns a process which</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print &#34;hello!&#34; and dies immediately</span>
+</span></span><span style="display:flex;"><span>pid <span style="color:#f92672">=</span> spawn(<span style="color:#66d9ef">fn</span> <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#e6db74">&#34;hello!&#34;</span> <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># It prints &#34;hello!&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This returns `false`</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Process</span><span style="color:#f92672">.</span>alive?(pid)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The main process itself is also a process</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># `self()` returns the pid of the calling process</span>
+</span></span><span style="display:flex;"><span>mother_process <span style="color:#f92672">=</span> self()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># `spawn` returns the pid of the spawned process</span>
+</span></span><span style="display:flex;"><span>child <span style="color:#f92672">=</span> spawn(<span style="color:#66d9ef">fn</span> <span style="color:#f92672">-&gt;</span> send(mother_process, {self(), <span style="color:#e6db74">&#34;hi! mom&#34;</span>}) <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># A process can receive a message from other processes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># with `receive` keyword</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">receive</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  {<span style="color:#f92672">^</span>child, msg} <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#e6db74">&#34;A letter from the child: </span><span style="color:#e6db74">#{</span>msg<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>하지만 <code>Process</code>에는 너무 기본적인 기능만 구현되어 있어서 사용하기 쉽지 않다.
+그렇기 때문에 <code>Process</code>가 서로 메시지를 주고 받을 수 있고,메시지 큐를 처리하며, 서로 고립되어 있다는 특성만 알고 넘어가자.
+대신, 실제로 유용하게 사용할 수 있는 <code>Agent</code>, <code>GenServer</code>, <code>Task</code> 등을 살펴보자.
+여기서는 Actor Model을 이해하는 데 유용한 <code>Agent</code>와 <code>GenServer</code>를 소개할 것이다.</p>
+<h1 id="agent">Agent</h1>
+<p><code>Elixir</code>의 <code>Agent</code>를 이용하면 Actor Model의 상태 관리를 쉽게 구현할 수 있다.
+<code>Agent</code>는 <code>Process</code> 모듈을 이용해 상태 관리를 편리하게 만든 모듈이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span>{<span style="color:#e6db74">:ok</span>, pid} <span style="color:#f92672">=</span> <span style="color:#a6e22e">Agent</span><span style="color:#f92672">.</span>start(<span style="color:#66d9ef">fn</span> <span style="color:#f92672">-&gt;</span> [] <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The update function here returns :ok</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Agent</span><span style="color:#f92672">.</span>update(pid, <span style="color:#66d9ef">fn</span> state <span style="color:#f92672">-&gt;</span> [<span style="color:#ae81ff">1</span> <span style="color:#f92672">|</span> state] <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The get function here return [1]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Agent</span><span style="color:#f92672">.</span>get(pid, <span style="color:#66d9ef">fn</span> state <span style="color:#f92672">-&gt;</span> state <span style="color:#66d9ef">end</span>)
+</span></span></code></pre></div><ol>
+<li><code>start</code>(또는 <code>start_link</code>): 프로세스를 주어진 초기상태와 함께 시작시킨다.</li>
+<li><code>update</code>: 프로세스의 상태를 변경한다.</li>
+<li><code>get</code>: 프로세스의 상태를 얻는다.</li>
+</ol>
+<ul>
+<li>상태를 초기화하고 변경하기 위해 모두 함수가 인자로 전달되었다.</li>
+<li><code>start</code>를 사용해 시작된 프로세스는 Crash가 발생할 경우 부모 프로세스에 Crash가 전파되지 않는다 그러나 <code>start_link</code>를 사용하면 부모 프로세스에 crash가 전파된다.</li>
+</ul>
+<p><code>Agent</code>를 이용해 간단한 스택을 관리하는 프로세스를 구현해보자.
+<code>get</code>, <code>update</code>, <code>get_and_update</code>로 상태 관리를 쉽게 구현할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#66d9ef">defmodule</span> <span style="color:#a6e22e">Stack</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> start_link(opts \\ []) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Agent</span><span style="color:#f92672">.</span>start_link(<span style="color:#66d9ef">fn</span> <span style="color:#f92672">-&gt;</span> [] <span style="color:#66d9ef">end</span>, opts)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> push(pid, item) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Agent</span><span style="color:#f92672">.</span>update(pid, <span style="color:#66d9ef">fn</span> stack <span style="color:#f92672">-&gt;</span> [item <span style="color:#f92672">|</span> stack] <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> pop(pid) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Agent</span><span style="color:#f92672">.</span>get_and_update(pid, <span style="color:#f92672">&amp;</span>do_pop<span style="color:#f92672">/</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> do_pop([]), <span style="color:#e6db74">do</span>: {<span style="color:#66d9ef">nil</span>, []}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">defp</span> do_pop([hd <span style="color:#f92672">|</span> tl]), <span style="color:#e6db74">do</span>: {hd, tl}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h1 id="genserver">GenServer</h1>
+<p><code>Agent</code>를 이용해 상태 관리를 위한 Actor Model를 구현했다.
+하지만 <code>Agent</code> 모듈에는 Actor Model의 메시지 큐(Message Queue, 혹은 메일 박스) 개념이 잘 드러나 있지 않다.
+이에 반해 <code>GenServer</code>는 Actor Model의 메시지 큐, 행동방식(Behavior)까지 쉽게 구현할 수 있게 되어있다.</p>
+
+
+
+
+<figure>
+  <center>
+    <img
+      srcset='
+    /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_320x0_resize_box_3.png 320w,
+    /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_600x0_resize_box_3.png 600w,
+    /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_900x0_resize_box_3.png 900w,
+    /posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_1200x0_resize_box_3.png 1200x'
+      sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
+      src='/posts/actor-model-in-practice/actor-model_huee2ed0f498179403073c8fe7d2488003_90160_600x0_resize_box_3.png'
+      alt=""
+    />
+    <figcaption>
+      <p>Actor Model 다이어그램</p>
+    </figcaption>
+  </center>
+</figure>
+
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#66d9ef">defmodule</span> <span style="color:#a6e22e">Stack</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">use</span> <span style="color:#a6e22e">GenServer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Client API</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># This helps a client interact easily with</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># this GenServer</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> start_link(opts \\ []) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">GenServer</span><span style="color:#f92672">.</span>start_link(__MODULE__, [], opts)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> pop(server) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">GenServer</span><span style="color:#f92672">.</span>call(server, <span style="color:#e6db74">:pop</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> push(server, item) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">GenServer</span><span style="color:#f92672">.</span>cast(server, {<span style="color:#e6db74">:push</span>, item})
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># GenServer callbacks</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@impl</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> init(state) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">:ok</span>, state}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@impl</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> handle_call(<span style="color:#e6db74">:pop</span>, _from, []]) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">:reply</span>, <span style="color:#66d9ef">nil</span>, []}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@impl</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> handle_call(<span style="color:#e6db74">:pop</span>, _from, [hd <span style="color:#f92672">|</span> tl]) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">:reply</span>, hd, tl}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@impl</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> handle_cast({<span style="color:#e6db74">:push</span>, item}, stack) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">:noreply</span>, [item <span style="color:#f92672">|</span> stack]}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><ul>
+<li><code>init</code> : 초기 상태를 정의한다.</li>
+<li><code>handle_call</code> : 클라이언트의 동기 호출(Synchronous Call)을 담당한다.
+<ul>
+<li>Message, Caller, State를 함수 인자로 받는다.</li>
+<li>Caller는 값이 반환될 때까지 대기한다(Waiting).</li>
+<li><code>{:reply, Response, New State}</code>을 반환한다.</li>
+</ul>
+</li>
+<li><code>handle_cast</code> : 클라이언트의 비동기 호출(Asynchronous Call)을 담당한다.
+<ul>
+<li>Message, State를 함수 인자로 받는다.</li>
+<li>Caller는 값이 반환되는 것을 대기하지 않는다.</li>
+<li><code>{:noreply, New State}</code>을 반환한다.</li>
+</ul>
+</li>
+</ul>
+<p>이런 방식으로 <code>GenServer</code>의 콜백함수들을 정의함으로써 메시지에 따른 Actor Model의 행동방식을 정의할 수 있다.
+구체적으로 여기서 메시지는 <code>:pop</code>, <code>{:push, item}</code>이고 그에 따른 행동방식이 <code>handle_*</code> 함수 안에 정의되어 있다.
+물론 먼저 들어온 순서에 따라서 메시지가 처리된다.</p>
+<p><code>GenServer</code>의 강점은 이처럼 Actor Model의 구현 방식이 제시되어 있어 그 틀을 따라가기만 하면
+쉽게 구현할 수 있다는 점도 있지만, Server(메시지를 받아 처리하는 측)와 Client(메시지를 보내는 측)의 코드를 분리해 구현할 수 있다는 점도 크다.
+예를 들어 <code>Process</code>나 <code>Agent</code>를 사용하면 다음과 같은 코드를 작성하기 쉽다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> update_state(pid) <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Code here runs on the client side</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Agent</span><span style="color:#f92672">.</span>update(pid, <span style="color:#66d9ef">fn</span> state <span style="color:#f92672">-&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Code here runs on the server side</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>기능이 작동하는 데는 문제는 없으나 Client와 Server에서 작동하는 코드가 하나의 함수에 작성되기 떄문에,
+구분이 불명확해져 Client와 Server의 행동을 해석하기 어렵게 만든다.
+Server에 의도치않게 동기식으로 무거운 연산을 올리는 등의 실수를 유발하기 쉽다.</p>
+<p><code>GenServer</code>에서의 콜백 함수는 철저히 Server에서 작동하는 코드다.
+Client 측이 사용하는 함수는 위의 예제처럼 따로 작성하면 된다.
+Server와 Client의 경계가 구분된 함수로 명확하게 들어나면서 시스템의 요구사항에 맞는 설계를 하기 쉬워진다.</p>
+<h2 id="마치면서">마치면서</h2>
+<p>Actor Model의 특성을 Elixir의 <code>Process</code>, <code>Agent</code>, <code>GenServer</code>를 통해 이해해봤다.
+Actor라는 작은 단위를 이해했으니 전체 시스템을 이해하기 위해 Actor들이 서로 협력하는 법을 살펴봐야할 차례다.
+Akka에서와 같이 Elixir에서도 Supervisor와 Supervision Tree 개념이 있다.
+다음에는 이 부분을 살펴볼 예정이다.</p>
+<h2 id="참고-자료">참고 자료</h2>
+<ol>
+<li>Elixir Agent: <a href="https://elixir-lang.org/getting-started/mix-otp/agent.html">https://elixir-lang.org/getting-started/mix-otp/agent.html</a></li>
+<li>Elixir GenServer: <a href="https://elixir-lang.org/getting-started/mix-otp/genserver.html">https://elixir-lang.org/getting-started/mix-otp/genserver.html</a></li>
+<li>Elixir GenServer: <a href="https://hexdocs.pm/elixir/GenServer.html#content">https://hexdocs.pm/elixir/GenServer.html#content</a></li>
+</ol>
+
+	</article>
+  <script src="https://giscus.app/client.js"
+        data-repo="bongjunj/bongjunj.github.io"
+        data-repo-id="R_kgDOJyjOIw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJyjOI84CmS8t"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
+				
+				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
+				
+				<li><a href="/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a></li>
+				
+				<li><a href="/posts/what-is-random/">What is Randomness?</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+</main>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']]                  
+    }
+  };
+</script>
+
+	<footer>
+	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+</footer>
+
+</body>
+</html>

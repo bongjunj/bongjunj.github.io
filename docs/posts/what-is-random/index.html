@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>What is Randomness?</title>
+	
+	<meta name="author" content="map[email:bongjun.jang [at] kaist.ac.kr name:Bongjun Jang]">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
+	
+</head>
+<body>
+	<header>
+  <center>
+    <a href="https://bongjunj.github.io/">
+      Bongjun Jang
+    </a>
+  </center>
+  
+</header>
+	
+<main>
+	<article>
+		<h1>What is Randomness?</h1>
+		<time datetime=" 2023-12-12T00:00:00">2023 Dec 12</time>
+		<p>Short Answer: You call something is random because the best thing you can tell about it is just a guess.</p>
+<h2 id="long-answer">Long Answer</h2>
+<p>An intesting example that enligntened me was the famous coin toss problem.
+We believe that the coin toss is a 50/50 experiment.
+That&rsquo;s why we toss coin for deciding which side will take the turn first in a game. We believe it is fair.
+But recent findings suggest that our belief could be wrong: the experiment is not 50/50.
+In fact, a coin tends to land on the same side they started for a probability of 50.8%.</p>
+<p>But how? To answer this, we have to go back to the first place and ask ourselves:
+&ldquo;Why, in the first place, did we believe that a coin toss is fair?&rdquo;
+I want to put it this way: because we were not able to ponder all the statistical and physical intricacies.
+But now we are. Therefore, we have better ways to understand the probability of coin tosses.</p>
+<p>This framework that claims, if we can see more, we can guess better works for various cases.
+The best examples are from cryptography, which uses this notion extensively.</p>
+<ol>
+<li>MD5 hash used to be considered secure, because the best way to predict the outcome of the hash was just randomly guessing. But now we have more powerful computers and better algorithms to guess the output, it is not random anymore.</li>
+<li>Cryptographic primitives and schemes (one-way functions, RSA, Elliptic Curves) are considered to be secure at the time of writing, because we can&rsquo;t find solutions for such problems in a reasonable amount of time. The best way to try to solve such problems is just guessing. Any ciphertext constructed using such problems are seemingly random (computationally indistinguishable).</li>
+</ol>
+<h2 id="true-randomness">True Randomness</h2>
+<p>Therefore, a notion of randomness seems like it all made up:
+if we hide information that somebody only can do is just guess, we can claim it is random.</p>
+<p>But it seems like, in this physical world, a true randomness exists.
+Some physical phenomena, widely studied by quantom physics, are truly random,
+because it is physically infeasible to predict a result of such phenomena.</p>
+
+	</article>
+  <script src="https://giscus.app/client.js"
+        data-repo="bongjunj/bongjunj.github.io"
+        data-repo-id="R_kgDOJyjOIw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJyjOI84CmS8t"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
+				
+				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
+				
+				<li><a href="/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a></li>
+				
+				<li><a href="/posts/what-is-random/">What is Randomness?</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+</main>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']]                  
+    }
+  };
+</script>
+
+	<footer>
+	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>pyinfra lets you go to bed</title>
+	
+	<meta name="author" content="map[email:bongjun.jang [at] kaist.ac.kr name:Bongjun Jang]">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
+	
+</head>
+<body>
+	<header>
+  <center>
+    <a href="https://bongjunj.github.io/">
+      Bongjun Jang
+    </a>
+  </center>
+  
+</header>
+	
+<main>
+	<article>
+		<h1>pyinfra lets you go to bed</h1>
+		<time datetime=" 2025-03-03T12:33:45">2025 Mar 3</time>
+		<p>This is a story how <code>pyinfra</code> let me go to bed.</p>
+<p>Working as a TA, I was tasked to set up 170 virtual machines for students&rsquo; development environment (My professor runs a huge course.)
+As the dominance of x86 is fading away, students started to have more diverse pool of machines.
+They have (classic) x86, aarch64 with an amazing variety of OS (windows, macos, ubuntu, and arch?).
+So it is better to set a &ldquo;standard&rdquo; to avoid unnecessary headaches due to environment mismatch.
+(Worst scenario: &ldquo;it works on my machine&rdquo;)
+Also, it is convenient that we can just <code>ssh</code> to their machine and see how we can help them, just in case.</p>
+<p>Anyway, the requirements were:</p>
+<ul>
+<li>Install system packages: <code>cmake</code>, <code>curl</code>, &hellip;</li>
+<li>Create student&rsquo;s account in the system</li>
+<li>Install LLVM, OCaml dev environment and other interesting softwares, &hellip;</li>
+</ul>
+<p>It seemed straightforward at the beginning.
+I thought just using the bash scripts which have been used for generations (by previous TAs) would get the job done.
+But, it quickly turned out to be dead false.
+I couldn&rsquo;t even get to the very first requirement!
+I investigated what was going on and figured out that
+<code>apt update &amp;&amp; apt install ...</code> <em>was NOT working</em> for some machines and <em>WAS working</em> for some machines (WHAT?)</p>
+<h3 id="fighting-network-failures">Fighting network failures</h3>
+<p>It turned out that the problem was network failures.
+Some machines couldn&rsquo;t get connection to the apt repository due to rate-limiting.
+<strong>The virtual machines was behind same NAT,</strong> which would make the apt repository see them as a single machine with different ports.
+I was commiting <strong>DDOS</strong> attack to the repository with 170 machines!</p>
+<p>Not to bother the repository again, I really needed more than just bash scripts,
+which just unleash all the machines to race to the repository simultaneously.
+I wanted to set a limit for the parallelism, skip if installation was done already, and retry until the setup is completed for all the machines.
+Doing all these by adding new features to the bash scripts would take several days and nights.
+Luckily, I found <code>pyinfra</code>, which have all the features I wanted.</p>
+<p>Setting a parallelism limit and skipping were just a piece of cake.
+To get the job done, you define an operation just like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># system-setup.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>apt<span style="color:#f92672">.</span>packages(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Ensure essential system packages are installed&#34;</span>,
+</span></span><span style="display:flex;"><span>    packages<span style="color:#f92672">=</span>SYSTEM_PACKAGES, <span style="color:#75715e"># [&#34;make&#34;, &#34;git&#34;, &#34;cmake&#34;, &#34;curl&#34;, ...]</span>
+</span></span><span style="display:flex;"><span>    update<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    cache_time<span style="color:#f92672">=</span><span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">24</span>, <span style="color:#75715e"># update every 24 hours</span>
+</span></span><span style="display:flex;"><span>    _parallel<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, <span style="color:#75715e"># Try not to DDOS the apt repository</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>It runs <code>apt update</code> once a day and the command is run on only up to 4 machines.
+And it runs <code>apt install &lt;SYSTEM_PACKAGES&gt;</code> or skips the command if the installations are already there.
+But still, some machines can fail. (They can fail for any reason. LISTEN to me. They will.)</p>
+<p>So need to have them retry until they finish their work. For that, you do:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">until</span> pyinfra machines.py system-setup.py -y; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;retry...&#34;</span>;
+</span></span><span style="display:flex;"><span>    sleep 30; <span style="color:#75715e"># take a rest for a while (for what I don&#39;t know)</span>
+</span></span><span style="display:flex;"><span>end
+</span></span></code></pre></div><h3 id="the-ugly-duckling">The ugly duckling</h3>
+<p>There was the ugly duckling machine.
+The machine was notoriously slow at building some packages.
+While other machines finished building them within just 10-ish minutes,
+the machine was stuck over an hour.
+Solution? Just simply set a timeout just like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>server<span style="color:#f92672">.</span>shell(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;install ocaml packages&#34;</span>,
+</span></span><span style="display:flex;"><span>    commands<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;opam install -y utop dune llvm ...&#39;</span>,
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    _timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>, <span style="color:#75715e"># an hour</span>
+</span></span><span style="display:flex;"><span>    _env<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;OPAMYES&#39;</span>: <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#39;OPAMSWITCH&#39;</span>: OPAM_SWITCH},
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>The timeout will let you know which machines are ugly ducklings.
+Sadly, you need to replace that machine.
+At the end of the day, it&rsquo;s just a virtual machine whose CPU cores are not doing their job&hellip;</p>
+
+	</article>
+  <script src="https://giscus.app/client.js"
+        data-repo="bongjunj/bongjunj.github.io"
+        data-repo-id="R_kgDOJyjOIw"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOJyjOI84CmS8t"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
+				
+				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
+				
+				<li><a href="/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a></li>
+				
+				<li><a href="/posts/what-is-random/">What is Randomness?</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+</main>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$', '$']]                  
+    }
+  };
+</script>
+
+	<footer>
+	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+</footer>
+
+</body>
+</html>
