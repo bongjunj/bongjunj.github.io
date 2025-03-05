@@ -1,10 +1,10 @@
 body {
-    font-family: 'Cascadia Code', sans-serif;
-    font-size: medium;
+    font-family: 'Mona Sans', sans-serif;
+    font-size: small;
 }
 
 header {
-    font-family: 'Cascadia Code', sans-serif;
+    font-family: 'Mona Sans', sans-serif;
     font-size: large;
     margin: 0 auto;
     margin-top: 0.5rem;
@@ -37,7 +37,7 @@ img#my-pic {
     width: 50%;
 }
 
-Code {
+code {
     font-family: 'Cascadia Code';
 
 }
@@ -88,18 +88,19 @@ figure img {
 @media screen and (min-width: 768px) {
     #personal {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     #contents {}
 
     #my-pic {
-        grid-column: 1 / 2;
-        max-width: 100%;
+        grid-column: 1 / 1;
+        /* max-width: 100%; */
+        max-width: 80%;
         margin: auto;
     }
 
     #info {
-        grid-column: 2 / 2;
+        grid-column: 2 / 4;
     }
 }
