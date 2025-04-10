@@ -36,12 +36,12 @@
 <p>CRUD는 Create, Read, Update and Delete의 약어로 데이터를 생성하고 읽고 수정하고 삭제하는 기능을 말한다.
 F#으로 CRUD를 나타내보면 다음과 같은 코드로 나타낼 수 있을 것이다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#75715e">// 1. Create
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> mutable account <span style="color:#f92672">=</span> BankAccount<span style="color:#f92672">(</span><span style="color:#ae81ff">500</span><span style="color:#f92672">)</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> mutable account <span style="color:#f92672">=</span> BankAccount<span style="color:#f92672">(</span>500<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Read
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>printfn <span style="color:#e6db74">&#34;Balance: %d USD&#34;</span> account<span style="color:#f92672">.</span>Balance
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Update
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>account<span style="color:#f92672">.</span>Deposit<span style="color:#f92672">(</span><span style="color:#ae81ff">100</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>account<span style="color:#f92672">.</span>SendTo<span style="color:#f92672">(</span>otherAccount<span style="color:#f92672">,</span> <span style="color:#ae81ff">200</span><span style="color:#f92672">)</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>account<span style="color:#f92672">.</span>Deposit<span style="color:#f92672">(</span>100<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>account<span style="color:#f92672">.</span>SendTo<span style="color:#f92672">(</span>otherAccount<span style="color:#f92672">,</span> 200<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 4. Delete
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>account<span style="color:#f92672">.</span>Destroy()
 </span></span></code></pre></div><p>CRUD는 어플리케이션의 구조가 가장 직관적이라는 장점이 있다.
@@ -66,12 +66,12 @@ CRUD의 직관적인 모델과는 다른 면이 있다.</p>
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_320x0_resize_box_3.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_600x0_resize_box_3.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_900x0_resize_box_3.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu7704833719624669138.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu8617795950491704765.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu8496237831285919194.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu5609112976947276297.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu216eb6bdffddbe4a96a9ec0b365416bc_19281_600x0_resize_box_3.png'
+      src='/posts/cookie-run-kingdom-server-architecture-2/event_sourcing_transition_hu8617795950491704765.png'
       alt=""
     />
     <figcaption>
@@ -88,7 +88,7 @@ CRUD의 직관적인 모델과는 다른 면이 있다.</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">|</span> Deposited <span style="color:#66d9ef">of</span> int
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">|</span> Withdrawn <span style="color:#66d9ef">of</span> int
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> initAccount <span style="color:#f92672">=</span> Account <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> initAccount <span style="color:#f92672">=</span> Account 0
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> transition state <span style="color:#66d9ef">event</span> <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">match</span> state<span style="color:#f92672">,</span> <span style="color:#66d9ef">event</span> <span style="color:#66d9ef">with</span>
@@ -115,12 +115,12 @@ CRUD의 직관적인 모델과는 다른 면이 있다.</p>
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_320x0_resize_box_3.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_600x0_resize_box_3.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_900x0_resize_box_3.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu4021216278008235072.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu6186713675282604370.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu2230251724341353337.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu8126065674883693684.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu5e1e44be1bd082a04f7654f392df4339_56442_600x0_resize_box_3.png'
+      src='/posts/cookie-run-kingdom-server-architecture-2/event_sourcing_command_execution_hu6186713675282604370.png'
       alt=""
     />
     <figcaption>

@@ -41,15 +41,13 @@
 </ol>
 <p>Note that recursive functions&rsquo; preconditions and postconditions will do the same job as loop invariants.</p>
 <p>One can construct basic paths from the function in a Hoare triple form as below:</p>
-<p>$$
+$$
 \lbrace P \rbrace ~S~ \lbrace Q \rbrace
-$$</p>
-<p>where $P$ and $Q$ are first-order logical formulae and $S$ is a statement.
+$$<p>where $P$ and $Q$ are first-order logical formulae and $S$ is a statement.
 From the triple, one can derive the following formula:</p>
-<p>$$
+$$
 P \rightarrow wp(Q, S)
-$$</p>
-<p>where $wp(Q, S)$ is the weakest precondition of $Q$ given $S$.</p>
+$$<p>where $wp(Q, S)$ is the weakest precondition of $Q$ given $S$.</p>
 <p>The weakest precondition can be computed as below:</p>
 <ol>
 <li>$wp(Q, \texttt{assume}~p) \Leftrightarrow p \rightarrow Q$ (for branches)</li>

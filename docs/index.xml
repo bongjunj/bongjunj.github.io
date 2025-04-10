@@ -4,263 +4,179 @@
     <title>Bongjun Jang</title>
     <link>https://bongjunj.github.io/</link>
     <description>Recent content on Bongjun Jang</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ko</language>
-    <lastBuildDate>Mon, 03 Mar 2025 12:33:45 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</managingEditor>
+    <webMaster>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</webMaster>
+    <lastBuildDate>Mon, 03 Mar 2025 12:33:45 +0900</lastBuildDate>
+    <atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>pyinfra lets you go to bed</title>
       <link>https://bongjunj.github.io/posts/pyinfra-lets-you-go-to-bed/</link>
-      <pubDate>Mon, 03 Mar 2025 12:33:45 +0900</pubDate>
-      
+      <pubDate>Mon, 03 Mar 2025 12:33:45 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/pyinfra-lets-you-go-to-bed/</guid>
-      <description>This is a story how pyinfra let me go to bed.
-Working as a TA, I was tasked to set up 170 virtual machines for students&amp;rsquo; development environment (My professor runs a huge course.) As the dominance of x86 is fading away, students started to have more diverse pool of machines. They have (classic) x86, aarch64 with an amazing variety of OS (windows, macos, ubuntu, and arch?). So it is better to set a &amp;ldquo;standard&amp;rdquo; to avoid unnecessary headaches due to environment mismatch.</description>
+      <description>&lt;p&gt;This is a story how &lt;code&gt;pyinfra&lt;/code&gt; let me go to bed.&lt;/p&gt;&#xA;&lt;p&gt;Working as a TA, I was tasked to set up 170 virtual machines for students&amp;rsquo; development environment (My professor runs a huge course.)&#xA;As the dominance of x86 is fading away, students started to have more diverse pool of machines.&#xA;They have (classic) x86, aarch64 with an amazing variety of OS (windows, macos, ubuntu, and arch?).&#xA;So it is better to set a &amp;ldquo;standard&amp;rdquo; to avoid unnecessary headaches due to environment mismatch.&#xA;(Worst scenario: &amp;ldquo;it works on my machine&amp;rdquo;)&#xA;Also, it is convenient that we can just &lt;code&gt;ssh&lt;/code&gt; to their machine and see how we can help them, just in case.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Just Use Argparse</title>
       <link>https://bongjunj.github.io/posts/just-use-argparse/</link>
-      <pubDate>Sat, 08 Feb 2025 18:08:01 +0900</pubDate>
-      
+      <pubDate>Sat, 08 Feb 2025 18:08:01 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/just-use-argparse/</guid>
-      <description>Writing Python scripts is probably one of the most useful skills as a software engineer. As a project grows, we find ourselves dumping loads of scripts everywhere, making it hard to resist the urge to manage them somehow. One way to manage scripts better is by turning them into CLI applications. By letting them take arguments rather than hard-coding the configuration values in the scripts such as filepaths, we can re-use them anytime we need some jobs done.</description>
+      <description>&lt;p&gt;Writing Python scripts is probably one of the most useful skills as a software engineer.&#xA;As a project grows, we find ourselves dumping loads of scripts everywhere,&#xA;making it hard to resist the urge to manage them somehow.&#xA;One way to manage scripts better is by turning them into CLI applications.&#xA;By letting them take arguments rather than hard-coding the configuration values in the scripts such as filepaths,&#xA;we can re-use them anytime we need some jobs done.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>태어나서 처음 논문 제출</title>
       <link>https://bongjunj.github.io/posts/my-first-paper-submission/</link>
-      <pubDate>Sun, 17 Nov 2024 13:22:56 +0900</pubDate>
-      
+      <pubDate>Sun, 17 Nov 2024 13:22:56 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/my-first-paper-submission/</guid>
-      <description>이틀 전 태어나 처음으로 학회에 논문을 제출했다. 우리 팀이 생각하기에 꽤나 재미있는 아이디어를 담은 논문인데 통과될지는 아직 잘 모르겠다. 아이디어를 정리하고 실험할 때는 현존하는 기술 중에 가장 진보한 기술이라는 확신이 있었는데, 막상 제출하고 &amp;ldquo;Submitted&amp;rdquo;(제출함)이라는 글자를 보니 별에별 생각이 다 든다. 논문 제출의 여운이 가시기 전에 내가 프로젝트에 10달 동안 참여하며 느낀 점들을 정리해보고자 글을 써본다.
-아만보가 아니라 보만안 아는 만큼 보이는 게 아니라 보는 만큼 안다
-전체적으로 소프트웨어 공학 연구는 (1) 아이디어 탐색 및 (2) 간단한 도구 작성 후 (3) 벤치마크 대상으로 성능을 평가하는 과정을 거친다.</description>
+      <description>&lt;p&gt;이틀 전 태어나 처음으로 학회에 논문을 제출했다.&#xA;우리 팀이 생각하기에 꽤나 재미있는 아이디어를 담은 논문인데 통과될지는 아직 잘 모르겠다.&#xA;아이디어를 정리하고 실험할 때는 현존하는 기술 중에 가장 진보한 기술이라는 확신이 있었는데,&#xA;막상 제출하고 &amp;ldquo;Submitted&amp;rdquo;(제출함)이라는 글자를 보니 별에별 생각이 다 든다.&#xA;논문 제출의 여운이 가시기 전에 내가 프로젝트에 10달 동안 참여하며 느낀 점들을 정리해보고자 글을 써본다.&lt;/p&gt;&#xA;&lt;h2 id=&#34;아만보가-아니라-보만안&#34;&gt;아만보가 아니라 보만안&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;아는 만큼 보이는 게 아니라 보는 만큼 안다&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;전체적으로 소프트웨어 공학 연구는 (1) 아이디어 탐색 및 (2) 간단한 도구 작성 후 (3) 벤치마크 대상으로 성능을 평가하는 과정을 거친다.&#xA;그리고 아이디어가 충분히 좋다면 도구를 고도화하고 벤치마크를 확장해가면서 더 강력한 아이디어를 탐색한다.&#xA;내가 프로젝트에 참여했을 때는 전반적인 아이디어 탐색은 끝나있었고, 도구를 작성하고 벤치마크를 확장해가며&#xA;설정한 문제를 더 효과적으로 풀 수 있는 방법을 찾는 단계였다. 그리고 이 과정이 대략 10달이 걸렸다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Calculus of Computation</title>
       <link>https://bongjunj.github.io/wiki/calculus-of-computation/</link>
-      <pubDate>Sun, 27 Oct 2024 16:50:20 +0900</pubDate>
-      
+      <pubDate>Sun, 27 Oct 2024 16:50:20 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/wiki/calculus-of-computation/</guid>
-      <description>My summary of the book &amp;ldquo;Calculus of Computation&amp;rdquo; by Aaron R. Bradley and Zohar Manna.
-Ch5. Program Correctness: Mechanics Partial correctness guarantees the function obeys its specification when it terminates. Total correctness then ensures that the function terminates on top of partial correctness. Proof of partial correctness Useful formulae will appear in the followings:
-Function Specification (Precondition, Postcondition) Loop Invariant (Invariants that hold at the beggining of each iteration, before condition check) Note that recursive functions&amp;rsquo; preconditions and postconditions will do the same job as loop invariants.</description>
+      <description>&lt;p&gt;My summary of the book &amp;ldquo;Calculus of Computation&amp;rdquo; by Aaron R. Bradley and Zohar Manna.&lt;/p&gt;&#xA;&lt;h2 id=&#34;ch5-program-correctness-mechanics&#34;&gt;Ch5. Program Correctness: Mechanics&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Partial correctness guarantees the function obeys its specification when it terminates.&lt;/li&gt;&#xA;&lt;li&gt;Total correctness then ensures that the function terminates on top of partial correctness.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;proof-of-partial-correctness&#34;&gt;Proof of partial correctness&lt;/h3&gt;&#xA;&lt;p&gt;Useful formulae will appear in the followings:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Function Specification (Precondition, Postcondition)&lt;/li&gt;&#xA;&lt;li&gt;Loop Invariant (Invariants that hold at the beggining of each iteration, before condition check)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Note that recursive functions&amp;rsquo; preconditions and postconditions will do the same job as loop invariants.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Program Analysis and Testing</title>
       <link>https://bongjunj.github.io/bookmarks/program-analysis-and-testing/</link>
-      <pubDate>Sun, 25 Aug 2024 15:07:00 +0900</pubDate>
-      
+      <pubDate>Sun, 25 Aug 2024 15:07:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/bookmarks/program-analysis-and-testing/</guid>
-      <description>Good Introductions Symbolic Execution: https://dl.acm.org/doi/pdf/10.1145/2408776.2408795 </description>
+      <description>&lt;h2 id=&#34;good-introductions&#34;&gt;Good Introductions&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Symbolic Execution: &lt;a href=&#34;https://dl.acm.org/doi/pdf/10.1145/2408776.2408795&#34;&gt;https://dl.acm.org/doi/pdf/10.1145/2408776.2408795&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Compilers</title>
       <link>https://bongjunj.github.io/bookmarks/compilers/</link>
-      <pubDate>Thu, 18 Jul 2024 14:15:37 +0900</pubDate>
-      
+      <pubDate>Thu, 18 Jul 2024 14:15:37 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/bookmarks/compilers/</guid>
-      <description>This page contains posts and papers which discuss various topics related to compilers. I continue to update this page as I find more interesting resources, so some of the links can be gone if I find them irrelevant or outdated. So, please make sure that save them if you find them interested.
-Courses These are the courses that KAIST offer as an introduction to programming languages:
-https://www.coursera.org/learn/programming-languages-1 https://www.coursera.org/learn/programming-languages2 These lecture define a simple arithmetic language and grow it gradually to introduce concepts in PL world: AST, scoping, type checking, type inference, polymorphism, and so on.</description>
+      <description>&lt;p&gt;This page contains posts and papers which discuss various topics related to compilers.&#xA;I continue to update this page as I find more interesting resources,&#xA;so some of the links can be gone if I find them irrelevant or outdated.&#xA;So, please make sure that save them if you find them interested.&lt;/p&gt;&#xA;&lt;h2 id=&#34;courses&#34;&gt;Courses&lt;/h2&gt;&#xA;&lt;p&gt;These are the courses that KAIST offer as an introduction to programming languages:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.coursera.org/learn/programming-languages-1&#34;&gt;https://www.coursera.org/learn/programming-languages-1&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.coursera.org/learn/programming-languages2&#34;&gt;https://www.coursera.org/learn/programming-languages2&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;These lecture define a simple arithmetic language and grow it gradually to introduce concepts in PL world:&#xA;AST, scoping, type checking, type inference, polymorphism, and so on.&#xA;Taking this source is a must if you are going into a PL research, including compilers.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Mastering Vscode</title>
       <link>https://bongjunj.github.io/wiki/mastering-vscode/</link>
-      <pubDate>Sat, 13 Jul 2024 18:24:59 +0900</pubDate>
-      
+      <pubDate>Sat, 13 Jul 2024 18:24:59 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/wiki/mastering-vscode/</guid>
-      <description>I want to &amp;hellip; change the default shell for integrated terminal in vscode: https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code </description>
+      <description>&lt;h2 id=&#34;i-want-to-&#34;&gt;I want to &amp;hellip;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;change the default shell for integrated terminal in vscode: &lt;a href=&#34;https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code&#34;&gt;https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Mastering Hugo</title>
       <link>https://bongjunj.github.io/wiki/mastering-hugo/</link>
-      <pubDate>Sat, 13 Jul 2024 18:22:23 +0900</pubDate>
-      
+      <pubDate>Sat, 13 Jul 2024 18:22:23 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/wiki/mastering-hugo/</guid>
-      <description>I want to &amp;hellip; build the site: Just run hugo see how the site looks: hugo serve and go to localhost:1313 </description>
+      <description>&lt;h2 id=&#34;i-want-to-&#34;&gt;I want to &amp;hellip;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;build the site: Just run &lt;code&gt;hugo&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;see how the site looks: &lt;code&gt;hugo serve&lt;/code&gt; and go to &lt;code&gt;localhost:1313&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>기계 학습과 지향성 실행탐험기</title>
       <link>https://bongjunj.github.io/posts/machine-learning-and-fuzzing/</link>
-      <pubDate>Fri, 02 Feb 2024 22:43:16 +0900</pubDate>
-      
+      <pubDate>Fri, 02 Feb 2024 22:43:16 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/machine-learning-and-fuzzing/</guid>
-      <description>이 글에서는 컴퓨터 과학에서 부르는 Fuzzing을 실행탐험, Fuzzer를 실행탐험기라고 부릅니다.
-지금 인공지능 분야를 이끄는 기계학습은 컴퓨터 프로그램이 데이터를 학습하는 기틀을 제공한다. 이 학습의 틀은 다음과 같다.
-데이터를 알맞은 형식에 맞게 준비한다. 이 때, 입력 데이터와 정답 데이터를 구분한다. 입력 데이터에서 결과물을 도출하는 모형 함수를 정의한다. 이 때, 함수는 계수(Parameter)를 가진다. 모형함수의 결과값과 정답 데이터를 비교해 평가하는 손실함수(Loss Function)를 정의한다. 손실함수값이 줄어들도록 모형함수의 계수를 조절한다. 입력 데이터를 모형함수에 넣고, 손실함수값을 통해 모형함수를 계속해서 조절해나가는 것이 기계학습의 핵심이다.</description>
+      <description>&lt;p&gt;이 글에서는 컴퓨터 과학에서 부르는 Fuzzing을 실행탐험, Fuzzer를 실행탐험기라고 부릅니다.&lt;/p&gt;&#xA;&lt;p&gt;지금 인공지능 분야를 이끄는 기계학습은 컴퓨터 프로그램이 데이터를 학습하는 기틀을 제공한다.&#xA;이 학습의 틀은 다음과 같다.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;데이터를 알맞은 형식에 맞게 준비한다. 이 때, 입력 데이터와 정답 데이터를 구분한다.&lt;/li&gt;&#xA;&lt;li&gt;입력 데이터에서 결과물을 도출하는 모형 함수를 정의한다. 이 때, 함수는 계수(Parameter)를 가진다.&lt;/li&gt;&#xA;&lt;li&gt;모형함수의 결과값과 정답 데이터를 비교해 평가하는 손실함수(Loss Function)를 정의한다.&lt;/li&gt;&#xA;&lt;li&gt;손실함수값이 줄어들도록 모형함수의 계수를 조절한다.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;입력 데이터를 모형함수에 넣고, 손실함수값을 통해 모형함수를 계속해서 조절해나가는 것이 기계학습의 핵심이다.&#xA;모형함수를 선형함수로 설정하고 손실함수로 평균제곱오류(Mean Squared Error)를 사용하면 선형회귀법이 되고,&#xA;모형함수가 확률을 내놓게하고 손실함수로 교차 엔트로피(Cross Entropy)를 사용하면 로지스틱 회귀법이 되는 것이다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>What is Randomness?</title>
       <link>https://bongjunj.github.io/posts/what-is-random/</link>
-      <pubDate>Tue, 12 Dec 2023 00:00:00 +0000</pubDate>
-      
+      <pubDate>Tue, 12 Dec 2023 00:00:00 +0000</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/what-is-random/</guid>
-      <description>Short Answer: You call something is random because the best thing you can tell about it is just a guess.
-Long Answer An intesting example that enligntened me was the famous coin toss problem. We believe that the coin toss is a 50/50 experiment. That&amp;rsquo;s why we toss coin for deciding which side will take the turn first in a game. We believe it is fair. But recent findings suggest that our belief could be wrong: the experiment is not 50/50.</description>
+      <description>&lt;p&gt;Short Answer: You call something is random because the best thing you can tell about it is just a guess.&lt;/p&gt;&#xA;&lt;h2 id=&#34;long-answer&#34;&gt;Long Answer&lt;/h2&gt;&#xA;&lt;p&gt;An intesting example that enligntened me was the famous coin toss problem.&#xA;We believe that the coin toss is a 50/50 experiment.&#xA;That&amp;rsquo;s why we toss coin for deciding which side will take the turn first in a game. We believe it is fair.&#xA;But recent findings suggest that our belief could be wrong: the experiment is not 50/50.&#xA;In fact, a coin tends to land on the same side they started for a probability of 50.8%.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Breaking Extended Vigenere Cipher</title>
       <link>https://bongjunj.github.io/posts/breaking-extended-vigenere-cipher/</link>
-      <pubDate>Fri, 13 Oct 2023 14:59:17 -0400</pubDate>
-      
+      <pubDate>Fri, 13 Oct 2023 14:59:17 -0400</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/breaking-extended-vigenere-cipher/</guid>
-      <description>For Appliced cryptography Course for this semester in NYU Tandon, I have been assigned a project to break a vigenere cipher but an extended version. Since I had already done a homework in KAIST, which was to write Kasiski examination program in OCaml, I thought it was going to be a piece of cake. However, the little tweak in the encryption scheme made it a lot more interesting. It was quite painful to come up with other techniques to break the cipher, but knowledges gained the hard way dies hard.</description>
+      <description>&lt;p&gt;For Appliced cryptography Course for this semester in NYU Tandon,&#xA;I have been assigned a project to break a vigenere cipher but an extended version.&#xA;Since I had already done a homework in KAIST, which was to write Kasiski examination program in OCaml,&#xA;I thought it was going to be a piece of cake. However, the little tweak in the encryption scheme made it a lot more interesting.&#xA;It was quite painful to come up with other techniques to break the cipher, but knowledges gained the hard way dies hard.&#xA;And I want to share my thought process!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Odroid 개발보드에서 Zig와 C를 같이 사용하기</title>
       <link>https://bongjunj.github.io/posts/using-zig-with-c-1/</link>
-      <pubDate>Thu, 29 Jun 2023 13:00:00 +0900</pubDate>
-      
+      <pubDate>Thu, 29 Jun 2023 13:00:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/using-zig-with-c-1/</guid>
-      <description>Odroid-N2&amp;#43; 개발 보드
-Odroid-N2+ 개발 보드를 구입해서 네트워크 연결을 관리하는 프로그램을 작성하는 실험을 해보고 있다. 개발 보드에 설치된 우분투 리눅스에서 블루투스나 ZigBee 등 네트워크 프로그래밍을 어떻게 하는지 방법을 찾아보고 있다.
-제일 먼저 리눅스의 블루투스 서브시스템인 BlueZ를 사용해보고 싶었다. ZigBee 도 사용해보고 싶은데 ZigBee 동글과 센서를 알리에서 주문했더니 배송이 꽤 걸린다고 해서 블루투스 먼저 시도해봤다.
-지금 사용하는 N2+ 보드는 성능이 꽤 나오는 보드이지만, 더 성능이 제한되는 소형 보드에서도 실행 가능한 프로그램이면 좋겠어서 C나 C++의 성능이 나오는 프로그래밍 언어를 찾아보았다.</description>
+      <description>&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /posts/using-zig-with-c-1/odroidn2plus_hu5929795549424795166.jpg 320w,&#xA;    /posts/using-zig-with-c-1/odroidn2plus_hu17557836936614837130.jpg 600w,&#xA;    /posts/using-zig-with-c-1/odroidn2plus_hu9603234325659960761.jpg 900w,&#xA;    /posts/using-zig-with-c-1/odroidn2plus_hu1067733338882422797.jpg 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/posts/using-zig-with-c-1/odroidn2plus_hu17557836936614837130.jpg&#39;&#xA;      alt=&#34;Odroid-N2&amp;#43; Development Board&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;Odroid-N2&amp;#43; 개발 보드&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.hardkernel.com/shop/odroid-n2-with-4gbyte-ram-2/&#34;&gt;Odroid-N2+&lt;/a&gt; 개발 보드를 구입해서 네트워크 연결을 관리하는 프로그램을 작성하는 실험을 해보고 있다.&#xA;개발 보드에 설치된 우분투 리눅스에서 블루투스나 ZigBee 등 네트워크 프로그래밍을 어떻게 하는지 방법을 찾아보고 있다.&lt;/p&gt;&#xA;&lt;p&gt;제일 먼저 리눅스의 블루투스 서브시스템인 &lt;a href=&#34;http://www.bluez.org/about/&#34;&gt;BlueZ&lt;/a&gt;를 사용해보고 싶었다.&#xA;ZigBee 도 사용해보고 싶은데 ZigBee 동글과 센서를 알리에서 주문했더니 배송이 꽤 걸린다고 해서 블루투스 먼저 시도해봤다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>모든 프레임워크는 새로운 언어다</title>
       <link>https://bongjunj.github.io/posts/2023-02-01-every-new-framework-is-new-language/</link>
-      <pubDate>Wed, 01 Feb 2023 12:00:00 +0900</pubDate>
-      
+      <pubDate>Wed, 01 Feb 2023 12:00:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/2023-02-01-every-new-framework-is-new-language/</guid>
-      <description>웹 개발의 세계에는 수백 수천 가지의 프레임워크가 있고, 아마 지금도 새로운 프레임워크가 탄생하고 있을 것이다. 프레임워크는 웹 어플리케이션을 작성하는 데 필요한 기능을 제공하고, 프로그래머는 프레임워크가 제공하는 기능을 이용해서 웹 어플리케이션을 작성한다.
-프레임워크가 흥미로운 점은, 웹 어플리케이션을 작성하기 위해 특정한 관점을 제공한다는 점이다. 리액트(React)는 클라이언트의 UI를 컴포넌트 단위로 구성해야한다는 관점을 제공하고, 장고(Django)나 ASP.NET Core는 웹 어플리케이션을 모델-뷰-컨트롤러 단위로 구성해야한다는 관점을 제시한다. 그리고 프로그래머는 프레임워크를 사용하면서 대부분의 시간을 이러한 관점에 따라 웹 어플리케이션을 작성하면서 보낸다.</description>
+      <description>&lt;p&gt;웹 개발의 세계에는 수백 수천 가지의 프레임워크가 있고,&#xA;아마 지금도 새로운 프레임워크가 탄생하고 있을 것이다.&#xA;프레임워크는 웹 어플리케이션을 작성하는 데 필요한 기능을 제공하고,&#xA;프로그래머는 프레임워크가 제공하는 기능을 이용해서 웹 어플리케이션을 작성한다.&lt;/p&gt;&#xA;&lt;p&gt;프레임워크가 흥미로운 점은, 웹 어플리케이션을 작성하기 위해 특정한 관점을 제공한다는 점이다.&#xA;리액트(React)는 클라이언트의 UI를 컴포넌트 단위로 구성해야한다는 관점을 제공하고,&#xA;장고(Django)나 ASP.NET Core는 웹 어플리케이션을 모델-뷰-컨트롤러 단위로 구성해야한다는 관점을 제시한다.&#xA;그리고 프로그래머는 프레임워크를 사용하면서 대부분의 시간을 이러한 관점에 따라 웹 어플리케이션을 작성하면서 보낸다.&#xA;이러한 특성 때문에 프로그래밍 언어를 이해하고 있는 프로그래머라고 해도, 프레임워크의 관점을 새로 배워야 프레임워크를 사용할 수 있게 된다.&#xA;루비(Ruby) 생태계의 루비온레일즈(Ruby on Rails)는 더 재밌는 예다.&#xA;루비온레일즈는 프로그래머가 사용할 수 있는 메소드(Method) 등을 많이 제공하는데,&#xA;이 때문에 루비온레일즈에 익숙한 프로그래머는 루비만을 이용해서 프로그램을 작성하는 데 어려움을 겪을 수도 있다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>KENS 내부 들여다보기</title>
       <link>https://bongjunj.github.io/posts/2022-10-26-reading-kens-internals/</link>
-      <pubDate>Wed, 26 Oct 2022 12:56:00 +0900</pubDate>
-      
+      <pubDate>Wed, 26 Oct 2022 12:56:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/2022-10-26-reading-kens-internals/</guid>
-      <description>2022년 가을학기 전산망 개론에서 KENS 프로젝트를 통해 TCP/IP의 3-Way Handshaking과 Reliable Data Transfer를 구현하였다.
-교수님의 판단으로 Flow Control은 스킵.
-KENS는 꽤 신기한 프로그램이다. 교육용으로 설계되어 deterministic하게 동작한다. 내 생각에 실제 네트워크 노드들을 실행시켜 테스트하면 OS 등 여러 비결정적 요소들 때문에 절대로 deterministic하게 작동할 수 없는데, KENS에서는 그런 일이 일어나지 않는다.
-그래서 과제가 끝나고 숨돌릴 시간이 있을 무렵 KENS의 내부 구조를 들여다보았다.
-KENS 내부 구조 System&amp;rsquo;s Properties System은 KENS에서 네트워크를 구성하는 중요한 클래스다.</description>
+      <description>&lt;p&gt;2022년 가을학기 전산망 개론에서 KENS 프로젝트를 통해&#xA;TCP/IP의 3-Way Handshaking과 Reliable Data Transfer를 구현하였다.&lt;/p&gt;&#xA;&lt;p&gt;교수님의 판단으로 Flow Control은 스킵.&lt;/p&gt;&#xA;&lt;p&gt;KENS는 꽤 신기한 프로그램이다.&#xA;교육용으로 설계되어 deterministic하게 동작한다.&#xA;내 생각에 실제 네트워크 노드들을 실행시켜 테스트하면&#xA;OS 등 여러 비결정적 요소들 때문에&#xA;절대로 deterministic하게 작동할 수 없는데,&#xA;KENS에서는 그런 일이 일어나지 않는다.&lt;/p&gt;&#xA;&lt;p&gt;그래서 과제가 끝나고 숨돌릴 시간이 있을 무렵&#xA;KENS의 내부 구조를 들여다보았다.&lt;/p&gt;&#xA;&lt;h2 id=&#34;kens-내부-구조&#34;&gt;KENS 내부 구조&lt;/h2&gt;&#xA;&lt;h3 id=&#34;systems-properties&#34;&gt;&lt;code&gt;System&lt;/code&gt;&amp;rsquo;s Properties&lt;/h3&gt;&#xA;&lt;p&gt;&lt;code&gt;System&lt;/code&gt;은 KENS에서 네트워크를 구성하는 중요한 클래스다.&#xA;아래 코드에서 &lt;code&gt;System&lt;/code&gt;이 관리하는 데이터들을 살펴보자.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>액터 모델 실습</title>
       <link>https://bongjunj.github.io/posts/actor-model-in-practice/</link>
-      <pubDate>Mon, 29 Nov 2021 08:54:51 +0900</pubDate>
-      
+      <pubDate>Mon, 29 Nov 2021 08:54:51 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/actor-model-in-practice/</guid>
-      <description>Elixir Programming Language
-요즘 나의 프로그래밍 공부는 Elixir를 공부하는 데 치중되어 있다. Elixir는 강타입(Strongly typed), 동적타입(Dynamically typed), 함수형(Functional) 프로그래밍 언어다. 컴파일(elixirc) 뿐 아니라 인터랙티브 쉘(iex)과 스크립팅(exs)도 지원하기 때문에 함수형 언어인 것만 제외하면 파이썬이나 루비와 같은 스크립트 언어처럼 사용할 수 있다. 실제로 문법도 루비와 매우 흡사하기 때문에 파이썬이나 루비를 배웠던 사람이라면 큰 어려움없이 흡수할 수 있다.
-함수형 언어에 한번 빠지니 다시 돌아가기가 너무 어렵다. Elixir 전에는 F#을 주로 썼는데 F#은 아쉬운 점이 많았다.</description>
+      <description>&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /posts/actor-model-in-practice/elixir-lang_hu14571372750623140476.png 320w,&#xA;    /posts/actor-model-in-practice/elixir-lang_hu18234824265439978789.png 600w,&#xA;    /posts/actor-model-in-practice/elixir-lang_hu12460540374961066020.png 900w,&#xA;    /posts/actor-model-in-practice/elixir-lang_hu15549662557914904504.png 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/posts/actor-model-in-practice/elixir-lang_hu18234824265439978789.png&#39;&#xA;      alt=&#34;&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;Elixir Programming Language&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;p&gt;요즘 나의 프로그래밍 공부는 Elixir를 공부하는 데 치중되어 있다.&#xA;Elixir는 강타입(Strongly typed), 동적타입(Dynamically typed), 함수형(Functional) 프로그래밍 언어다.&#xA;컴파일(&lt;code&gt;elixirc&lt;/code&gt;) 뿐 아니라 인터랙티브 쉘(&lt;code&gt;iex&lt;/code&gt;)과 스크립팅(&lt;code&gt;exs&lt;/code&gt;)도 지원하기 때문에&#xA;함수형 언어인 것만 제외하면 파이썬이나 루비와 같은 스크립트 언어처럼 사용할 수 있다.&#xA;실제로 문법도 루비와 매우 흡사하기 때문에 파이썬이나 루비를 배웠던 사람이라면 큰 어려움없이 흡수할 수 있다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>비트코인을 지탱하는 원동력</title>
       <link>https://bongjunj.github.io/posts/what-runs-bitcoin-network/</link>
-      <pubDate>Mon, 22 Nov 2021 21:23:00 +0900</pubDate>
-      
+      <pubDate>Mon, 22 Nov 2021 21:23:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/what-runs-bitcoin-network/</guid>
-      <description>비트코인으로 대표되는 블록체인은 집중형 시스템과는 확실히 차별점이 있는 방식이다. 전통적인 방식에서는 모든 데이터를 저장하는 서버가 있고 클라이언트들의 요청을 알맞게 처리해 서버가 데이터를 제공했다. 하지만 블록체인에서는 데이터가 네트워크 참여자들에게 모두 분산되어 저장된다. (분산 원장, Distributed Ledger) 또한 데이터는 P2P(peer-to-peer) 형식으로 공유된다.
-이런 점 때문에 비트코인은 비트토렌트와 닮았다. 중앙 서버 없이 네트워크 참여자들끼리(peer-to-peer) 데이터가 공유되며, 네트워크 참여자들의 노력을 통해 네트워크가 유지되기 때문이다.
-하지만 비트토렌트와 비트코인 사이에는 결정적인 차이점이 있다. 비트코인은 네트워크 참가자들에게 인센티브를 제공하지만 비트토렌트는 그렇지 않다는 점이다.</description>
+      <description>&lt;p&gt;비트코인으로 대표되는 블록체인은 집중형 시스템과는 확실히 차별점이 있는 방식이다.&#xA;전통적인 방식에서는 모든 데이터를 저장하는 서버가 있고 클라이언트들의 요청을 알맞게 처리해 서버가 데이터를 제공했다.&#xA;하지만 블록체인에서는 데이터가 네트워크 참여자들에게 모두 분산되어 저장된다. (분산 원장, Distributed Ledger)&#xA;또한 데이터는 P2P(peer-to-peer) 형식으로 공유된다.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /posts/what-runs-bitcoin-network/network_types_hu12377784300535088043.png 320w,&#xA;    /posts/what-runs-bitcoin-network/network_types_hu3015899083273219448.png 600w,&#xA;    /posts/what-runs-bitcoin-network/network_types_hu2827188663443654169.png 900w,&#xA;    /posts/what-runs-bitcoin-network/network_types_hu12505275727358717770.png 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/posts/what-runs-bitcoin-network/network_types_hu3015899083273219448.png&#39;&#xA;      alt=&#34;server-client network and p2p network&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;p&gt;이런 점 때문에 비트코인은 비트토렌트와 닮았다.&#xA;중앙 서버 없이 네트워크 참여자들끼리(peer-to-peer) 데이터가 공유되며,&#xA;네트워크 참여자들의 노력을 통해 네트워크가 유지되기 때문이다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>베이비 시팅 쿠폰 실험</title>
       <link>https://bongjunj.github.io/posts/baby-sitting-coupon-experiment/</link>
-      <pubDate>Wed, 17 Nov 2021 15:53:34 +0900</pubDate>
-      
+      <pubDate>Wed, 17 Nov 2021 15:53:34 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/baby-sitting-coupon-experiment/</guid>
-      <description>우리가 일상에서 겪는 모든 경제활동에서 우리는 값을 치를 때 화폐(money)를 사용한다. 맥도날드에서 햄버거를 사먹을 때, 쿠팡에서 생필품을 주문할 때, 월급을 받을 때, 용돈을 받을 때 화폐를 사용하지 않는 곳이 없다. 우리가 거래를 할 때 사용되는 모든 것들을 화폐로 본다면 KRW, USD, EUR와 같이 일반적으로 떠오르는 종이화폐 외에도 금이나 은, 암호화폐 등 모든 것이 화폐가 될 수 있다. 역사를 보면 전쟁이나 대공황 같은 때에는 응급약품, 술, 마약, 간편식품(라면 등), 물이 화폐로 기능하기도 했다.</description>
+      <description>&lt;p&gt;우리가 일상에서 겪는 모든 경제활동에서 우리는 값을 치를 때 화폐(money)를 사용한다.&#xA;맥도날드에서 햄버거를 사먹을 때, 쿠팡에서 생필품을 주문할 때, 월급을 받을 때, 용돈을 받을 때 화폐를 사용하지 않는 곳이 없다.&#xA;우리가 거래를 할 때 사용되는 모든 것들을 화폐로 본다면 KRW, USD, EUR와 같이 일반적으로 떠오르는 종이화폐 외에도 금이나 은, 암호화폐 등 모든 것이 화폐가 될 수 있다.&#xA;역사를 보면 전쟁이나 대공황 같은 때에는 응급약품, 술, 마약, 간편식품(라면 등), 물이 화폐로 기능하기도 했다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>2019 유라시아 일주 - 아름다운 이르쿠츠크를 떠나 노보시비르스크로</title>
       <link>https://bongjunj.github.io/vagabond/2019-vagabonder-3/</link>
-      <pubDate>Thu, 07 Oct 2021 17:36:51 +0900</pubDate>
-      
+      <pubDate>Thu, 07 Oct 2021 17:36:51 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/vagabond/2019-vagabonder-3/</guid>
-      <description>이르쿠츠크의 앙가라 강
-이르쿠츠크의 야경
-이르쿠츠크 9월 4일, 바이칼 호수 투어를 마치고 이르쿠츠크로 돌아온 승민이와 나. 에어비엔비 숙소 위치가 헷갈려서 같은 곳을 계속 빙빙 돌았다.
-배낭을 매고 계속 걷고 있으면 정말 이만한 고생이 없다. 호스트를 가까스로 만난 뒤에야 숙소에 짐을 풀 수 있었다. 사실 지도에 위치가 제대로 나와있지 않아서 짜증이 조금 난 상태였다. 나중에는 건물 찾는 데 익숙해지긴 했지만 우리나라처럼 건물 구획이 제대로 되어 있는 나라는 거의 없다. 결국 여행자의 경험으로 해결할 일이다.</description>
+      <description>&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /vagabond/2019-vagabonder-3/angara-river_hu13716595890953728042.jpg 320w,&#xA;    /vagabond/2019-vagabonder-3/angara-river_hu10725286877608732575.jpg 600w,&#xA;    /vagabond/2019-vagabonder-3/angara-river_hu64431694663598313.jpg 900w,&#xA;    /vagabond/2019-vagabonder-3/angara-river_hu12372373835010733839.jpg 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/vagabond/2019-vagabonder-3/angara-river_hu10725286877608732575.jpg&#39;&#xA;      alt=&#34;이르쿠츠크의 앙가라 강&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;이르쿠츠크의 앙가라 강&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /vagabond/2019-vagabonder-3/night_hu17799015465155638870.jpg 320w,&#xA;    /vagabond/2019-vagabonder-3/night_hu17129908410264441022.jpg 600w,&#xA;    /vagabond/2019-vagabonder-3/night_hu10100940110043368623.jpg 900w,&#xA;    /vagabond/2019-vagabonder-3/night_hu4853908030941612306.jpg 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/vagabond/2019-vagabonder-3/night_hu17129908410264441022.jpg&#39;&#xA;      alt=&#34;night of Irkutsk&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;이르쿠츠크의 야경&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;h2 id=&#34;이르쿠츠크&#34;&gt;이르쿠츠크&lt;/h2&gt;&#xA;&lt;p&gt;9월 4일, 바이칼 호수 투어를 마치고 이르쿠츠크로 돌아온 승민이와 나.&#xA;에어비엔비 숙소 위치가 헷갈려서 같은 곳을 계속 빙빙 돌았다.&lt;/p&gt;&#xA;&lt;p&gt;배낭을 매고 계속 걷고 있으면 정말 이만한 고생이 없다.&#xA;호스트를 가까스로 만난 뒤에야 숙소에 짐을 풀 수 있었다.&#xA;사실 지도에 위치가 제대로 나와있지 않아서 짜증이 조금 난 상태였다.&#xA;나중에는 건물 찾는 데 익숙해지긴 했지만 우리나라처럼 건물 구획이 제대로 되어 있는 나라는 거의 없다.&#xA;결국 여행자의 경험으로 해결할 일이다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>2019 유라시아 일주 - 바이칼 호수 여행기</title>
       <link>https://bongjunj.github.io/vagabond/2019-vagabonder-2/</link>
-      <pubDate>Thu, 23 Sep 2021 15:57:31 +0900</pubDate>
-      
+      <pubDate>Thu, 23 Sep 2021 15:57:31 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/vagabond/2019-vagabonder-2/</guid>
-      <description>바이칼 호수와 새들
-바이칼 호수 곳곳에 있는 샤머니즘 기둥
-바이칼 호수를 내려다보며
-바이칼 호수로 가는 길 이르쿠츠크 버스 스테이션에서 바이칼 호수의 올혼섬까지는 대략 6시간이 걸렸다. 부산에서 동두천까지 차로 7시간정도 걸리니 대략 비슷한 느낌이다. 올혼섬은 바이칼 호수 가운데 있는 섬인데 바이칼 호수를 둘러볼 수 있는 가장 좋은 곳이다. 물론 올혼섬말고도 리스트비얀카같은 곳에서도 바이칼 호수를 둘러볼 수 있다. 하지만 바이칼 호수에 둘러쌓여 있는 올혼섬만큼 좋은 곳은 없을 것이다.
-올혼섬으로 가는 길에 펼쳐지는 풍경들</description>
+      <description>&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /vagabond/2019-vagabonder-2/20190903_110858_hu3197839918110320915.jpg 320w,&#xA;    /vagabond/2019-vagabonder-2/20190903_110858_hu2365126870991363015.jpg 600w,&#xA;    /vagabond/2019-vagabonder-2/20190903_110858_hu674456741187117737.jpg 900w,&#xA;    /vagabond/2019-vagabonder-2/20190903_110858_hu14579450933315162966.jpg 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/vagabond/2019-vagabonder-2/20190903_110858_hu2365126870991363015.jpg&#39;&#xA;      alt=&#34;&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;바이칼 호수와 새들&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /vagabond/2019-vagabonder-2/DSC_0283_hu13609253891960866058.JPG 320w,&#xA;    /vagabond/2019-vagabonder-2/DSC_0283_hu6304561499364624605.JPG 600w,&#xA;    /vagabond/2019-vagabonder-2/DSC_0283_hu18112274130981711164.JPG 900w,&#xA;    /vagabond/2019-vagabonder-2/DSC_0283_hu7743642819251372263.JPG 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/vagabond/2019-vagabonder-2/DSC_0283_hu6304561499364624605.JPG&#39;&#xA;      alt=&#34;&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;바이칼 호수 곳곳에 있는 샤머니즘 기둥&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /vagabond/2019-vagabonder-2/DSC_0245_hu6662787374866499638.JPG 320w,&#xA;    /vagabond/2019-vagabonder-2/DSC_0245_hu15649845851888388492.JPG 600w,&#xA;    /vagabond/2019-vagabonder-2/DSC_0245_hu400000866337100065.JPG 900w,&#xA;    /vagabond/2019-vagabonder-2/DSC_0245_hu11337543924708996592.JPG 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/vagabond/2019-vagabonder-2/DSC_0245_hu15649845851888388492.JPG&#39;&#xA;      alt=&#34;&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;바이칼 호수를 내려다보며&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;h2 id=&#34;바이칼-호수로-가는-길&#34;&gt;바이칼 호수로 가는 길&lt;/h2&gt;&#xA;&lt;p&gt;이르쿠츠크 버스 스테이션에서 바이칼 호수의 올혼섬까지는 대략 6시간이 걸렸다.&#xA;부산에서 동두천까지 차로 7시간정도 걸리니 대략 비슷한 느낌이다.&#xA;올혼섬은 바이칼 호수 가운데 있는 섬인데 바이칼 호수를 둘러볼 수 있는 가장 좋은 곳이다.&#xA;물론 올혼섬말고도 리스트비얀카같은 곳에서도 바이칼 호수를 둘러볼 수 있다.&#xA;하지만 바이칼 호수에 둘러쌓여 있는 올혼섬만큼 좋은 곳은 없을 것이다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>2019 유라시아 일주 - 여행의 시작, 블라디보스토크에서</title>
       <link>https://bongjunj.github.io/vagabond/2019-vagabonder-1/</link>
-      <pubDate>Mon, 20 Sep 2021 21:12:00 +0900</pubDate>
-      
+      <pubDate>Mon, 20 Sep 2021 21:12:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/vagabond/2019-vagabonder-1/</guid>
-      <description>기억에 남지 않는 것을 써라.
-&amp;lt;타이탄의 도구들&amp;gt; 중에서
-여행을 하며 많은 사진을 남겼지만 정작 글로 남긴 것이 많이 없다. 여행을 마친지 거의 2년이 다 되어 가는데! 나의 기억력을 믿고 치일피일 미루던 것이 지금까지 오고야 말았다. 기억을 되살리고자 마음을 다잡고 이 프로젝트를 시작한다. 만 나이 20세, 나의 123일 유라시아 여행기.
-2019년 7월과 8월은 덥고 피곤했던 여름이었다. 여름방학기간 동안 일년동안 달려온 2019 ICISTS 프로젝트를 끝내고 정신과 마음이 지칠대로 지친 상태였다. 프로젝트를 진행하며 팀원들과의 갈등도 있었고 하루에 세네시간 밖에 못 자면서도 해내야 하는 일도 있었다.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;기억에 남지 않는 것을 써라.&lt;/p&gt;&#xA;&lt;p&gt;&amp;lt;타이탄의 도구들&amp;gt; 중에서&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;여행을 하며 많은 사진을 남겼지만 정작 글로 남긴 것이 많이 없다.&#xA;여행을 마친지 거의 2년이 다 되어 가는데! 나의 기억력을 믿고 치일피일 미루던 것이 지금까지 오고야 말았다.&#xA;기억을 되살리고자 마음을 다잡고 이 프로젝트를 시작한다. 만 나이 20세, 나의 123일 유라시아 여행기.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /vagabond/2019-vagabonder-1/20190611_233427_hu11576703616633180396.jpg 320w,&#xA;    /vagabond/2019-vagabonder-1/20190611_233427_hu14110781396698753313.jpg 600w,&#xA;    /vagabond/2019-vagabonder-1/20190611_233427_hu7832780228571949221.jpg 900w,&#xA;    /vagabond/2019-vagabonder-1/20190611_233427_hu7862593331652682220.jpg 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/vagabond/2019-vagabonder-1/20190611_233427_hu14110781396698753313.jpg&#39;&#xA;      alt=&#34;&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;p&gt;2019년 7월과 8월은 덥고 피곤했던 여름이었다.&#xA;여름방학기간 동안 일년동안 달려온 2019 ICISTS 프로젝트를 끝내고 정신과 마음이 지칠대로 지친 상태였다.&#xA;프로젝트를 진행하며 팀원들과의 갈등도 있었고 하루에 세네시간 밖에 못 자면서도 해내야 하는 일도 있었다.&#xA;거기에 공부로 스트레스까지 쌓여있어 휴식이 절실했던 상황이였다.&#xA;같이 프로젝트를 했던 친구들은 대부분 다음 학기를 휴학하지 않고 학교를 다녔지만 나는 그렇게 하지 않았다.&#xA;(그 스트레스를 이겨낸 친구들에게 존경의 말을 건넨다.)&#xA;지난 겨울 일본을 여행했을 때 우연히 발견한 세계여행가의 블로그를 보고 나는 세계를 돌아다니겠다는 생각에 사로잡혀 있었기 때문이다.&#xA;훌훌 털어버리고 싶은 스트레스도 있겠다. 몸과 마음을 짓누르는 학교 생활에 질려버린 것도 있고.&#xA;부모님을 설득하고 여행을 떠나야겠다는 의지가 불타고 있었다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>쿠키런 킹덤 서버 아키텍처 3</title>
       <link>https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-3/</link>
-      <pubDate>Tue, 31 Aug 2021 14:55:09 +0900</pubDate>
-      
+      <pubDate>Tue, 31 Aug 2021 14:55:09 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-3/</guid>
-      <description>세번쨰 주제에서 함수형 프로그래밍에 대한 이야기가 눈에 띈다. 영상에서 소개되는 &amp;lsquo;프로그램&amp;rsquo;이라는 개념은 함수형 프로그래밍의 &amp;lsquo;순수 함수&amp;rsquo;라는 개념과 동일하다. 또한 Scala의 DSL 기능이 보이는데, 어떻게 작동하는지 다시 살펴보자. 기억이 가물가물하다.
-Pure Function(순수 함수) 함수가 순수하다는 말은 함수가 같은 입력에 대해서 항상 같은 결과값을 만들며, 부작용(side effect)이 없다는 뜻이다. 여기서 부작용이란 함수의 &amp;lsquo;보이지 않는 결과값&amp;rsquo;이라고 할 수 있는데, 함수 외부의 가변 변수를 수정한다든지, 시스템의 상태를 변경시킨다던지 하는 것들을 말한다. 순수 함수를 통해 우리는 함수가 오로지 입력과 결과값만을 통해 외부와 소통할 수 있음을 보장할 수 있다.</description>
+      <description>&lt;p&gt;세번쨰 주제에서 함수형 프로그래밍에 대한 이야기가 눈에 띈다.&#xA;영상에서 소개되는 &amp;lsquo;프로그램&amp;rsquo;이라는 개념은 함수형 프로그래밍의 &amp;lsquo;순수 함수&amp;rsquo;라는 개념과 동일하다.&#xA;또한 Scala의 DSL 기능이 보이는데, 어떻게 작동하는지 다시 살펴보자. 기억이 가물가물하다.&lt;/p&gt;&#xA;&lt;h2 id=&#34;pure-function순수-함수&#34;&gt;Pure Function(순수 함수)&lt;/h2&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1541585541557306700.png 320w,&#xA;    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu5585606918568833374.png 600w,&#xA;    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu3198839656501255271.png 900w,&#xA;    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1973683172689697117.png 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-3/pure_function_hu5585606918568833374.png&#39;&#xA;      alt=&#34;pure function diagram&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;p&gt;함수가 순수하다는 말은 함수가 같은 입력에 대해서 항상 같은 결과값을 만들며, 부작용(side effect)이 없다는 뜻이다.&#xA;여기서 부작용이란 함수의 &amp;lsquo;보이지 않는 결과값&amp;rsquo;이라고 할 수 있는데, 함수 외부의 가변 변수를 수정한다든지, 시스템의 상태를 변경시킨다던지 하는 것들을 말한다.&#xA;순수 함수를 통해 우리는 함수가 오로지 입력과 결과값만을 통해 외부와 소통할 수 있음을 보장할 수 있다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>쿠키런 킹덤 서버 아키텍처 2</title>
       <link>https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-2/</link>
-      <pubDate>Mon, 30 Aug 2021 20:19:15 +0900</pubDate>
-      
+      <pubDate>Mon, 30 Aug 2021 20:19:15 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-2/</guid>
-      <description>이번 포스트에서 다룰 내용은 CRUD와 Event Sourcing이다. 이 주제는 데이터를 다루는 방법에 대한 이야기다.
-가장 간단한 예로 은행 계좌를 관리하는 어플리케이션을 생각해보자. 은행 계좌는 잔액를 관리해야하며 계좌 간의 송금 기능을 구현해야 한다. 이를 CRUD와 Event Sourcing으로 각각 구현해보자.
-CRUD CRUD는 Create, Read, Update and Delete의 약어로 데이터를 생성하고 읽고 수정하고 삭제하는 기능을 말한다. F#으로 CRUD를 나타내보면 다음과 같은 코드로 나타낼 수 있을 것이다.
-// 1. Create let mutable account = BankAccount(500) // 2.</description>
+      <description>&lt;p&gt;이번 포스트에서 다룰 내용은 CRUD와 Event Sourcing이다.&#xA;이 주제는 데이터를 다루는 방법에 대한 이야기다.&lt;/p&gt;&#xA;&lt;p&gt;가장 간단한 예로 은행 계좌를 관리하는 어플리케이션을 생각해보자.&#xA;은행 계좌는 잔액를 관리해야하며 계좌 간의 송금 기능을 구현해야 한다.&#xA;이를 CRUD와 Event Sourcing으로 각각 구현해보자.&lt;/p&gt;&#xA;&lt;h2 id=&#34;crud&#34;&gt;CRUD&lt;/h2&gt;&#xA;&lt;p&gt;CRUD는 Create, Read, Update and Delete의 약어로 데이터를 생성하고 읽고 수정하고 삭제하는 기능을 말한다.&#xA;F#으로 CRUD를 나타내보면 다음과 같은 코드로 나타낼 수 있을 것이다.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-fsharp&#34; data-lang=&#34;fsharp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 1. Create&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; mutable account &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; BankAccount&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;500&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 2. Read&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;printfn &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Balance: %d USD&amp;#34;&lt;/span&gt; account&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Balance&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 3. Update&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;account&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Deposit&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;100&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;account&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;SendTo&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;otherAccount&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; 200&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 4. Delete&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;account&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Destroy()&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;CRUD는 어플리케이션의 구조가 가장 직관적이라는 장점이 있다.&#xA;실제 세계에서 은행 계좌를 개설하고, 입출금하고 송금하고, 계좌를 폐쇄하는 것처럼&#xA;프로그램을 작성할 때도 그대로 기능을 구현하면 되기 때문에 이해하기가 쉽다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>쿠키런 킹덤 서버 아키텍처 1</title>
       <link>https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-1/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-1/</guid>
-      <description>Actor Model에 대해서 정리하며 포스트를 쓰려다가 예전에 봤던 NDC21-프로그래밍, 쿠키런 킹덤 서버 아키텍처 뜯어먹기가 떠올라서 리뷰해보려고 한다. 서버 아키텍처에 대해 많은 내용을 배울 수 있는 자료라서 좋은 공부가 될 것 같다.
-일단 영상의 주요 내용은 다음과 같다. (영상 1분 16초 참고)
-Stateful vs. Stateless, and Actor Model CRUD vs. Event Sourcing 함수형 프로그래밍과 DSL로 콘텐츠 구현 유저간 상호 작용 구현하기: 2PC vs. SAGA 이벤트 기반 아키텍처를 바탕으로 확장하기 이번 포스트에서는 첫번째 내용을 다뤄보려고 한다.</description>
+      <description>&lt;p&gt;Actor Model에 대해서 정리하며 포스트를 쓰려다가 예전에 봤던 &lt;a href=&#34;https://www.youtube.com/watch?v=FUEZibcZEkg&#34;&gt;NDC21-프로그래밍, 쿠키런 킹덤 서버 아키텍처 뜯어먹기&lt;/a&gt;가 떠올라서 리뷰해보려고 한다.&#xA;서버 아키텍처에 대해 많은 내용을 배울 수 있는 자료라서 좋은 공부가 될 것 같다.&lt;/p&gt;&#xA;&#xA;&#xA;    &#xA;    &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;allowfullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/FUEZibcZEkg?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;[NDC21-프로그래밍] 〈쿠키런: 킹덤〉 서버 아키텍처 뜯어먹기!&#34;&#xA;      &gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;일단 영상의 주요 내용은 다음과 같다. (영상 1분 16초 참고)&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Stateful vs. Stateless, and Actor Model&lt;/li&gt;&#xA;&lt;li&gt;CRUD vs. Event Sourcing&lt;/li&gt;&#xA;&lt;li&gt;함수형 프로그래밍과 DSL로 콘텐츠 구현&lt;/li&gt;&#xA;&lt;li&gt;유저간 상호 작용 구현하기: 2PC vs. SAGA&lt;/li&gt;&#xA;&lt;li&gt;이벤트 기반 아키텍처를 바탕으로 확장하기&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;이번 포스트에서는 첫번째 내용을 다뤄보려고 한다.&#xA;첫번째 내용만 해도 다룰 이야기가 참 많다.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>컴퓨터와 시간</title>
       <link>https://bongjunj.github.io/posts/computer-and-time/</link>
-      <pubDate>Sat, 28 Aug 2021 12:35:23 +0900</pubDate>
-      
+      <pubDate>Sat, 28 Aug 2021 12:35:23 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/computer-and-time/</guid>
-      <description>거대한 시차 해외로 가는 비행기표를 찾아볼 때 우리는 우리의 표준시와 도착지의 표준시를 비교한다. 서울은 뉴욕보다 14시간 빠르다. 일광절약제가 적용되는 때에는 13시간 빠르다. 그래서 인천에서 출발할 때의 시각은 한국표준시로 읽고 뉴욕에 도착할 때의 시각은 동부시간대로 읽는다. 지구 상에 어디에 있든, 시간대는 아주 정확하게 구분되어 있고 일정한 간격으로 흘러가고 있다.
-현대 사회에서 시각을 읽는 것은 아주 쉬운 일이다. 스마트 워치를 사용하거나, 스마트폰을 열거나 랩탑이나 데스크탑을 키면 1초단위로 시각을 아주 정확하게 보여준다. 콘서트 티케팅이나 대학 수강신청처럼 1초 단위로 희비가 갈리는 이벤트에 있어서도 다들 디지털 시계를 가지고 있기 때문에 티케팅 서버나 대학 서버 시각을 정확하게 맞춰서 접속할 수 있다.</description>
+      <description>&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /posts/computer-and-time/pat_sync_hu15267781798033968347.jpg 320w,&#xA;    /posts/computer-and-time/pat_sync_hu6411697782156098745.jpg 600w,&#xA;    /posts/computer-and-time/pat_sync_hu14209291878614924466.jpg 900w,&#xA;    /posts/computer-and-time/pat_sync_hu871492035835143153.jpg 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/posts/computer-and-time/pat_sync_hu6411697782156098745.jpg&#39;&#xA;      alt=&#34;&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;h1 id=&#34;거대한-시차&#34;&gt;거대한 시차&lt;/h1&gt;&#xA;&lt;p&gt;해외로 가는 비행기표를 찾아볼 때 우리는 우리의 표준시와 도착지의 표준시를 비교한다.&#xA;서울은 뉴욕보다 14시간 빠르다.&#xA;일광절약제가 적용되는 때에는 13시간 빠르다.&#xA;그래서 인천에서 출발할 때의 시각은 한국표준시로 읽고 뉴욕에 도착할 때의 시각은 동부시간대로 읽는다.&#xA;지구 상에 어디에 있든, 시간대는 아주 정확하게 구분되어 있고 일정한 간격으로 흘러가고 있다.&lt;/p&gt;&#xA;&lt;p&gt;현대 사회에서 시각을 읽는 것은 아주 쉬운 일이다.&#xA;스마트 워치를 사용하거나, 스마트폰을 열거나 랩탑이나 데스크탑을 키면 1초단위로 시각을 아주 정확하게 보여준다.&#xA;콘서트 티케팅이나 대학 수강신청처럼 1초 단위로 희비가 갈리는 이벤트에 있어서도&#xA;다들 디지털 시계를 가지고 있기 때문에 티케팅 서버나 대학 서버 시각을 정확하게 맞춰서 접속할 수 있다.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

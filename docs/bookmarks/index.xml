@@ -4,28 +4,25 @@
     <title>Bookmarks on Bongjun Jang</title>
     <link>https://bongjunj.github.io/bookmarks/</link>
     <description>Recent content in Bookmarks on Bongjun Jang</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ko</language>
-    <lastBuildDate>Sun, 25 Aug 2024 15:07:00 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/bookmarks/index.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</managingEditor>
+    <webMaster>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</webMaster>
+    <lastBuildDate>Sun, 25 Aug 2024 15:07:00 +0900</lastBuildDate>
+    <atom:link href="https://bongjunj.github.io/bookmarks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Program Analysis and Testing</title>
       <link>https://bongjunj.github.io/bookmarks/program-analysis-and-testing/</link>
-      <pubDate>Sun, 25 Aug 2024 15:07:00 +0900</pubDate>
-      
+      <pubDate>Sun, 25 Aug 2024 15:07:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/bookmarks/program-analysis-and-testing/</guid>
-      <description>Good Introductions Symbolic Execution: https://dl.acm.org/doi/pdf/10.1145/2408776.2408795 </description>
+      <description>&lt;h2 id=&#34;good-introductions&#34;&gt;Good Introductions&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Symbolic Execution: &lt;a href=&#34;https://dl.acm.org/doi/pdf/10.1145/2408776.2408795&#34;&gt;https://dl.acm.org/doi/pdf/10.1145/2408776.2408795&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Compilers</title>
       <link>https://bongjunj.github.io/bookmarks/compilers/</link>
-      <pubDate>Thu, 18 Jul 2024 14:15:37 +0900</pubDate>
-      
+      <pubDate>Thu, 18 Jul 2024 14:15:37 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/bookmarks/compilers/</guid>
-      <description>This page contains posts and papers which discuss various topics related to compilers. I continue to update this page as I find more interesting resources, so some of the links can be gone if I find them irrelevant or outdated. So, please make sure that save them if you find them interested.
-Courses These are the courses that KAIST offer as an introduction to programming languages:
-https://www.coursera.org/learn/programming-languages-1 https://www.coursera.org/learn/programming-languages2 These lecture define a simple arithmetic language and grow it gradually to introduce concepts in PL world: AST, scoping, type checking, type inference, polymorphism, and so on.</description>
+      <description>&lt;p&gt;This page contains posts and papers which discuss various topics related to compilers.&#xA;I continue to update this page as I find more interesting resources,&#xA;so some of the links can be gone if I find them irrelevant or outdated.&#xA;So, please make sure that save them if you find them interested.&lt;/p&gt;&#xA;&lt;h2 id=&#34;courses&#34;&gt;Courses&lt;/h2&gt;&#xA;&lt;p&gt;These are the courses that KAIST offer as an introduction to programming languages:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.coursera.org/learn/programming-languages-1&#34;&gt;https://www.coursera.org/learn/programming-languages-1&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.coursera.org/learn/programming-languages2&#34;&gt;https://www.coursera.org/learn/programming-languages2&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;These lecture define a simple arithmetic language and grow it gradually to introduce concepts in PL world:&#xA;AST, scoping, type checking, type inference, polymorphism, and so on.&#xA;Taking this source is a must if you are going into a PL research, including compilers.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
