@@ -4,32 +4,37 @@
     <title>Wikis on Bongjun Jang</title>
     <link>https://bongjunj.github.io/wiki/</link>
     <description>Recent content in Wikis on Bongjun Jang</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <managingEditor>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</managingEditor>
-    <webMaster>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</webMaster>
-    <lastBuildDate>Sun, 27 Oct 2024 16:50:20 +0900</lastBuildDate>
-    <atom:link href="https://bongjunj.github.io/wiki/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Oct 2024 16:50:20 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/wiki/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Calculus of Computation</title>
       <link>https://bongjunj.github.io/wiki/calculus-of-computation/</link>
-      <pubDate>Sun, 27 Oct 2024 16:50:20 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
+      <pubDate>Sun, 27 Oct 2024 16:50:20 +0900</pubDate>
+      
       <guid>https://bongjunj.github.io/wiki/calculus-of-computation/</guid>
-      <description>&lt;p&gt;My summary of the book &amp;ldquo;Calculus of Computation&amp;rdquo; by Aaron R. Bradley and Zohar Manna.&lt;/p&gt;&#xA;&lt;h2 id=&#34;ch5-program-correctness-mechanics&#34;&gt;Ch5. Program Correctness: Mechanics&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Partial correctness guarantees the function obeys its specification when it terminates.&lt;/li&gt;&#xA;&lt;li&gt;Total correctness then ensures that the function terminates on top of partial correctness.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;proof-of-partial-correctness&#34;&gt;Proof of partial correctness&lt;/h3&gt;&#xA;&lt;p&gt;Useful formulae will appear in the followings:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Function Specification (Precondition, Postcondition)&lt;/li&gt;&#xA;&lt;li&gt;Loop Invariant (Invariants that hold at the beggining of each iteration, before condition check)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Note that recursive functions&amp;rsquo; preconditions and postconditions will do the same job as loop invariants.&lt;/p&gt;</description>
+      <description>My summary of the book &amp;ldquo;Calculus of Computation&amp;rdquo; by Aaron R. Bradley and Zohar Manna.
+Ch5. Program Correctness: Mechanics Partial correctness guarantees the function obeys its specification when it terminates. Total correctness then ensures that the function terminates on top of partial correctness. Proof of partial correctness Useful formulae will appear in the followings:
+Function Specification (Precondition, Postcondition) Loop Invariant (Invariants that hold at the beggining of each iteration, before condition check) Note that recursive functions&amp;rsquo; preconditions and postconditions will do the same job as loop invariants.</description>
     </item>
+    
     <item>
       <title>Mastering Vscode</title>
       <link>https://bongjunj.github.io/wiki/mastering-vscode/</link>
-      <pubDate>Sat, 13 Jul 2024 18:24:59 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
+      <pubDate>Sat, 13 Jul 2024 18:24:59 +0900</pubDate>
+      
       <guid>https://bongjunj.github.io/wiki/mastering-vscode/</guid>
-      <description>&lt;h2 id=&#34;i-want-to-&#34;&gt;I want to &amp;hellip;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;change the default shell for integrated terminal in vscode: &lt;a href=&#34;https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code&#34;&gt;https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+      <description>I want to &amp;hellip; change the default shell for integrated terminal in vscode: https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code </description>
     </item>
+    
     <item>
       <title>Mastering Hugo</title>
       <link>https://bongjunj.github.io/wiki/mastering-hugo/</link>
-      <pubDate>Sat, 13 Jul 2024 18:22:23 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
+      <pubDate>Sat, 13 Jul 2024 18:22:23 +0900</pubDate>
+      
       <guid>https://bongjunj.github.io/wiki/mastering-hugo/</guid>
-      <description>&lt;h2 id=&#34;i-want-to-&#34;&gt;I want to &amp;hellip;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;build the site: Just run &lt;code&gt;hugo&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;see how the site looks: &lt;code&gt;hugo serve&lt;/code&gt; and go to &lt;code&gt;localhost:1313&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+      <description>I want to &amp;hellip; build the site: Just run hugo see how the site looks: hugo serve and go to localhost:1313 </description>
     </item>
+    
   </channel>
 </rss>

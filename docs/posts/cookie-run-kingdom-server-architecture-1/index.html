@@ -30,12 +30,9 @@
 		<p>Actor Model에 대해서 정리하며 포스트를 쓰려다가 예전에 봤던 <a href="https://www.youtube.com/watch?v=FUEZibcZEkg">NDC21-프로그래밍, 쿠키런 킹덤 서버 아키텍처 뜯어먹기</a>가 떠올라서 리뷰해보려고 한다.
 서버 아키텍처에 대해 많은 내용을 배울 수 있는 자료라서 좋은 공부가 될 것 같다.</p>
 
-
-    
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/FUEZibcZEkg?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="[NDC21-프로그래밍] 〈쿠키런: 킹덤〉 서버 아키텍처 뜯어먹기!"
-      ></iframe>
-    </div>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/FUEZibcZEkg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="[NDC21-프로그래밍] 〈쿠키런: 킹덤〉 서버 아키텍처 뜯어먹기!"></iframe>
+</div>
 
 <p>일단 영상의 주요 내용은 다음과 같다. (영상 1분 16초 참고)</p>
 <ol>
@@ -71,12 +68,12 @@ Stateful 서버는 웹 어플리케이션 프로세스 자체에 상태를 저�
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-1/pure_function_hu1541585541557306700.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-1/pure_function_hu5585606918568833374.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-1/pure_function_hu3198839656501255271.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-1/pure_function_hu1973683172689697117.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-1/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-1/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-1/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-1/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-1/pure_function_hu5585606918568833374.png'
+      src='/posts/cookie-run-kingdom-server-architecture-1/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png'
       alt="pure function"
     />
     <figcaption>
@@ -96,12 +93,12 @@ Stateful 서버는 웹 어플리케이션 프로세스 자체에 상태를 저�
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu8989820841970961178.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu2085550623756659015.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu9589199389174172294.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu1028578062249074038.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu792f6aa19c5a217dc60e2aa120c75f21_87188_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu792f6aa19c5a217dc60e2aa120c75f21_87188_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu792f6aa19c5a217dc60e2aa120c75f21_87188_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu792f6aa19c5a217dc60e2aa120c75f21_87188_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu2085550623756659015.png'
+      src='/posts/cookie-run-kingdom-server-architecture-1/pure_function_scaling_out_hu792f6aa19c5a217dc60e2aa120c75f21_87188_600x0_resize_box_3.png'
       alt="pure function scaling out"
     />
     <figcaption>
@@ -126,12 +123,12 @@ Stateful 서버는 웹 어플리케이션 프로세스 자체에 상태를 저�
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_hu9759853078093821270.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_hu15219309200817329722.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_hu5696050646202062311.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_hu16230563322755934803.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_huf82cc35c8b37d0001b81de06120f8930_134599_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_huf82cc35c8b37d0001b81de06120f8930_134599_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_huf82cc35c8b37d0001b81de06120f8930_134599_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_huf82cc35c8b37d0001b81de06120f8930_134599_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_hu15219309200817329722.png'
+      src='/posts/cookie-run-kingdom-server-architecture-1/stateless_db_bottleneck_huf82cc35c8b37d0001b81de06120f8930_134599_600x0_resize_box_3.png'
       alt="stateless database connection bottleneck"
     />
     <figcaption>
@@ -155,12 +152,12 @@ Stateful 서버는 웹 어플리케이션 프로세스 자체에 상태를 저�
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hu288487952226413064.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hu10458534500345599485.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hu18138324025152822456.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hu18124808913078330039.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hudcd914b34fdaa369d4f95a57c156fc8a_34878_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hudcd914b34fdaa369d4f95a57c156fc8a_34878_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hudcd914b34fdaa369d4f95a57c156fc8a_34878_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hudcd914b34fdaa369d4f95a57c156fc8a_34878_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hu10458534500345599485.png'
+      src='/posts/cookie-run-kingdom-server-architecture-1/memory_and_db_perf_diff_hudcd914b34fdaa369d4f95a57c156fc8a_34878_600x0_resize_box_3.png'
       alt="a memory is faster than a db"
     />
     <figcaption>
@@ -183,12 +180,12 @@ Stateful 서버는 웹 어플리케이션 프로세스 자체에 상태를 저�
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-1/stateful_servers_hu14000574258364280256.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateful_servers_hu14131078413269263876.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateful_servers_hu6154293595238611810.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateful_servers_hu5793794680301173330.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-1/stateful_servers_huf980c222278fd67bdfb6df2ec1eb4f04_96093_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateful_servers_huf980c222278fd67bdfb6df2ec1eb4f04_96093_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateful_servers_huf980c222278fd67bdfb6df2ec1eb4f04_96093_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateful_servers_huf980c222278fd67bdfb6df2ec1eb4f04_96093_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-1/stateful_servers_hu14131078413269263876.png'
+      src='/posts/cookie-run-kingdom-server-architecture-1/stateful_servers_huf980c222278fd67bdfb6df2ec1eb4f04_96093_600x0_resize_box_3.png'
       alt="stateful servers has different states"
     />
     <figcaption>
@@ -211,12 +208,12 @@ Stateful 서버는 웹 어플리케이션 프로세스 자체에 상태를 저�
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu3534944817740751934.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu15003592814654359422.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu13442214516956838471.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu12864316685358809814.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu89cbb4f754f2ea27a266c45c225d638f_71106_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu89cbb4f754f2ea27a266c45c225d638f_71106_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu89cbb4f754f2ea27a266c45c225d638f_71106_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu89cbb4f754f2ea27a266c45c225d638f_71106_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu15003592814654359422.png'
+      src='/posts/cookie-run-kingdom-server-architecture-1/stateful_server_fail_to_balance_hu89cbb4f754f2ea27a266c45c225d638f_71106_600x0_resize_box_3.png'
       alt="stateful server failure"
     />
     <figcaption>
@@ -251,12 +248,12 @@ Actor Model을 도입해 어플리케이션을 작성할 때 마주칠 수 있�
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-1/actor_model_hu15069011300500287214.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-1/actor_model_hu6784240349931449822.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-1/actor_model_hu9191091154440700773.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-1/actor_model_hu15222636069122315455.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-1/actor_model_huee2ed0f498179403073c8fe7d2488003_90160_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-1/actor_model_huee2ed0f498179403073c8fe7d2488003_90160_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-1/actor_model_huee2ed0f498179403073c8fe7d2488003_90160_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-1/actor_model_huee2ed0f498179403073c8fe7d2488003_90160_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-1/actor_model_hu6784240349931449822.png'
+      src='/posts/cookie-run-kingdom-server-architecture-1/actor_model_huee2ed0f498179403073c8fe7d2488003_90160_600x0_resize_box_3.png'
       alt="overview of actor model"
     />
     <figcaption>
@@ -287,12 +284,12 @@ OOP에서 객체가 오직 메서드를 통해 외부와 상호작용하는 것�
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu3954875454939517845.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu15991376715858359848.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu2333828322507891070.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu1902392635411610454.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu685a31bd52abc6feb7e03a77800898d6_48323_320x0_resize_box_3.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu685a31bd52abc6feb7e03a77800898d6_48323_600x0_resize_box_3.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu685a31bd52abc6feb7e03a77800898d6_48323_900x0_resize_box_3.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu685a31bd52abc6feb7e03a77800898d6_48323_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu15991376715858359848.png'
+      src='/posts/cookie-run-kingdom-server-architecture-1/ErrorKernel_hu685a31bd52abc6feb7e03a77800898d6_48323_600x0_resize_box_3.png'
       alt="actor system"
     />
     <figcaption>

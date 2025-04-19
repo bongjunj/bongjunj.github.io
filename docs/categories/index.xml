@@ -4,39 +4,44 @@
     <title>Categories on Bongjun Jang</title>
     <link>https://bongjunj.github.io/categories/</link>
     <description>Recent content in Categories on Bongjun Jang</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <managingEditor>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</managingEditor>
-    <webMaster>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</webMaster>
-    <lastBuildDate>Fri, 02 Feb 2024 22:43:16 +0900</lastBuildDate>
-    <atom:link href="https://bongjunj.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Feb 2024 22:43:16 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Random</title>
       <link>https://bongjunj.github.io/categories/random/</link>
-      <pubDate>Fri, 02 Feb 2024 22:43:16 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
+      <pubDate>Fri, 02 Feb 2024 22:43:16 +0900</pubDate>
+      
       <guid>https://bongjunj.github.io/categories/random/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>SWE</title>
       <link>https://bongjunj.github.io/categories/swe/</link>
-      <pubDate>Thu, 29 Jun 2023 13:00:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
+      <pubDate>Thu, 29 Jun 2023 13:00:00 +0900</pubDate>
+      
       <guid>https://bongjunj.github.io/categories/swe/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>Computer</title>
       <link>https://bongjunj.github.io/categories/computer/</link>
-      <pubDate>Mon, 29 Nov 2021 08:54:51 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
+      <pubDate>Mon, 29 Nov 2021 08:54:51 +0900</pubDate>
+      
       <guid>https://bongjunj.github.io/categories/computer/</guid>
       <description></description>
     </item>
+    
     <item>
       <title>Vagabonder</title>
       <link>https://bongjunj.github.io/categories/vagabonder/</link>
-      <pubDate>Thu, 07 Oct 2021 17:36:51 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
+      <pubDate>Thu, 07 Oct 2021 17:36:51 +0900</pubDate>
+      
       <guid>https://bongjunj.github.io/categories/vagabonder/</guid>
       <description></description>
     </item>
+    
   </channel>
 </rss>
