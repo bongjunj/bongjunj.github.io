@@ -6,7 +6,17 @@
     <description>Recent content on Bongjun Jang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Mon, 03 Mar 2025 12:33:45 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 May 2025 20:39:48 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Next Revolution</title>
+      <link>https://bongjunj.github.io/posts/the-next-revolution/</link>
+      <pubDate>Sat, 03 May 2025 20:39:48 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/the-next-revolution/</guid>
+      <description>AI is going to change the world for good. This is going to be the defining moment of human history similar to the Agricultural Revolution, the Industrial Revolution, and the Information Revolution.
+It was not long ago that AlphaFold struck me. Thanks to Veritasium Korea, I learned the detailed stories of AlphaFold. Although I had seen how AlphaGo defeat 이세돌 (Lee, Sedol), the legendary Go player, I was totally unaware how long AI had come since then.</description>
+    </item>
+    
     <item>
       <title>pyinfra lets you go to bed</title>
       <link>https://bongjunj.github.io/posts/pyinfra-lets-you-go-to-bed/</link>
