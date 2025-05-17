@@ -6,15 +6,24 @@
     <description>Recent content on Bongjun Jang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <lastBuildDate>Fri, 16 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 May 2025 11:08:14 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Superoptimizatin</title>
+      <link>https://bongjunj.github.io/posts/understanding-superoptimization/</link>
+      <pubDate>Sat, 17 May 2025 11:08:14 +0900</pubDate>
+      
+      <guid>https://bongjunj.github.io/posts/understanding-superoptimization/</guid>
+      <description>Compiler Optimizer Optimization problem, in general, a problem to seek the best solution given a few constraints. The linear programming is a good example. You maximize $100x + 40y$ subject to $100x + 40y \le 3000$ and $10x \le 100$. Both $x, y$ are positive. Drawing the linear equations on the coordinate plane, we find the optimal point.
+A compiler optimizer however does not find the optimal solution. (https://blog.regehr.org/archives/923) Rather, it only looks for an improved solution.</description>
+    </item>
+    
     <item>
       <title>The Next Revolution</title>
       <link>https://bongjunj.github.io/posts/the-next-revolution/</link>
       <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
       
       <guid>https://bongjunj.github.io/posts/the-next-revolution/</guid>
-      <description>Early Revolutions A revolution is an event that changes the human society fundamentally and structurally. It can impact the political, social and economical aspects of the society. Through the histry, there were many consequential revolutions, including the French Revolution, the American Revolution. But I want to focus more on the three transformative revolutions that were discussed in the book The Third Wave, by Alvin Toffler.
-The key point of the three revolutions is that each of them introdued a new mean of production.</description>
+      <description>Earlier Revolutions A revolution is an event that changes the human society fundamentally and structurally. It can impact the political, social and economical aspects of the society. Through the history, there were many consequential revolutions, including the French Revolution, the American Revolution. But I want to focus more on the three transformative revolutions that were discussed in the book The Third Wave, by Alvin Toffler: The Agricultural, Industrial, and Information Revolutions.</description>
     </item>
     
     <item>
