@@ -25,6 +25,8 @@ However, that is the out of the scope of this article.
 
 $$
 f(P_{src}) = P_{tgt} \\
+$$
+$$
 \forall{x}.P_{src}(x) = P_{tgt}(x)
 $$
 
