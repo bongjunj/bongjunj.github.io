@@ -11,15 +11,15 @@ was a transformative cultural shift that redefined norms around sex, gender, and
 Lastly, the Agricultural Revolution, the Industrial Revolution and the Information Revolution
 also transformed the human society by introducing a new mean of production. -->
 
-## Early Revolutions
+## Earlier Revolutions
 
 A revolution is an event that changes the human society fundamentally and structurally.
 It can impact the political, social and economical aspects of the society.
-Through the histry, there were many consequential revolutions, including the French Revolution, the American Revolution.
+Through the history, there were many consequential revolutions, including the French Revolution, the American Revolution.
 But I want to focus more on the three transformative revolutions that were discussed in the book
-_The Third Wave_, by Alvin Toffler.
+_The Third Wave_, by Alvin Toffler: The Agricultural, Industrial, and Information Revolutions.
 
-The key point of the three revolutions is that each of them introdued a new mean of production. Let us discuss in detail for each cases.
+The key point of those three revolutions is that each of them introdued a new mean of production. Let us discuss in detail for each case.
 
 The Agricultural Revolution introduced cultivation.
 It secured the food resources such as crops and cattles.
