@@ -54,6 +54,8 @@ we may have to relax the constraint of the functional equivalence to the refinem
 However, that is the out of the scope of this article.</p>
 <p>$$
 f(P_{src}) = P_{tgt} \
+$$
+$$
 \forall{x}.P_{src}(x) = P_{tgt}(x)
 $$</p>
 <p>A common compiler optimizer applies a series of code transformations to the source program, improving the program performance each step. For example, LLVM typically applies <a href="https://llvm.org/docs/Passes.html#instcombine-combine-redundant-instructions">InstCombine</a> transformations to a small chunk of instructions one by one, typically reducing the number of instructions or replacing to a faster chunk of instructions.</p>
