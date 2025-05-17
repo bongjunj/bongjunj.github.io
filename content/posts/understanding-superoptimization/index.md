@@ -1,5 +1,5 @@
 ---
-title: "Understanding Superoptimizatin"
+title: "Understanding Superoptimization"
 date: 2025-05-17T11:08:14+09:00
 ---
 
