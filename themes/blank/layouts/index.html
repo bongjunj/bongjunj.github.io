@@ -88,6 +88,12 @@
     </tbody>
   </table>
 
+  <h2>Readings</h2>
+  <ol>
+    {{ range where .Site.RegularPages "Type" "reading" }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ol>
   <h2>Bookmarks</h2>
   <ol>
     {{ range where .Site.RegularPages "Type" "bookmarks" }}
