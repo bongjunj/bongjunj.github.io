@@ -4,20 +4,18 @@
     <title>SWE on Bongjun Jang</title>
     <link>https://bongjunj.github.io/categories/swe/</link>
     <description>Recent content in SWE on Bongjun Jang</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ko</language>
-    <lastBuildDate>Thu, 29 Jun 2023 13:00:00 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/categories/swe/index.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</managingEditor>
+    <webMaster>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</webMaster>
+    <lastBuildDate>Thu, 29 Jun 2023 13:00:00 +0900</lastBuildDate>
+    <atom:link href="https://bongjunj.github.io/categories/swe/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Odroid 개발보드에서 Zig와 C를 같이 사용하기</title>
       <link>https://bongjunj.github.io/posts/using-zig-with-c-1/</link>
-      <pubDate>Thu, 29 Jun 2023 13:00:00 +0900</pubDate>
-      
+      <pubDate>Thu, 29 Jun 2023 13:00:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/using-zig-with-c-1/</guid>
-      <description>Odroid-N2&amp;#43; 개발 보드
-Odroid-N2+ 개발 보드를 구입해서 네트워크 연결을 관리하는 프로그램을 작성하는 실험을 해보고 있다. 개발 보드에 설치된 우분투 리눅스에서 블루투스나 ZigBee 등 네트워크 프로그래밍을 어떻게 하는지 방법을 찾아보고 있다.
-제일 먼저 리눅스의 블루투스 서브시스템인 BlueZ를 사용해보고 싶었다. ZigBee 도 사용해보고 싶은데 ZigBee 동글과 센서를 알리에서 주문했더니 배송이 꽤 걸린다고 해서 블루투스 먼저 시도해봤다.
-지금 사용하는 N2+ 보드는 성능이 꽤 나오는 보드이지만, 더 성능이 제한되는 소형 보드에서도 실행 가능한 프로그램이면 좋겠어서 C나 C++의 성능이 나오는 프로그래밍 언어를 찾아보았다.</description>
+      <description>&lt;figure&gt;&#xA;  &lt;center&gt;&#xA;    &lt;img&#xA;      srcset=&#39;&#xA;    /posts/using-zig-with-c-1/odroidn2plus_hu5929795549424795166.jpg 320w,&#xA;    /posts/using-zig-with-c-1/odroidn2plus_hu17557836936614837130.jpg 600w,&#xA;    /posts/using-zig-with-c-1/odroidn2plus_hu9603234325659960761.jpg 900w,&#xA;    /posts/using-zig-with-c-1/odroidn2plus_hu1067733338882422797.jpg 1200x&#39;&#xA;      sizes=&#34;(max-width: 320px) 280px, (max-width: 600px) 560px, 800px&#34;&#xA;      src=&#39;https://bongjunj.github.io/posts/using-zig-with-c-1/odroidn2plus_hu17557836936614837130.jpg&#39;&#xA;      alt=&#34;Odroid-N2&amp;#43; Development Board&#34;&#xA;    /&gt;&#xA;    &lt;figcaption&gt;&#xA;      &lt;p&gt;Odroid-N2&amp;#43; 개발 보드&lt;/p&gt;&#xA;    &lt;/figcaption&gt;&#xA;  &lt;/center&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.hardkernel.com/shop/odroid-n2-with-4gbyte-ram-2/&#34;&gt;Odroid-N2+&lt;/a&gt; 개발 보드를 구입해서 네트워크 연결을 관리하는 프로그램을 작성하는 실험을 해보고 있다.&#xA;개발 보드에 설치된 우분투 리눅스에서 블루투스나 ZigBee 등 네트워크 프로그래밍을 어떻게 하는지 방법을 찾아보고 있다.&lt;/p&gt;&#xA;&lt;p&gt;제일 먼저 리눅스의 블루투스 서브시스템인 &lt;a href=&#34;http://www.bluez.org/about/&#34;&gt;BlueZ&lt;/a&gt;를 사용해보고 싶었다.&#xA;ZigBee 도 사용해보고 싶은데 ZigBee 동글과 센서를 알리에서 주문했더니 배송이 꽤 걸린다고 해서 블루투스 먼저 시도해봤다.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
