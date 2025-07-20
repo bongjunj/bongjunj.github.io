@@ -52,15 +52,13 @@
 </ol>
 <p>Note that recursive functions&rsquo; preconditions and postconditions will do the same job as loop invariants.</p>
 <p>One can construct basic paths from the function in a Hoare triple form as below:</p>
-<p>$$
+$$
 \lbrace P \rbrace ~S~ \lbrace Q \rbrace
-$$</p>
-<p>where $P$ and $Q$ are first-order logical formulae and $S$ is a statement.
+$$<p>where $P$ and $Q$ are first-order logical formulae and $S$ is a statement.
 From the triple, one can derive the following formula:</p>
-<p>$$
+$$
 P \rightarrow wp(Q, S)
-$$</p>
-<p>where $wp(Q, S)$ is the weakest precondition of $Q$ given $S$.</p>
+$$<p>where $wp(Q, S)$ is the weakest precondition of $Q$ given $S$.</p>
 <p>The weakest precondition can be computed as below:</p>
 <ol>
 <li>$wp(Q, \texttt{assume}~p) \Leftrightarrow p \rightarrow Q$ (for branches)</li>
@@ -97,6 +95,8 @@ such that $(n_1, n_2) &lt;_2 (m_1, m_2)$ holds if $n_1 &lt; m_1$ or $n_2 &lt; m_
 		<div>
 			<ul>
 				
+				<li><a href="/posts/running-again/">I&#39;m locked out</a></li>
+				
 				<li><a href="/posts/understanding-superoptimization/">Understanding Superoptimization</a></li>
 				
 				<li><a href="/posts/the-next-revolution/">The Next Revolution</a></li>
@@ -104,8 +104,6 @@ such that $(n_1, n_2) &lt;_2 (m_1, m_2)$ holds if $n_1 &lt; m_1$ or $n_2 &lt; m_
 				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
 				
 				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
-				
-				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
 				
 			</ul>
 		</div>
