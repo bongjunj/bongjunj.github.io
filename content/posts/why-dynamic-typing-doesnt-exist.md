@@ -3,6 +3,10 @@ title: "Why Dynamic Typing Doesn't Exist"
 date: 2025-08-24T13:03:23+09:00
 ---
 
+The English version appear below the Korean one.
+
+---
+
 최근 파이썬을 위한 타입 검사기들이 속속 등장하고 있다.
 파이썬이 점차 대규모 프로그램 개발에 사용되면서, 미처 포착하지 못하는 프로그램 오류들을
 사전에 방지하기 위한 기술이 필요해지고 있기 때문이다.
@@ -43,8 +47,32 @@ $$
 (많은 파이썬 정적 타입 검사기들이 오탐을 줄이고자 `Any` 타입과 일어나는 연산에 대한 알람을 무시하는데, 이 때문에 정적 타입 검사를 해도 타입 오류가 사라지지 않는 것이다.)
 결국 동적 타입 언어를 정적으로 타입 검사한다는 것은 $\texttt{값} \times \texttt{타입}$ 도메인에 대한 요약 해석인 것이다.
 
-<!-- 이렇게 보면 동적 타입 언어에서 정적 타입 검사를 한다는 게 무엇인지 꽤 명확하게 보인다. -->
-
 이쯤되면 동적 타입 언어의 "타입"이란 이론적으로 정립된 "타입" 이론의 그것과 전혀 다른 개념임을 알 수 있다. 전혀 다른 개념을 같은 "타입"으로 부르고 있으니 혼란이 가중되는 것은 당연하다.
 서로 하는 일에 완전히 다른 데도 불구하고 같은 "타입 검사"라고 묶어버리니 논의가 불분명해질 수 밖에 없다.
 "동적 타입"이라 부르지 말고 더 정확한 용어를 찾아보자. 적당한 용어로 "태그"라고 부르는 것은 어떨까?
+
+---
+
+A recent wave of type checkers for Python has emerged. As Python is increasingly used for large-scale program development, a need has arisen for techniques to prevent program errors that might otherwise go unnoticed. Type checkers, in particular, aim to prevent type errors during runtime.
+
+A prime example is [PyRight](https://github.com/microsoft/pyright/blob/main/README.md), a representative Python type checker whose description introduces it as a static type checker for Python.
+
+But what does a static type checker for a dynamically typed language even mean? When you think about it, the term "dynamically typed language" is inherently ambiguous. Type checking is the process of proving that a program is free of type errors before it runs. In statically typed languages, this is proven by checking that the program conforms to the types written within it. Through type inference, a program's types can be automatically determined even if they aren't explicitly written. This process still involves verifying that the program belongs to a predetermined type.
+
+However, dynamic type checking is merely the failure of an operation in the untyped λ-calculus, where the calculation stops because there's no way to proceed. Dynamically typed languages attach another value, a "type," to their values. For example, when evaluating the program `1 + "hello"`, 1 is evaluated as `(1, int)` and "hello" as `("hello", str)`. To evaluate the `+` operator, there must be a defined addition operation between int and str, but no such operation exists (think about Python). The program therefore reaches a state where no further operations are defined and stops (Python raises a `TypeError`). When we look closely at this process, it's exactly the same as an operational failure in the untyped λ-calculus, with nothing new about it.
+
+Thus, what a Python static type checker aims to do is to automatically prove, within a finite amount of time, that there will be no operational failures at runtime in an untyped λ-calculus language. To automatically check values for a lack of errors "within a finite amount of time," an abstract interpretation-based static analyzer is needed. To examine the domain of abstract interpretation, let's mathematically represent the values handled by a dynamically typed language. The values $\mathbb{V'}$
+handled by a dynamic language are simply values $\mathbb{V}$ tagged with type information $\mathbb{T}$.
+
+$$
+\mathbb{V'} = \mathbb{V} \times \mathbb{T}
+$$
+
+$$
+\mathbb{T} = \{ \texttt{int}, \texttt{float}, \texttt{str} \}
+$$
+
+Therefore, a static analyzer uses an abstract domain of $\mathbb{V'}$
+and detects operations that occur between mismatched-type values. This is why abstract interpretation phenomena like false positives appear in Python static type checkers. (Many Python static type checkers ignore warnings for operations involving the `Any` type to reduce false positives, which is why type errors can still occur even after static type checking.) In the end, statically type-checking a dynamically typed language is an abstract interpretation over the $\texttt{value} \times \texttt{type}$ domain.
+
+At this point, it's clear that the "type" in a dynamically typed language is a completely different concept from the "type" in a theoretically established type theory. It's natural for confusion to arise when entirely different concepts are called the same thing, "type." Since they do completely different things but are grouped under the same term "type checking," discussions can't help but become unclear. Instead of calling it "dynamic typing," let's find a more accurate term. How about "tagging"?
