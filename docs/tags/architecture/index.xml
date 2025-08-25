@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Architecture on Bongjun Jang</title>
+    <title>architecture on Bongjun Jang</title>
     <link>https://bongjunj.github.io/tags/architecture/</link>
-    <description>Recent content in Architecture on Bongjun Jang</description>
-    <generator>Hugo</generator>
+    <description>Recent content in architecture on Bongjun Jang</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
-    <managingEditor>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</managingEditor>
-    <webMaster>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</webMaster>
-    <lastBuildDate>Sun, 29 Aug 2021 12:37:24 +0900</lastBuildDate>
-    <atom:link href="https://bongjunj.github.io/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Aug 2021 12:37:24 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>쿠키런 킹덤 서버 아키텍처 1</title>
       <link>https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-1/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
+      
       <guid>https://bongjunj.github.io/posts/cookie-run-kingdom-server-architecture-1/</guid>
-      <description>&lt;p&gt;Actor Model에 대해서 정리하며 포스트를 쓰려다가 예전에 봤던 &lt;a href=&#34;https://www.youtube.com/watch?v=FUEZibcZEkg&#34;&gt;NDC21-프로그래밍, 쿠키런 킹덤 서버 아키텍처 뜯어먹기&lt;/a&gt;가 떠올라서 리뷰해보려고 한다.&#xA;서버 아키텍처에 대해 많은 내용을 배울 수 있는 자료라서 좋은 공부가 될 것 같다.&lt;/p&gt;&#xA;&#xA;&#xA;    &#xA;    &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;&#xA;      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;allowfullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/FUEZibcZEkg?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;[NDC21-프로그래밍] 〈쿠키런: 킹덤〉 서버 아키텍처 뜯어먹기!&#34;&#xA;      &gt;&lt;/iframe&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;&lt;p&gt;일단 영상의 주요 내용은 다음과 같다. (영상 1분 16초 참고)&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Stateful vs. Stateless, and Actor Model&lt;/li&gt;&#xA;&lt;li&gt;CRUD vs. Event Sourcing&lt;/li&gt;&#xA;&lt;li&gt;함수형 프로그래밍과 DSL로 콘텐츠 구현&lt;/li&gt;&#xA;&lt;li&gt;유저간 상호 작용 구현하기: 2PC vs. SAGA&lt;/li&gt;&#xA;&lt;li&gt;이벤트 기반 아키텍처를 바탕으로 확장하기&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;이번 포스트에서는 첫번째 내용을 다뤄보려고 한다.&#xA;첫번째 내용만 해도 다룰 이야기가 참 많다.&lt;/p&gt;</description>
+      <description>Actor Model에 대해서 정리하며 포스트를 쓰려다가 예전에 봤던 NDC21-프로그래밍, 쿠키런 킹덤 서버 아키텍처 뜯어먹기가 떠올라서 리뷰해보려고 한다. 서버 아키텍처에 대해 많은 내용을 배울 수 있는 자료라서 좋은 공부가 될 것 같다.
+일단 영상의 주요 내용은 다음과 같다. (영상 1분 16초 참고)
+Stateful vs. Stateless, and Actor Model CRUD vs. Event Sourcing 함수형 프로그래밍과 DSL로 콘텐츠 구현 유저간 상호 작용 구현하기: 2PC vs. SAGA 이벤트 기반 아키텍처를 바탕으로 확장하기 이번 포스트에서는 첫번째 내용을 다뤄보려고 한다.</description>
     </item>
+    
   </channel>
 </rss>
