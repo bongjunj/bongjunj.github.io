@@ -54,11 +54,13 @@ In other words, the target program must output the same as the source program fo
 If we consider undefined behaviors of a program,
 we may have to relax the constraint of the functional equivalence to the refinement relation.
 However, that is the out of the scope of this article.</p>
+<p>$$
+f(P_{src}) = P_{tgt} \
 $$
-f(P_{src}) = P_{tgt} \\
-$$$$
+$$
 \forall{x}.P_{src}(x) = P_{tgt}(x)
-$$<p>A common compiler optimizer applies a series of code transformations to the source program, improving the program performance each step. For example, LLVM typically applies <a href="https://llvm.org/docs/Passes.html#instcombine-combine-redundant-instructions">InstCombine</a> transformations to a small chunk of instructions one by one, typically reducing the number of instructions or replacing to a faster chunk of instructions.</p>
+$$</p>
+<p>A common compiler optimizer applies a series of code transformations to the source program, improving the program performance each step. For example, LLVM typically applies <a href="https://llvm.org/docs/Passes.html#instcombine-combine-redundant-instructions">InstCombine</a> transformations to a small chunk of instructions one by one, typically reducing the number of instructions or replacing to a faster chunk of instructions.</p>
 <h2 id="superoptimizer">Superoptimizer</h2>
 <p>In contrast, a compiler superoptimizer makes more sense in the mathematical meaning of &ldquo;optimization&rdquo;.
 It tries to find the <strong>optimal</strong> program that is semantically the same to the source program but faster than that.
@@ -80,12 +82,12 @@ In addition, Souper limits its search space to remain efficient. Therefore, ther
   <center>
     <img
       srcset='
-    /posts/understanding-superoptimization/search-space_hu4985066701611719418.png 320w,
-    /posts/understanding-superoptimization/search-space_hu9276156843041246756.png 600w,
-    /posts/understanding-superoptimization/search-space_hu5978108964437585378.png 900w,
-    /posts/understanding-superoptimization/search-space_hu14532135549295301935.png 1200x'
+    /posts/understanding-superoptimization/search-space_hu01f03efa978e9f008a5dd9c0d7737a70_33559_320x0_resize_box_3.png 320w,
+    /posts/understanding-superoptimization/search-space_hu01f03efa978e9f008a5dd9c0d7737a70_33559_600x0_resize_box_3.png 600w,
+    /posts/understanding-superoptimization/search-space_hu01f03efa978e9f008a5dd9c0d7737a70_33559_900x0_resize_box_3.png 900w,
+    /posts/understanding-superoptimization/search-space_hu01f03efa978e9f008a5dd9c0d7737a70_33559_1200x0_resize_box_3.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/understanding-superoptimization/search-space_hu9276156843041246756.png'
+      src='/posts/understanding-superoptimization/search-space_hu01f03efa978e9f008a5dd9c0d7737a70_33559_600x0_resize_box_3.png'
       alt=""
     />
     <figcaption>

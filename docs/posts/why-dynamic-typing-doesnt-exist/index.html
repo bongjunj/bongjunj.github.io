@@ -63,11 +63,13 @@
 &ldquo;유한 시간 안에&rdquo;, &ldquo;자동으로&rdquo; 값을 검사해 어떤 오류가 없게 한다고? 요약 해석을 통한 정적 분석기가 필요하다.
 요약 해석의 도메인을 살펴보기 위해 동적 타입 언어가 다루는 값을 수학적으로 표현해보자.
 동적 언어가 다루는 값 $\mathbb{V&rsquo;}$은 값 $\mathbb{V}$에 타입 정보 $\mathbb{T}$를 덧댄 것에 불과하다.</p>
-$$
-\mathbb{V'} = \mathbb{V} \times \mathbb{T}
-$$$$
-\mathbb{T} = \{~\text{int},~\text{float},~\text{str}~\}
-$$<p>따라서 정적 분석기는 $\mathbb{V&rsquo;}$의 요약 도메인을 이용하며, 여기서 서로 타입이 맞지 않는 값끼리 일어나는 연산을 탐지한다.
+<p>$$
+\mathbb{V&rsquo;} = \mathbb{V} \times \mathbb{T}
+$$</p>
+<p>$$
+\mathbb{T} = {~\text{int},~\text{float},~\text{str}~}
+$$</p>
+<p>따라서 정적 분석기는 $\mathbb{V&rsquo;}$의 요약 도메인을 이용하며, 여기서 서로 타입이 맞지 않는 값끼리 일어나는 연산을 탐지한다.
 오탐(False Alarm) 같은 요약 해석의 현상이 파이썬 정적 타입 검사기에 나타나는 것은 이 때문이다.
 (많은 파이썬 정적 타입 검사기들이 오탐을 줄이고자 <code>Any</code> 타입과 일어나는 연산에 대한 알람을 무시하는데, 이 때문에 정적 타입 검사를 해도 타입 오류가 사라지지 않는 것이다.)
 결국 동적 타입 언어를 정적으로 타입 검사한다는 것은 $\texttt{값} \times \texttt{타입}$ 도메인에 대한 요약 해석인 것이다.</p>
@@ -100,11 +102,13 @@ PyRight은 흐름을 따지거나, 흐름을 따지지 않는 그 어딘가에 �
 <p>However, dynamic type checking is merely the failure of an operation in the untyped λ-calculus, where the calculation stops because there&rsquo;s no way to proceed. Dynamically typed languages attach another value, a &ldquo;type,&rdquo; to their values. For example, when evaluating the program <code>1 + &quot;hello&quot;</code>, 1 is evaluated as <code>(1, int)</code> and &ldquo;hello&rdquo; as <code>(&quot;hello&quot;, str)</code>. To evaluate the <code>+</code> operator, there must be a defined addition operation between int and str, but no such operation exists (think about Python). The program therefore reaches a state where no further operations are defined and stops (Python raises a <code>TypeError</code>). When we look closely at this process, it&rsquo;s exactly the same as an operational failure in the untyped λ-calculus, with nothing new about it.</p>
 <p>Thus, what a Python static type checker aims to do is to automatically prove, within a finite amount of time, that there will be no operational failures at runtime in an untyped λ-calculus language. To automatically check values for a lack of errors &ldquo;within a finite amount of time,&rdquo; an abstract interpretation-based static analyzer is needed. To examine the domain of abstract interpretation, let&rsquo;s mathematically represent the values handled by a dynamically typed language. The values $\mathbb{V&rsquo;}$
 handled by a dynamic language are simply values $\mathbb{V}$ tagged with type information $\mathbb{T}$.</p>
-$$
-\mathbb{V'} = \mathbb{V} \times \mathbb{T}
-$$$$
-\mathbb{T} = \{ \texttt{int}, \texttt{float}, \texttt{str} \}
-$$<p>Therefore, a static analyzer uses an abstract domain of $\mathbb{V&rsquo;}$
+<p>$$
+\mathbb{V&rsquo;} = \mathbb{V} \times \mathbb{T}
+$$</p>
+<p>$$
+\mathbb{T} = { \texttt{int}, \texttt{float}, \texttt{str} }
+$$</p>
+<p>Therefore, a static analyzer uses an abstract domain of $\mathbb{V&rsquo;}$
 and detects operations that occur between mismatched-type values. This is why abstract interpretation phenomena like false positives appear in Python static type checkers. (Many Python static type checkers ignore warnings for operations involving the <code>Any</code> type to reduce false positives, which is why type errors can still occur even after static type checking.) In the end, statically type-checking a dynamically typed language is an abstract interpretation over the $\texttt{value} \times \texttt{type}$ domain.</p>
 <p>At this point, it&rsquo;s clear that the &ldquo;type&rdquo; in a dynamically typed language is a completely different concept from the &ldquo;type&rdquo; in a theoretically established type theory. It&rsquo;s natural for confusion to arise when entirely different concepts are called the same thing, &ldquo;type.&rdquo; Since they do completely different things but are grouped under the same term &ldquo;type checking,&rdquo; discussions can&rsquo;t help but become unclear. Instead of calling it &ldquo;dynamic typing,&rdquo; let&rsquo;s find a more accurate term. How about &ldquo;tagging&rdquo;?</p>
 
