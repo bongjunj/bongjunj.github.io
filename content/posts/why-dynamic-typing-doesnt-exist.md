@@ -1,5 +1,5 @@
 ---
-title: "Why Dynamic Typing Doesn't Exist"
+title: "동적 타입은 존재하지 않는다"
 date: 2025-08-24T13:03:23+09:00
 ---
 
