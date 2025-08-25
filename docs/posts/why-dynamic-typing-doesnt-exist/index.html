@@ -38,7 +38,7 @@
 	<article>
 		<h1>Why Dynamic Typing Doesn&#39;t Exist</h1>
 		<time datetime=" 2025-08-24T13:03:23">2025 Aug 24</time>
-		<p>The English version appear below the Korean one.</p>
+		<p>The English version appears below the Korean one.</p>
 <hr>
 <p>최근 파이썬을 위한 타입 검사기들이 속속 등장하고 있다.
 파이썬이 점차 대규모 프로그램 개발에 사용되면서, 미처 포착하지 못하는 프로그램 오류들을
@@ -74,6 +74,25 @@ $$<p>따라서 정적 분석기는 $\mathbb{V&rsquo;}$의 요약 도메인을 �
 <p>이쯤되면 동적 타입 언어의 &ldquo;타입&quot;이란 이론적으로 정립된 &ldquo;타입&rdquo; 이론의 그것과 전혀 다른 개념임을 알 수 있다. 전혀 다른 개념을 같은 &ldquo;타입&quot;으로 부르고 있으니 혼란이 가중되는 것은 당연하다.
 서로 하는 일에 완전히 다른 데도 불구하고 같은 &ldquo;타입 검사&quot;라고 묶어버리니 논의가 불분명해질 수 밖에 없다.
 &ldquo;동적 타입&quot;이라 부르지 말고 더 정확한 용어를 찾아보자. 적당한 용어로 &ldquo;태그&quot;라고 부르는 것은 어떨까?</p>
+<hr>
+<p>Update: 2025-08-25</p>
+<p>이 글에서 제안한 요약해석기는 흐름을 따져야한다(Flow-Sensitive Analysis).
+다음같은 예시를 생각해보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>: x: <span style="color:#66d9ef">None</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span>: <span style="color:#66d9ef">if</span> <span style="color:#f92672">...</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span>:     x <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span>: <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span>:     x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>: print(x)
+</span></span></code></pre></div><p>PyRight 타입 검사기는 <code>x</code>에 <code>5</code>나 <code>&quot;hello&quot;</code>를 대입할 수 없다고 보고한다.
+그런데 사실 이는 실행가능한 파이썬 프로그램이다.</p>
+<p>흐름을 무시하는 요약해석은 이런 허위보고를 일으킨다.
+Line 1에서 정의된 <code>x</code>가 Line 3, 5에서도 같은 태그(타입 정보)를 가진다고 판단하기 때문이다.
+흐름을 따지는 요약해석기는 이런 허위보고를 하지 않는다.
+Line 1을 <code>x = None</code>로 고치면 PyRight의 허위보고가 사라진다.
+PyRight은 흐름을 따지거나, 흐름을 따지지 않는 그 어딘가에 있는 것 같다.</p>
 <hr>
 <p>A recent wave of type checkers for Python has emerged. As Python is increasingly used for large-scale program development, a need has arisen for techniques to prevent program errors that might otherwise go unnoticed. Type checkers, in particular, aim to prevent type errors during runtime.</p>
 <p>A prime example is <a href="https://github.com/microsoft/pyright/blob/main/README.md">PyRight</a>, a representative Python type checker whose description introduces it as a static type checker for Python.</p>
