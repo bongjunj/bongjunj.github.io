@@ -46,12 +46,12 @@
   <center>
     <img
       srcset='
-    /posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_320x0_resize_q75_box.jpg 320w,
-    /posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_600x0_resize_q75_box.jpg 600w,
-    /posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_900x0_resize_q75_box.jpg 900w,
-    /posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_1200x0_resize_q75_box.jpg 1200x'
+    /posts/using-zig-with-c-1/odroidn2plus_hu_6682ec9e243ea609.jpg 320w,
+    /posts/using-zig-with-c-1/odroidn2plus_hu_1469311ff62628bd.jpg 600w,
+    /posts/using-zig-with-c-1/odroidn2plus_hu_d5573374a7021c2.jpg 900w,
+    /posts/using-zig-with-c-1/odroidn2plus_hu_b298c8403fc43f2.jpg 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/using-zig-with-c-1/odroidn2plus_huf80b7f1bb9303741c7bd1603a5682bea_132981_600x0_resize_q75_box.jpg'
+      src='/posts/using-zig-with-c-1/odroidn2plus_hu_1469311ff62628bd.jpg'
       alt="Odroid-N2&#43; Development Board"
     />
     <figcaption>
@@ -82,12 +82,12 @@ Rust는 C와 상호운용이 가능하면서도 메모리 안전한 프로그램
   <center>
     <img
       srcset='
-    /posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_320x0_resize_box_3.png 320w,
-    /posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_600x0_resize_box_3.png 600w,
-    /posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_900x0_resize_box_3.png 900w,
-    /posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_1200x0_resize_box_3.png 1200x'
+    /posts/using-zig-with-c-1/ziglang_hu_edbbfbab1f807329.png 320w,
+    /posts/using-zig-with-c-1/ziglang_hu_bb068db4082f7522.png 600w,
+    /posts/using-zig-with-c-1/ziglang_hu_15ff9b0c713b75b8.png 900w,
+    /posts/using-zig-with-c-1/ziglang_hu_c93fe7ab73f88f1d.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/using-zig-with-c-1/ziglang_hub46807b8a62ed3461e8637ef8bf87bb8_3638_600x0_resize_box_3.png'
+      src='/posts/using-zig-with-c-1/ziglang_hu_bb068db4082f7522.png'
       alt="Zig Programming Language"
     />
     <figcaption>
@@ -125,21 +125,21 @@ Zig의 빌드 시스템(<code>zig build</code>)을 이용하면 C, C++로 작성
 libc의 함수들을 사용할 수 있도록 <code>/usr/include</code> 또한 <code>-I</code> 옵션으로 포함시켜준다.
 Zig의 빌드시스템에는 암묵적으로 libc가 포함되지 않아 모두 명시적으로 링킹해주어야한다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// build.zig
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> build(b<span style="color:#f92672">:</span> <span style="color:#f92672">*</span>std.Build) <span style="color:#66d9ef">void</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> target <span style="color:#f92672">=</span> b.standardTargetOptions(.{});
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> optimize <span style="color:#f92672">=</span> b.standardOptimizeOption(.{});
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">build</span>(b<span style="color:#f92672">:</span> <span style="color:#f92672">*</span>std.Build) <span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> target <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">standardTargetOptions</span>(.{});
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> optimize <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">standardOptimizeOption</span>(.{});
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> exe <span style="color:#f92672">=</span> b.addExecutable(.{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> exe <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">addExecutable</span>(.{
 </span></span><span style="display:flex;"><span>        .name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;opera&#34;</span>,
 </span></span><span style="display:flex;"><span>        .root_source_file <span style="color:#f92672">=</span> .{ .path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;src/main.zig&#34;</span> },
 </span></span><span style="display:flex;"><span>        .target <span style="color:#f92672">=</span> target,
 </span></span><span style="display:flex;"><span>        .optimize <span style="color:#f92672">=</span> optimize,
 </span></span><span style="display:flex;"><span>    });
-</span></span><span style="display:flex;"><span>    exe.linkLibC();
-</span></span><span style="display:flex;"><span>    exe.addCSourceFiles(<span style="color:#f92672">&amp;</span>.{
+</span></span><span style="display:flex;"><span>    exe.<span style="color:#a6e22e">linkLibC</span>();
+</span></span><span style="display:flex;"><span>    exe.<span style="color:#a6e22e">addCSourceFiles</span>(<span style="color:#f92672">&amp;</span>.{
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;./libs/bluez-5.66/lib/bluetooth.c&#34;</span>,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;./libs/bluez-5.66/lib/hci.c&#34;</span>,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;./libs/bluez-5.66/lib/uuid.c&#34;</span>,
@@ -149,65 +149,65 @@ Zig의 빌드시스템에는 암묵적으로 libc가 포함되지 않아 모두 
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;-I/usr/include&#34;</span>,
 </span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    b.installArtifact(exe);
+</span></span><span style="display:flex;"><span>    b.<span style="color:#a6e22e">installArtifact</span>(exe);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_cmd <span style="color:#f92672">=</span> b.addRunArtifact(exe);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_cmd <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">addRunArtifact</span>(exe);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    run_cmd.step.dependOn(b.getInstallStep());
+</span></span><span style="display:flex;"><span>    run_cmd.step.<span style="color:#a6e22e">dependOn</span>(b.<span style="color:#a6e22e">getInstallStep</span>());
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (b.args) <span style="color:#f92672">|</span>args<span style="color:#f92672">|</span> {
-</span></span><span style="display:flex;"><span>        run_cmd.addArgs(args);
+</span></span><span style="display:flex;"><span>        run_cmd.<span style="color:#a6e22e">addArgs</span>(args);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_step <span style="color:#f92672">=</span> b.step(<span style="color:#e6db74">&#34;run&#34;</span>, <span style="color:#e6db74">&#34;Run the app&#34;</span>);
-</span></span><span style="display:flex;"><span>    run_step.dependOn(<span style="color:#f92672">&amp;</span>run_cmd.step);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_step <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">step</span>(<span style="color:#e6db74">&#34;run&#34;</span>, <span style="color:#e6db74">&#34;Run the app&#34;</span>);
+</span></span><span style="display:flex;"><span>    run_step.<span style="color:#a6e22e">dependOn</span>(<span style="color:#f92672">&amp;</span>run_cmd.step);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> unit_tests <span style="color:#f92672">=</span> b.addTest(.{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> unit_tests <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">addTest</span>(.{
 </span></span><span style="display:flex;"><span>        .root_source_file <span style="color:#f92672">=</span> .{ .path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;src/main.zig&#34;</span> },
 </span></span><span style="display:flex;"><span>        .target <span style="color:#f92672">=</span> target,
 </span></span><span style="display:flex;"><span>        .optimize <span style="color:#f92672">=</span> optimize,
 </span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_unit_tests <span style="color:#f92672">=</span> b.addRunArtifact(unit_tests);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> run_unit_tests <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">addRunArtifact</span>(unit_tests);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> test_step <span style="color:#f92672">=</span> b.step(<span style="color:#e6db74">&#34;test&#34;</span>, <span style="color:#e6db74">&#34;Run unit tests&#34;</span>);
-</span></span><span style="display:flex;"><span>    test_step.dependOn(<span style="color:#f92672">&amp;</span>run_unit_tests.step);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> test_step <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">step</span>(<span style="color:#e6db74">&#34;test&#34;</span>, <span style="color:#e6db74">&#34;Run unit tests&#34;</span>);
+</span></span><span style="display:flex;"><span>    test_step.<span style="color:#a6e22e">dependOn</span>(<span style="color:#f92672">&amp;</span>run_unit_tests.step);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>시스템에 연결된 블루투스 디바이스를 찾아 소켓을 여는 간단한 프로그램을 작성해보자.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// main.zig
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> btlib <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;bluetoothlib.zig&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> main() <span style="color:#f92672">!</span><span style="color:#66d9ef">void</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> dev_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> btlib.get_route();
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> sock <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> btlib.get_socket(dev_id);
-</span></span><span style="display:flex;"><span>    std.debug.print(<span style="color:#e6db74">&#34;dev_id = {d}, sock = {d}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, .{ dev_id, sock });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() <span style="color:#f92672">!</span><span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> dev_id <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> btlib.<span style="color:#a6e22e">get_route</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> sock <span style="color:#f92672">=</span> <span style="color:#66d9ef">try</span> btlib.<span style="color:#a6e22e">get_socket</span>(dev_id);
+</span></span><span style="display:flex;"><span>    std.debug.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;dev_id = {d}, sock = {d}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, .{ dev_id, sock });
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><code>bluetoothlib.zig</code>에서는 BlueZ Library에서 정의한 함수에 접근할 수 있도록
 C 구조체와 함수의 프로토타입을 지정한다.
 그리고 Zig 스타일의 함수로 감싸 퍼블릭 함수로 제공한다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// bluetoothlib.zig
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// C API for the Linux Bluetooth stack
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/// Bluetooth device address is a contiguous 6-byte array
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">const</span> bdaddr_t <span style="color:#f92672">=</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">struct</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">const</span> bdaddr_t <span style="color:#f92672">=</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">struct</span> {
 </span></span><span style="display:flex;"><span>    b<span style="color:#f92672">:</span> [<span style="color:#ae81ff">6</span>]<span style="color:#66d9ef">u8</span> <span style="color:#66d9ef">align</span>(<span style="color:#ae81ff">1</span>),
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> hci_get_route(bdaddr<span style="color:#f92672">:</span> <span style="color:#f92672">?*</span>bdaddr_t) <span style="color:#66d9ef">c_int</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> hci_devid(str<span style="color:#f92672">:</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">c_int</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">hci_get_route</span>(bdaddr<span style="color:#f92672">:</span> <span style="color:#f92672">?*</span>bdaddr_t) <span style="color:#66d9ef">c_int</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">hci_devid</span>(str<span style="color:#f92672">:</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">c_int</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> get_route() <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> dev_id <span style="color:#f92672">=</span> hci_get_route(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_route</span>() <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> dev_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">hci_get_route</span>(<span style="color:#66d9ef">null</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (dev_id <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> BluetoothError.AdapterNotFound;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @as(<span style="color:#66d9ef">i32</span>, dev_id);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> get_socket(dev_id<span style="color:#f92672">:</span> <span style="color:#66d9ef">i32</span>) <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> sock <span style="color:#f92672">=</span> hci_open_dev(dev_id);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_socket</span>(dev_id<span style="color:#f92672">:</span> <span style="color:#66d9ef">i32</span>) <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> sock <span style="color:#f92672">=</span> <span style="color:#a6e22e">hci_open_dev</span>(dev_id);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (sock <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> BluetoothError.CantOpenSocket;
 </span></span><span style="display:flex;"><span>    }
@@ -300,7 +300,7 @@ dev_id = 0, sock = 3
 </script>
 
 	<footer>
-	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+	<p>&copy; 2026 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
 </footer>
 
 </body>

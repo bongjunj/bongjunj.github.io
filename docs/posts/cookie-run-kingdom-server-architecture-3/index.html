@@ -50,12 +50,12 @@
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_320x0_resize_box_3.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_900x0_resize_box_3.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu_dc3c31a940ef14db.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu_cafbf6318c39a9b9.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu_550b29923cd61322.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_function_hu_451ead0f30809ed2.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-3/pure_function_hu1760604db16919fe315a0e25d5d1e1c0_22976_600x0_resize_box_3.png'
+      src='/posts/cookie-run-kingdom-server-architecture-3/pure_function_hu_cafbf6318c39a9b9.png'
       alt="pure function diagram"
     />
     <figcaption>
@@ -77,12 +77,12 @@
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_320x0_resize_box_3.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_600x0_resize_box_3.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_900x0_resize_box_3.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_hu_f24dae04ee1d67d4.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_hu_2a3dc77c97e97a8a.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_hu_3bbc03f49aa62fa4.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_hu_d6f6a4060271eb30.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_huba2a402b34b0fee3791f648dd7de411d_37911_600x0_resize_box_3.png'
+      src='/posts/cookie-run-kingdom-server-architecture-3/impure_function_unseen_input_hu_2a3dc77c97e97a8a.png'
       alt="impure function"
     />
     <figcaption>
@@ -93,11 +93,11 @@
 
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#75715e">// a와 b가 같다면 add a b의 값은 항상 같다 (순수 함수)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> add a b <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> add a b <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 5초마다 이 함수를 실행해본다고 생각해보자, 함수의 결과값이 항상 달라진다.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 흘러가고 있는 시간이 이 함수의 &#39;보이지 않는 입력&#39;이다.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> currentTime () <span style="color:#f92672">=</span> System.DateTime.UtcNow
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> currentTime () <span style="color:#f92672">=</span> System.DateTime.UtcNow
 </span></span></code></pre></div><p>다른 예시를 들어보자.</p>
 
 
@@ -107,12 +107,12 @@
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_320x0_resize_box_3.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_600x0_resize_box_3.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_900x0_resize_box_3.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_hu_fdeb0ff353538dfa.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_hu_5780f1714830016b.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_hu_9685d93bf3bd5b1d.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_hu_bad14f1d018141c9.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_huba2a402b34b0fee3791f648dd7de411d_39204_600x0_resize_box_3.png'
+      src='/posts/cookie-run-kingdom-server-architecture-3/inpure_function_db_conn_hu_5780f1714830016b.png'
       alt="impure function of connecting db"
     />
     <figcaption>
@@ -124,9 +124,9 @@
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> insertUser user <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// DbConnection can fail
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">use</span> db <span style="color:#f92672">=</span> DbConnection ()
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">use</span> db <span style="color:#f92672">=</span> DbConnection ()
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Insert also can fail
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    db<span style="color:#f92672">.</span>insertInto<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;users&#34;</span><span style="color:#f92672">).</span>values<span style="color:#f92672">([</span>user<span style="color:#f92672">]).</span>execute()
+</span></span></span><span style="display:flex;"><span>    db<span style="color:#f92672">.</span>insertInto<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;users&#34;</span><span style="color:#f92672">).</span>values<span style="color:#f92672">([</span>user<span style="color:#f92672">]).</span>execute()
 </span></span></code></pre></div><p><code>insertUser</code>는 순수하지 않은 함수다. 우선, <code>db</code> 값을 보자.
 외부에서 가져와 입력으로 받은 값이 아닌, 함수 내부에서 생성된 값이다. 데이터베이스와 연결에 문제가 생길 경우 함수가 어떤 행동을 할지 보장할 수 없다.
 또한 함수가 하는 일 또한 함수 외부에 있는 데이터베이스의 상태를 변경시키는 일이다. 함수의 보이지 않는 출력이다.</p>
@@ -148,12 +148,12 @@
   <center>
     <img
       srcset='
-    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_320x0_resize_box_3.png 320w,
-    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_600x0_resize_box_3.png 600w,
-    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_900x0_resize_box_3.png 900w,
-    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_1200x0_resize_box_3.png 1200x'
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu_774ba47373666ab.png 320w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu_2649db2b82b3d9d5.png 600w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu_deab95f19b54af24.png 900w,
+    /posts/cookie-run-kingdom-server-architecture-3/pure_program_hu_af0f430ac32790cc.png 1200x'
       sizes="(max-width: 320px) 280px, (max-width: 600px) 560px, 800px"
-      src='/posts/cookie-run-kingdom-server-architecture-3/pure_program_hu081d36eb02d046d630154fff1f0294b9_70574_600x0_resize_box_3.png'
+      src='/posts/cookie-run-kingdom-server-architecture-3/pure_program_hu_2649db2b82b3d9d5.png'
       alt="pure program does not have a side effect"
     />
     <figcaption>
@@ -203,12 +203,12 @@ Scala의 for comprehension을 사용하기 위해서는 사용하고자 하는 �
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 좀 더 일반적이고 간결하게 (&#39;T -&gt; Wrap&lt;&#39;U&gt;) -&gt; &#39;T -&gt; Wrap&lt;&#39;U&gt; 로 쓸 수도 있다. (&#39;T를 Wrap&lt;&#39;T&gt;로 치환하면 동등하다)
 </span></span></span></code></pre></div><p>정의만 보면 이해가 힘드니 예시를 들어보자.
 list of floats를 list of int로 map하는 예다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> floats <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span><span style="color:#ae81ff">5</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">.</span><span style="color:#ae81ff">3</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">.</span><span style="color:#ae81ff">7</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">.</span><span style="color:#ae81ff">4</span><span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> floats <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>1<span style="color:#f92672">.</span>5<span style="color:#f92672">;</span> 2<span style="color:#f92672">.</span>3<span style="color:#f92672">;</span> 9<span style="color:#f92672">.</span>7<span style="color:#f92672">;</span> 6<span style="color:#f92672">.</span>4<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>floats
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|&gt;</span> List.map <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> r <span style="color:#f92672">-&gt;</span> int r<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// returns [1; 2; 9; 6]
 </span></span></span></code></pre></div><p>다음은 list of (list of floats)를 list of int로 flatMap(collect)하는 예다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> floats <span style="color:#f92672">=</span> <span style="color:#f92672">[[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span><span style="color:#ae81ff">5</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">.</span><span style="color:#ae81ff">3</span><span style="color:#f92672">];</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">9</span><span style="color:#f92672">.</span><span style="color:#ae81ff">7</span><span style="color:#f92672">;</span> <span style="color:#ae81ff">6</span><span style="color:#f92672">.</span><span style="color:#ae81ff">4</span><span style="color:#f92672">]]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fsharp" data-lang="fsharp"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> floats <span style="color:#f92672">=</span> <span style="color:#f92672">[[</span>1<span style="color:#f92672">.</span>5<span style="color:#f92672">;</span> 2<span style="color:#f92672">.</span>3<span style="color:#f92672">];</span> <span style="color:#f92672">[</span>9<span style="color:#f92672">.</span>7<span style="color:#f92672">;</span> 6<span style="color:#f92672">.</span>4<span style="color:#f92672">]]</span>
 </span></span><span style="display:flex;"><span>floats
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|&gt;</span> List.collect <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> xs <span style="color:#f92672">-&gt;</span> xs <span style="color:#f92672">|&gt;</span> List.map int<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// returns [1; 2; 9; 6]
@@ -304,7 +304,7 @@ Scala의 for comprehension 코드를 보면 이유를 알 수 있다.</p>
 </script>
 
 	<footer>
-	<p>&copy; 2025 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
+	<p>&copy; 2026 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
 </footer>
 
 </body>

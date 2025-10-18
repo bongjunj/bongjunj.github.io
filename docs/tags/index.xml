@@ -4,89 +4,74 @@
     <title>Tags on Bongjun Jang</title>
     <link>https://bongjunj.github.io/tags/</link>
     <description>Recent content in Tags on Bongjun Jang</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ko</language>
-    <lastBuildDate>Wed, 17 Nov 2021 15:53:34 +0900</lastBuildDate><atom:link href="https://bongjunj.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</managingEditor>
+    <webMaster>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</webMaster>
+    <lastBuildDate>Wed, 17 Nov 2021 15:53:34 +0900</lastBuildDate>
+    <atom:link href="https://bongjunj.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>economics</title>
+      <title>Economics</title>
       <link>https://bongjunj.github.io/tags/economics/</link>
-      <pubDate>Wed, 17 Nov 2021 15:53:34 +0900</pubDate>
-      
+      <pubDate>Wed, 17 Nov 2021 15:53:34 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/economics/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>actor</title>
+      <title>Actor</title>
       <link>https://bongjunj.github.io/tags/actor/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/actor/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>akka</title>
+      <title>Akka</title>
       <link>https://bongjunj.github.io/tags/akka/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/akka/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>architecture</title>
+      <title>Architecture</title>
       <link>https://bongjunj.github.io/tags/architecture/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/architecture/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>backend</title>
+      <title>Backend</title>
       <link>https://bongjunj.github.io/tags/backend/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/backend/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>computer</title>
+      <title>Computer</title>
       <link>https://bongjunj.github.io/tags/computer/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/computer/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>concurrent</title>
+      <title>Concurrent</title>
       <link>https://bongjunj.github.io/tags/concurrent/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/concurrent/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>distributed</title>
+      <title>Distributed</title>
       <link>https://bongjunj.github.io/tags/distributed/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/distributed/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>systems</title>
+      <title>Systems</title>
       <link>https://bongjunj.github.io/tags/systems/</link>
-      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate>
-      
+      <pubDate>Sun, 29 Aug 2021 12:37:24 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/tags/systems/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>
