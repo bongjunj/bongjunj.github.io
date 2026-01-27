@@ -52,7 +52,7 @@ You have to go through a lot of trials and errors to get the script right.</p>
 <p>Here, <code>parallel</code> comes to the rescue.
 All you need is write a command for each input.
 For example, what you want is just a single line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find inputs/*.ll | parallel --bar --joblog job.log --timeout <span style="color:#ae81ff">3600</span> -j <span style="color:#f92672">(</span>nproc<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;&lt;system&gt; {} &gt; outputs/{/}.result 2&gt; outputs{/}.error&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find inputs/*.ll | parallel --bar --joblog job.log --timeout <span style="color:#ae81ff">3600</span> -j <span style="color:#f92672">(</span>nproc<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;&lt;system&gt; {} &gt; outputs/{/}.result 2&gt; outputs{/}.error&#34;</span>
 </span></span></code></pre></div><p>The <code>--bar</code> option gives a nice progress bar. The log file contains how long it took for each command to finish.
 In addition, it is very straightforward to specify the timeout for each command and the number of job workers.</p>
 
@@ -82,13 +82,13 @@ In addition, it is very straightforward to specify the timeout for each command 
 				
 				<li><a href="/posts/why-dynamic-typing-doesnt-exist/">동적 타입은 존재하지 않는다</a></li>
 				
-				<li><a href="/posts/running-again/">I&#39;m locked out</a></li>
-				
 				<li><a href="/posts/understanding-superoptimization/">Understanding Superoptimization</a></li>
 				
 				<li><a href="/posts/the-next-revolution/">The Next Revolution</a></li>
 				
 				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
 				
 			</ul>
 		</div>

@@ -124,7 +124,7 @@
 하지만 2024년부터는 그 절반인 3.125 BTC의 보상을 받는다.
 그 이유는 비트코인은 반감기(halving)이라는 메커니즘이 있기 때문이다.
 반감기가 지나면 비트코인 블록 채굴의 보상은 반으로 줄어들게 된다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>CAmount <span style="color:#a6e22e">GetBlockSubsidy</span>(<span style="color:#66d9ef">int</span> nHeight, <span style="color:#66d9ef">const</span> Consensus<span style="color:#f92672">::</span>Params<span style="color:#f92672">&amp;</span> consensusParams)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>CAmount <span style="color:#a6e22e">GetBlockSubsidy</span>(<span style="color:#66d9ef">int</span> nHeight, <span style="color:#66d9ef">const</span> Consensus<span style="color:#f92672">::</span>Params<span style="color:#f92672">&amp;</span> consensusParams)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> halvings <span style="color:#f92672">=</span> nHeight <span style="color:#f92672">/</span> consensusParams.nSubsidyHalvingInterval;
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Force block reward to zero when right shift is undefined.
@@ -203,13 +203,13 @@
 				
 				<li><a href="/posts/why-dynamic-typing-doesnt-exist/">동적 타입은 존재하지 않는다</a></li>
 				
-				<li><a href="/posts/running-again/">I&#39;m locked out</a></li>
-				
 				<li><a href="/posts/understanding-superoptimization/">Understanding Superoptimization</a></li>
 				
 				<li><a href="/posts/the-next-revolution/">The Next Revolution</a></li>
 				
 				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
 				
 			</ul>
 		</div>

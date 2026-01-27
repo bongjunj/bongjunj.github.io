@@ -53,7 +53,7 @@ KENS의 내부 구조를 들여다보았다.</p>
 <h3 id="systems-properties"><code>System</code>&rsquo;s Properties</h3>
 <p><code>System</code>은 KENS에서 네트워크를 구성하는 중요한 클래스다.
 아래 코드에서 <code>System</code>이 관리하는 데이터들을 살펴보자.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>unordered_set<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>shared_ptr<span style="color:#f92672">&lt;</span>Runnable<span style="color:#f92672">&gt;&gt;</span> runnableReady;
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
@@ -70,7 +70,7 @@ KENS의 내부 구조를 들여다보았다.</p>
 일단 이름을 통해 유추해보면 <code>Runnable</code> 실행가능한 함수 또는 프로그램일 것이다.
 조금 더 들여다보자.</p>
 <h3 id="runnable"><code>Runnable</code></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Runnable</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Runnable</span> {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
 </span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> main() <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// main program logic
@@ -105,7 +105,7 @@ KENS의 내부 구조를 들여다보았다.</p>
 <code>Runnable</code> 인스턴스는 실행, 대기, 종료 등 상태를 가진다.</p>
 <p>KENS 스케쥴러에 의해 상태 전환이 일어나고, <code>mutex</code>, <code>condvar</code> 를 이용해 실행이 제어된다.</p>
 <p><code>Runnable</code>의 사용예제를 보자.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SystemCallApplication<span style="color:#f92672">::</span>initialize() { start(); }
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> SystemCallApplication<span style="color:#f92672">::</span>initialize() { start(); }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> SystemCallApplication<span style="color:#f92672">::</span>E_Syscall(
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> SystemCallInterface<span style="color:#f92672">::</span>SystemCallParameter <span style="color:#f92672">&amp;</span>param) {
@@ -134,7 +134,7 @@ KENS의 내부 구조를 들여다보았다.</p>
 <p>이는 협동 스케쥴링(Cooperative Scheduling)에서
 쓰레드(혹은 태스크)가 양보(yield)하는 것을 의미한다.</p>
 <h3 id="module"><code>Module</code></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Module</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Module</span> {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>  System <span style="color:#f92672">&amp;</span>system;
 </span></span><span style="display:flex;"><span>  ModuleID id;
@@ -148,7 +148,7 @@ KENS의 내부 구조를 들여다보았다.</p>
 <li>처리가 되기 전에 취소되었을 때</li>
 </ol>
 <h3 id="message"><code>Message</code></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MessageBase</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MessageBase</span> {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>  MessageBase() {}
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>MessageBase() {}
@@ -163,7 +163,7 @@ KENS의 내부 구조를 들여다보았다.</p>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> Message <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>unique_ptr<span style="color:#f92672">&lt;</span>MessageBase<span style="color:#f92672">&gt;</span>;
 </span></span></code></pre></div><p><code>Message</code>는 그냥 타입 지정을 위한 빈(empty) 클래스다.</p>
 <h3 id="timercontainer"><code>TimerContainer</code></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TimerContainerInner</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TimerContainerInner</span> {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> ModuleID from;
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> ModuleID to;
@@ -183,7 +183,7 @@ KENS의 내부 구조를 들여다보았다.</p>
 <p><code>TimerContainerLess</code>라는 클래스도 정의되어 있는데, 위에서 보았듯이 <code>System</code>에서 <code>timerQueue</code>의 우선순위를 정하기 위해 사용한다.
 <code>wakeup</code>의 값이 큰 순서대로 <code>pop</code>되도록 지정된 것 같다. (확실하지 않다는 이야기, 하지만 보통 less로 비교가 이뤄지면 높은 값부터 pop한다.)</p>
 <h3 id="systems-run-method"><code>System</code>&rsquo;s <code>run</code> method</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> System<span style="color:#f92672">::</span>run(Time till) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> System<span style="color:#f92672">::</span>run(Time till) {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
 </span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (true) {
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>runnableReady.empty()) {
@@ -273,13 +273,13 @@ KENS의 내부 구조를 들여다보았다.</p>
 				
 				<li><a href="/posts/why-dynamic-typing-doesnt-exist/">동적 타입은 존재하지 않는다</a></li>
 				
-				<li><a href="/posts/running-again/">I&#39;m locked out</a></li>
-				
 				<li><a href="/posts/understanding-superoptimization/">Understanding Superoptimization</a></li>
 				
 				<li><a href="/posts/the-next-revolution/">The Next Revolution</a></li>
 				
 				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
 				
 			</ul>
 		</div>

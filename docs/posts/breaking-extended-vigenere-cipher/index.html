@@ -68,13 +68,13 @@ However, if you look closely to the information you can access, you will find th
 <p>But, in this scheme, the encryption is too weak to be attacked by the chosen plaintext attack. This first thing I tried was to <strong>substract the ciphertext by a plaintext</strong>. Since it is poly-alphabetic substitution cipher, the result of the substraction will be a key stream. If you get the key, you just decrypt the whole ciphertext, right?</p>
 <p>The example below shows the result of substraction of ciphertext by plaintexts.
 The repeating <code>2, 3, 4, 1</code> cleary shows that that is the key.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>C: [4, 4, 22, 14, 11, 8, 23, 21, 2, 11, 5, 20, 22, 8, 23, 1, 21, 19, 5, 5]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>C: [4, 4, 22, 14, 11, 8, 23, 21, 2, 11, 5, 20, 22, 8, 23, 1, 21, 19, 5, 5]
 </span></span><span style="display:flex;"><span>P: [2, 1, 18, 13, 9, 5, 19, 20, 0, 8, 1, 19, 20, 5, 19, 0, 19, 16, 1, 4]
 </span></span><span style="display:flex;"><span>D: [2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1]
 </span></span></code></pre></div><p>But this example is more interesting: there is no repeating pattern in the difference.
 But if you remove the 4-th character (0-based) in the ciphertext, you can see the repeating pattern.
 We now can tell that is the random character inserted!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>C: [6, 8, 18, 22, 11, 16, 6, 13, 2, 22, 12, 13, 19, 15, 2, 6, 12, 19, 17, 14]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>C: [6, 8, 18, 22, 11, 16, 6, 13, 2, 22, 12, 13, 19, 15, 2, 6, 12, 19, 17, 14]
 </span></span><span style="display:flex;"><span>P: [4, 5, 14, 21, 14, 3, 9, 1, 20, 9, 15, 14, 0, 3, 8, 18, 15, 14, 1, 24]
 </span></span><span style="display:flex;"><span>D: [2, 3, 4, 1, 24, 13, 24, 12, 9, 13, 24, 26, 19, 12, 21, 15, 24, 5, 16, 17]
 </span></span></code></pre></div><h2 id="attacking-the-random-characters">Attacking the random characters</h2>
@@ -299,13 +299,13 @@ and skills to improve performance of a program by precomputation (nice refresh f
 				
 				<li><a href="/posts/why-dynamic-typing-doesnt-exist/">동적 타입은 존재하지 않는다</a></li>
 				
-				<li><a href="/posts/running-again/">I&#39;m locked out</a></li>
-				
 				<li><a href="/posts/understanding-superoptimization/">Understanding Superoptimization</a></li>
 				
 				<li><a href="/posts/the-next-revolution/">The Next Revolution</a></li>
 				
 				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
 				
 			</ul>
 		</div>

@@ -124,11 +124,11 @@ Zig의 빌드 시스템(<code>zig build</code>)을 이용하면 C, C++로 작성
 또한 BlueZ는 libc에 의존성이 있으므로 <code>exe.linkLibc()</code>를 통해 링킹해준다.
 libc의 함수들을 사용할 수 있도록 <code>/usr/include</code> 또한 <code>-I</code> 옵션으로 포함시켜준다.
 Zig의 빌드시스템에는 암묵적으로 libc가 포함되지 않아 모두 명시적으로 링킹해주어야한다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// build.zig
-</span></span></span><span style="display:flex;"><span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// build.zig</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">build</span>(b<span style="color:#f92672">:</span> <span style="color:#f92672">*</span>std.Build) <span style="color:#66d9ef">void</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">build</span>(b: <span style="color:#f92672">*</span>std.Build) <span style="color:#66d9ef">void</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> target <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">standardTargetOptions</span>(.{});
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> optimize <span style="color:#f92672">=</span> b.<span style="color:#a6e22e">standardOptimizeOption</span>(.{});
 </span></span><span style="display:flex;"><span>
@@ -174,8 +174,8 @@ Zig의 빌드시스템에는 암묵적으로 libc가 포함되지 않아 모두 
 </span></span><span style="display:flex;"><span>    test_step.<span style="color:#a6e22e">dependOn</span>(<span style="color:#f92672">&amp;</span>run_unit_tests.step);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>시스템에 연결된 블루투스 디바이스를 찾아 소켓을 여는 간단한 프로그램을 작성해보자.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// main.zig
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// main.zig</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> std <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;std&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> btlib <span style="color:#f92672">=</span> @import(<span style="color:#e6db74">&#34;bluetoothlib.zig&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() <span style="color:#f92672">!</span><span style="color:#66d9ef">void</span> {
@@ -186,17 +186,17 @@ Zig의 빌드시스템에는 암묵적으로 libc가 포함되지 않아 모두 
 </span></span></code></pre></div><p><code>bluetoothlib.zig</code>에서는 BlueZ Library에서 정의한 함수에 접근할 수 있도록
 C 구조체와 함수의 프로토타입을 지정한다.
 그리고 Zig 스타일의 함수로 감싸 퍼블릭 함수로 제공한다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// bluetoothlib.zig
-</span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// C API for the Linux Bluetooth stack
-</span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/// Bluetooth device address is a contiguous 6-byte array
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">const</span> bdaddr_t <span style="color:#f92672">=</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>    b<span style="color:#f92672">:</span> [<span style="color:#ae81ff">6</span>]<span style="color:#66d9ef">u8</span> <span style="color:#66d9ef">align</span>(<span style="color:#ae81ff">1</span>),
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-zig" data-lang="zig"><span style="display:flex;"><span><span style="color:#75715e">// bluetoothlib.zig</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// C API for the Linux Bluetooth stack</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/// Bluetooth device address is a contiguous 6-byte array</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">const</span> bdaddr_t <span style="color:#f92672">=</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    b: [<span style="color:#ae81ff">6</span>]<span style="color:#66d9ef">u8</span> <span style="color:#66d9ef">align</span>(<span style="color:#ae81ff">1</span>),
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">hci_get_route</span>(bdaddr<span style="color:#f92672">:</span> <span style="color:#f92672">?*</span>bdaddr_t) <span style="color:#66d9ef">c_int</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">hci_devid</span>(str<span style="color:#f92672">:</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">c_int</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">hci_get_route</span>(bdaddr: ?<span style="color:#f92672">*</span>bdaddr_t) <span style="color:#66d9ef">c_int</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">hci_devid</span>(str: <span style="color:#f92672">*</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">u8</span>) <span style="color:#66d9ef">c_int</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_route</span>() <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> dev_id <span style="color:#f92672">=</span> <span style="color:#a6e22e">hci_get_route</span>(<span style="color:#66d9ef">null</span>);
@@ -206,7 +206,7 @@ C 구조체와 함수의 프로토타입을 지정한다.
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> @as(<span style="color:#66d9ef">i32</span>, dev_id);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_socket</span>(dev_id<span style="color:#f92672">:</span> <span style="color:#66d9ef">i32</span>) <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">get_socket</span>(dev_id: <span style="color:#66d9ef">i32</span>) <span style="color:#f92672">!</span><span style="color:#66d9ef">i32</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> sock <span style="color:#f92672">=</span> <span style="color:#a6e22e">hci_open_dev</span>(dev_id);
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (sock <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> BluetoothError.CantOpenSocket;
@@ -219,7 +219,7 @@ C 구조체와 함수의 프로토타입을 지정한다.
 따라서 빌드 시에 컴파일 대상을 <code>aarch64-linux-gnu</code>로 변경한다.
 aarch64 리눅스 시스템의 GNU LIBC(GLIBC)를 사용한다는 뜻이다.
 다음과 같이 Makefile을 작성해 ssh를 이용해 개발 보드에서 실행해보자.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Makefile" data-lang="Makefile"><span style="display:flex;"><span>TARGET_BINARY <span style="color:#f92672">=</span> ./zig-out/bin/opera
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Makefile" data-lang="Makefile"><span style="display:flex;"><span>TARGET_BINARY <span style="color:#f92672">=</span> ./zig-out/bin/opera
 </span></span><span style="display:flex;"><span>TARGET_MACHINE <span style="color:#f92672">=</span> /* REDACTED */
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">.PHONY</span><span style="color:#f92672">:</span> build send run connect
@@ -275,13 +275,13 @@ dev_id = 0, sock = 3
 				
 				<li><a href="/posts/why-dynamic-typing-doesnt-exist/">동적 타입은 존재하지 않는다</a></li>
 				
-				<li><a href="/posts/running-again/">I&#39;m locked out</a></li>
-				
 				<li><a href="/posts/understanding-superoptimization/">Understanding Superoptimization</a></li>
 				
 				<li><a href="/posts/the-next-revolution/">The Next Revolution</a></li>
 				
 				<li><a href="/posts/pyinfra-lets-you-go-to-bed/">pyinfra lets you go to bed</a></li>
+				
+				<li><a href="/posts/just-use-argparse/">Just Use Argparse</a></li>
 				
 			</ul>
 		</div>
