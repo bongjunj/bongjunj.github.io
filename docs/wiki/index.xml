@@ -15,7 +15,7 @@
       <link>https://bongjunj.github.io/wiki/toolkit/</link>
       <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/wiki/toolkit/</guid>
-      <description>&lt;h2 id=&#34;gnu-parallel&#34;&gt;GNU Parallel&lt;/h2&gt;&#xA;&lt;p&gt;GNU &lt;code&gt;parallel&lt;/code&gt; is one of the greatest tool for PL/SWE research.&#xA;At the end of the day, you as a researcher have to evaluate the system you developed.&#xA;For example, you might want to answer a research question like &amp;ldquo;how effective is XXX in synthesizing &amp;hellip;?&amp;rdquo;&#xA;To answer the question, a benchmark that consists of tons of inputs is constructed, and the system is tested against them.&#xA;In this scenario, it is always better to parallelize the executions because time is gold.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;gnu-parallel&#34;&gt;GNU Parallel&lt;/h2&gt;&#xA;&lt;p&gt;GNU &lt;code&gt;parallel&lt;/code&gt; is one of the greatest tool for PL/SWE research.&#xA;Every now and then, we have to evaluate the system you developed. (Measuring almost always intrigues us!)&#xA;For example, at least for writing a paper, you might have to measure for a research question like &amp;ldquo;how effective is XXX in synthesizing &amp;hellip;?&amp;rdquo;&#xA;To answer the question, a benchmark that consists of tons of inputs is often constructed, and the system is tested against them.&#xA;In this scenario, it is always better to parallelize the executions because faster iteration means faster improvement!&lt;/p&gt;</description>
     </item>
     <item>
       <title>Calculus of Computation</title>

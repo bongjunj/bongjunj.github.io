@@ -40,11 +40,11 @@
 		<time datetime=" 2025-10-18T00:00:00">2025 Oct 18</time>
 		<h2 id="gnu-parallel">GNU Parallel</h2>
 <p>GNU <code>parallel</code> is one of the greatest tool for PL/SWE research.
-At the end of the day, you as a researcher have to evaluate the system you developed.
-For example, you might want to answer a research question like &ldquo;how effective is XXX in synthesizing &hellip;?&rdquo;
-To answer the question, a benchmark that consists of tons of inputs is constructed, and the system is tested against them.
-In this scenario, it is always better to parallelize the executions because time is gold.</p>
-<p>However, it is very annoying to write the evaluation script with parallelization.
+Every now and then, we have to evaluate the system you developed. (Measuring almost always intrigues us!)
+For example, at least for writing a paper, you might have to measure for a research question like &ldquo;how effective is XXX in synthesizing &hellip;?&rdquo;
+To answer the question, a benchmark that consists of tons of inputs is often constructed, and the system is tested against them.
+In this scenario, it is always better to parallelize the executions because faster iteration means faster improvement!</p>
+<p>However, it is very annoying to write such a script especially with parallelization.
 For example, in Python, you have to learn how to use the pool executor API: <code>submit</code>, <code>join</code>, <code>as_completed</code>, and so on.
 The process management is also a nightmare, and you might end up with tons of zombie processes if it goes wrong.
 Even more, when you want to visualize the progress, <code>tqdm</code> easily breaks with the executor API.
@@ -55,6 +55,14 @@ For example, what you want is just a single line:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find inputs/*.ll | parallel --bar --joblog job.log --timeout <span style="color:#ae81ff">3600</span> -j <span style="color:#f92672">(</span>nproc<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;&lt;system&gt; {} &gt; outputs/{/}.result 2&gt; outputs{/}.error&#34;</span>
 </span></span></code></pre></div><p>The <code>--bar</code> option gives a nice progress bar. The log file contains how long it took for each command to finish.
 In addition, it is very straightforward to specify the timeout for each command and the number of job workers.</p>
+<h2 id="sqlite3">sqlite3</h2>
+<p>It is almost always better than having scattered CSV or JSON.
+You don&rsquo;t need <code>pandas</code>. You do not need <code>jq</code>. Just good old SQL queries to get your job done.
+Even more, I find working with coding agents when data are in a sqlite3 db more pleasant than when they are scattered through files.
+They excel at writing SQL queries since GPT-3.5 (and we now have GPT-5.5).
+In addition, you can save those analysis queries in a text file and run it via: <code>sqlite3 your_db.db &lt; analysis.sql</code>.
+Moreover, your favorite programming language will provide a binding for sqlite3. (Python, OCaml, Rust, and you name it!)
+So, it is straightforward to integrate data collection into your pipeline.</p>
 
 	</article>
   <script src="https://giscus.app/client.js"
