@@ -1,6 +1,7 @@
 ---
 title: "Just Use Argparse"
 date: 2025-02-08T18:08:01+09:00
+draft: true
 ---
 
 Writing Python scripts is probably one of the most useful skills as a software engineer.

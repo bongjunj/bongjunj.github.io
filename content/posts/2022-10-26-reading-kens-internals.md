@@ -2,6 +2,7 @@
 title: KENS 내부 들여다보기
 date: 2022-10-26T12:56:00+09:00
 categories: ["Random"]
+draft: true
 ---
 
 2022년 가을학기 전산망 개론에서 KENS 프로젝트를 통해

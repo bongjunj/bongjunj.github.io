@@ -1,6 +1,7 @@
 ---
 title: "pyinfra lets you go to bed"
 date: 2025-03-03T12:33:45+09:00
+draft: true
 ---
 
 This is a story how `pyinfra` let me go to bed.

@@ -25,25 +25,11 @@
       <description>&lt;p&gt;Short Answer: You call something is random because the best thing you can tell about it is just a guess.&lt;/p&gt;&#xA;&lt;h2 id=&#34;long-answer&#34;&gt;Long Answer&lt;/h2&gt;&#xA;&lt;p&gt;An intesting example that enligntened me was the famous coin toss problem.&#xA;We believe that the coin toss is a 50/50 experiment.&#xA;That&amp;rsquo;s why we toss coin for deciding which side will take the turn first in a game. We believe it is fair.&#xA;But recent findings suggest that our belief could be wrong: the experiment is not 50/50.&#xA;In fact, a coin tends to land on the same side they started for a probability of 50.8%.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Breaking Extended Vigenere Cipher</title>
-      <link>https://bongjunj.github.io/posts/breaking-extended-vigenere-cipher/</link>
-      <pubDate>Fri, 13 Oct 2023 14:59:17 -0400</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
-      <guid>https://bongjunj.github.io/posts/breaking-extended-vigenere-cipher/</guid>
-      <description>&lt;p&gt;For Appliced cryptography Course for this semester in NYU Tandon,&#xA;I have been assigned a project to break a vigenere cipher but an extended version.&#xA;Since I had already done a homework in KAIST, which was to write Kasiski examination program in OCaml,&#xA;I thought it was going to be a piece of cake. However, the little tweak in the encryption scheme made it a lot more interesting.&#xA;It was quite painful to come up with other techniques to break the cipher, but knowledges gained the hard way dies hard.&#xA;And I want to share my thought process!&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>모든 프레임워크는 새로운 언어다</title>
       <link>https://bongjunj.github.io/posts/2023-02-01-every-new-framework-is-new-language/</link>
       <pubDate>Wed, 01 Feb 2023 12:00:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
       <guid>https://bongjunj.github.io/posts/2023-02-01-every-new-framework-is-new-language/</guid>
       <description>&lt;p&gt;웹 개발의 세계에는 수백 수천 가지의 프레임워크가 있고,&#xA;아마 지금도 새로운 프레임워크가 탄생하고 있을 것이다.&#xA;프레임워크는 웹 어플리케이션을 작성하는 데 필요한 기능을 제공하고,&#xA;프로그래머는 프레임워크가 제공하는 기능을 이용해서 웹 어플리케이션을 작성한다.&lt;/p&gt;&#xA;&lt;p&gt;프레임워크가 흥미로운 점은, 웹 어플리케이션을 작성하기 위해 특정한 관점을 제공한다는 점이다.&#xA;리액트(React)는 클라이언트의 UI를 컴포넌트 단위로 구성해야한다는 관점을 제공하고,&#xA;장고(Django)나 ASP.NET Core는 웹 어플리케이션을 모델-뷰-컨트롤러 단위로 구성해야한다는 관점을 제시한다.&#xA;그리고 프로그래머는 프레임워크를 사용하면서 대부분의 시간을 이러한 관점에 따라 웹 어플리케이션을 작성하면서 보낸다.&#xA;이러한 특성 때문에 프로그래밍 언어를 이해하고 있는 프로그래머라고 해도, 프레임워크의 관점을 새로 배워야 프레임워크를 사용할 수 있게 된다.&#xA;루비(Ruby) 생태계의 루비온레일즈(Ruby on Rails)는 더 재밌는 예다.&#xA;루비온레일즈는 프로그래머가 사용할 수 있는 메소드(Method) 등을 많이 제공하는데,&#xA;이 때문에 루비온레일즈에 익숙한 프로그래머는 루비만을 이용해서 프로그램을 작성하는 데 어려움을 겪을 수도 있다.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>KENS 내부 들여다보기</title>
-      <link>https://bongjunj.github.io/posts/2022-10-26-reading-kens-internals/</link>
-      <pubDate>Wed, 26 Oct 2022 12:56:00 +0900</pubDate><author>bongjun.jang [at] kaist.ac.kr (Bongjun Jang)</author>
-      <guid>https://bongjunj.github.io/posts/2022-10-26-reading-kens-internals/</guid>
-      <description>&lt;p&gt;2022년 가을학기 전산망 개론에서 KENS 프로젝트를 통해&#xA;TCP/IP의 3-Way Handshaking과 Reliable Data Transfer를 구현하였다.&lt;/p&gt;&#xA;&lt;p&gt;교수님의 판단으로 Flow Control은 스킵.&lt;/p&gt;&#xA;&lt;p&gt;KENS는 꽤 신기한 프로그램이다.&#xA;교육용으로 설계되어 deterministic하게 동작한다.&#xA;내 생각에 실제 네트워크 노드들을 실행시켜 테스트하면&#xA;OS 등 여러 비결정적 요소들 때문에&#xA;절대로 deterministic하게 작동할 수 없는데,&#xA;KENS에서는 그런 일이 일어나지 않는다.&lt;/p&gt;&#xA;&lt;p&gt;그래서 과제가 끝나고 숨돌릴 시간이 있을 무렵&#xA;KENS의 내부 구조를 들여다보았다.&lt;/p&gt;&#xA;&lt;h2 id=&#34;kens-내부-구조&#34;&gt;KENS 내부 구조&lt;/h2&gt;&#xA;&lt;h3 id=&#34;systems-properties&#34;&gt;&lt;code&gt;System&lt;/code&gt;&amp;rsquo;s Properties&lt;/h3&gt;&#xA;&lt;p&gt;&lt;code&gt;System&lt;/code&gt;은 KENS에서 네트워크를 구성하는 중요한 클래스다.&#xA;아래 코드에서 &lt;code&gt;System&lt;/code&gt;이 관리하는 데이터들을 살펴보자.&lt;/p&gt;</description>
     </item>
     <item>
       <title>비트코인을 지탱하는 원동력</title>
