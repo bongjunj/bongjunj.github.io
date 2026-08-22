@@ -6,7 +6,7 @@
 <!-- 2026-08-23 Sun 00:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bongjun Jang</title>
+<title>Just Use Argparse</title>
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -196,95 +196,110 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Bongjun Jang</h1>
-<div id="outline-container-org6a7538b" class="outline-2">
-<h2 id="org6a7538b">Contacts</h2>
-<div class="outline-text-2" id="text-org6a7538b">
+<h1 class="title">Just Use Argparse</h1>
+<p>
+Writing Python scripts is probably one of the most useful skills as a
+software engineer. As a project grows, we find ourselves dumping loads
+of scripts everywhere, making it hard to resist the urge to manage them
+somehow. One way to manage scripts better is by turning them into CLI
+applications. By letting them take arguments rather than hard-coding the
+configuration values in the scripts such as filepaths, we can re-use
+them anytime we need some jobs done.
+</p>
+
+<p>
+For the sake of this, Python provides you a built-in which is
+<code>argparse</code>. It lets us parse command-line arguments so that we can
+easily convert the scripts for project-specific applications. While
+<code>argparse</code> is built-in, other libraries like <code>click</code> aim to simplify the
+process. And they are obviously easy to use. For example, to write a
+simple greetings application, <code>click</code> provides a lot simpler way as
+below:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">parser = argparse.ArgumentParser()
+parser.add_argument('name', type=str, help="what's your name?")
+args = parser.parse_args()
+
+def hello(name):
+    print(name)
+
+hello(args.name)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">@click.command()
+@click.argument('name')
+def hello(name):
+    click.echo(f"Hello {name}!")
+</pre>
+</div>
+
+<p>
+With <code>click</code>, the command hello remains a self-contained function with
+clear decorators, whereas in <code>argparse</code>, you have to manage the argument
+parser separately. Hhow beautiful it is to keep a command <code>hello</code> as a
+python function with self-explanatory decorators! It is quite easy to
+think that managing command lines is way easier with <code>click</code> than with
+<code>argparse</code>. However, from my experience for the past year, it seems that
+the opposite is true for several reasons.
+</p>
+
+<p>
+First, the most painful drawback of <code>click</code> is that it uses decorators
+heavily. A decorator turns a python function into somewhat else. In
+turn, you can't call the function directly. If you need call them, you
+end up using the API <code>ctx.invoke(hello, ...args)</code>. I found it annoying
+when I want just a simple python script to get a job done. Even for
+one-off scripts, you might be forced to use <code>@click.pass_context</code>,
+adding extra complexity. As a result, you need to one more argument
+(<code>ctx</code>) in the function. In addition, a decorator breaks the editor
+support. I use VSCode, and its type analysis does not work for
+decorator-wrapped functions. It makes me go back and forth to see which
+arguments the function needs.
+</p>
+
+<p>
+Second, it adds an extra dependency to the project. I get that, even
+with the drawbacks I described earlier, using <code>click</code> can help
+developing projects. However, at the point you want to publish your
+work, you need to consider dependencies. For this, no other options can
+beat <code>argparse</code>! Because <code>argparse</code> is built-in, users don't need to
+install anything. Using <code>click</code> means potential setup issues&#x2014;leading
+to unexpected GitHub issues or extra emails to your inbox.
+</p>
+
+<p>
+Furthurmore, here are some ways to manage Python scripts with <code>argparse</code>
+more efficiently in a project:
+</p>
+
 <ul class="org-ul">
-<li><a href="https://github.com/bongjunj">Github</a></li>
-<li>Email: bongjun.jang@kaist.ac.kr</li>
+<li><code>lib</code>: utility modules</li>
+<li><code>tool</code>: you implement <code>argparse</code>-applications using modules in <code>lib</code></li>
+<li><code>scripts</code>: you manage your one-off scripts here. bash, python
+whatever.</li>
 </ul>
+
+<p>
+This way, you can manage CLI applications just like using
+<code>@click.group()</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">tool/command.py [args] # instead of ./tool.py command [args]
+</pre>
 </div>
-</div>
-<div id="outline-container-org97d8dd7" class="outline-2">
-<h2 id="org97d8dd7">Research Interest</h2>
-<div class="outline-text-2" id="text-org97d8dd7">
-<ul class="org-ul">
-<li>Artificial Intelligence with Programming Languages and Logics</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org8384f45" class="outline-2">
-<h2 id="org8384f45">Publications</h2>
-<div class="outline-text-2" id="text-org8384f45">
-<ul class="org-ul">
-<li>Optimization-Directed Compiler Fuzzing for Continuous Translation
-Validation
-<ul class="org-ul">
-<li>Jaeseong Kwon, <b>Bongjun Jang</b>, Juneyoung Lee, and Kihong Heo</li>
-<li>[<a href="https://prosys.kaist.ac.kr/publications/pldi25.pdf">paper</a>] [<a href="https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf">slides</a>] [<a href="https://www.youtube.com/watch?v=ihi_cdjLJZo">presentation</a>]</li>
-<li><a href="https://pldi25.sigplan.org/">PLDI 2025: ACM SIGPLAN Conference on Programming Language Design and Implementation</a></li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgec6a5f1" class="outline-2">
-<h2 id="orgec6a5f1">Education</h2>
-<div class="outline-text-2" id="text-orgec6a5f1">
-<ul class="org-ul">
-<li><b>M.S.</b> in Computer Science, KAIST, Korea (2025 Feb. - 2027 Feb.
-expected)</li>
-<li><b>B.S.</b> in Computer Science, KAIST, Korea (2018 - 2025. Feb)
-<ul class="org-ul">
-<li>Minor in Cybersecurity, NYU (2023 Fall)</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd8ce4ed" class="outline-2">
-<h2 id="orgd8ce4ed">Experience</h2>
-<div class="outline-text-2" id="text-orgd8ce4ed">
-<ul class="org-ul">
-<li>Bytecode Alliance Recognized Contributor (2026 Jan - present) [<a href="https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17">roaster</a>]</li>
-<li>Best TA Award, CS.30408: Introduction to Information Security, KAIST
-School of Computing (2025 Spring)</li>
-<li>Programming Systems Laboratory, KAIST (2024 Jan - present)</li>
-<li>Software Developer, Datamaker (2020)</li>
-<li>Served as a KATUSA tanker in Republic of Korea Army (2021 Feb - 2022 Aug)</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd57adea" class="outline-2">
-<h2 id="orgd57adea">Posts</h2>
-<div class="outline-text-2" id="text-orgd57adea">
-<ul class="org-ul">
-<li><a href="posts/why-dynamic-typing-doesnt-exist.html">동적 타입은 존재하지 않는다</a></li>
-<li><a href="posts/korea-meritocracy/index.html">Korea Meritocracy</a></li>
-<li><a href="posts/understanding-superoptimization/index.html">Understanding Superoptimization</a></li>
-<li><a href="posts/the-next-revolution.html">The Next Revolution</a></li>
-<li><a href="posts/pyinfra-lets-you-go-to-bed.html">pyinfra lets you go to bed</a></li>
-<li><a href="posts/just-use-argparse.html">Just Use Argparse</a></li>
-<li><a href="posts/my-first-paper-submission.html">태어나서 처음 논문 제출</a></li>
-<li><a href="posts/machine-learning-and-fuzzing/index.html">기계 학습과 지향성 실행탐험기</a></li>
-<li><a href="posts/what-is-random.html">What is Randomness?</a></li>
-<li><a href="posts/breaking-extended-vigenere-cipher/index.html">Breaking Extended Vigenere Cipher</a></li>
-<li><a href="posts/using-zig-with-c-1/index.html">Odroid 개발보드에서 Zig와 C를 같이 사용하기</a></li>
-<li><a href="posts/2023-02-01-every-new-framework-is-new-language.html">모든 프레임워크는 새로운 언어다</a></li>
-<li><a href="posts/actor-model-in-practice/index.html">액터 모델 실습</a></li>
-<li><a href="posts/what-runs-bitcoin-network/index.html">비트코인을 지탱하는 원동력</a></li>
-<li><a href="posts/baby-sitting-coupon-experiment/index.html">베이비 시팅 쿠폰 실험</a></li>
-<li><a href="posts/2019-vagabonder-3/index.html">2019 유라시아 일주 - 아름다운 이르쿠츠크를 떠나 노보시비르스크로</a></li>
-<li><a href="posts/2019-vagabonder-2/index.html">2019 유라시아 일주 - 바이칼 호수 여행기</a></li>
-<li><a href="posts/2019-vagabonder-1/index.html">2019 유라시아 일주 - 여행의 시작, 블라디보스토크에서</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-3/index.html">쿠키런 킹덤 서버 아키텍처 3</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-2/index.html">쿠키런 킹덤 서버 아키텍처 2</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-1/index.html">쿠키런 킹덤 서버 아키텍처 1</a></li>
-<li><a href="posts/computer-and-time/index.html">컴퓨터와 시간</a></li>
-</ul>
-</div>
-</div>
+
+<p>
+And your python utils are just python functions which do not need an
+extra <code>ctx</code> object and they come with decent editor supports!
+</p>
 </div>
 <div id="postamble" class="status">
+<p class="date">Date: 2025-02-08 Sat 00:00</p>
 <p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>

@@ -1,114 +1,229 @@
-<!DOCTYPE html>
-<html lang="ko">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Posts</title>
-	
-	<meta name="author" content="map[email:bongjun.jang [at] kaist.ac.kr name:Bongjun Jang]">
-	<link rel="stylesheet" href="/css/style.css">
-	<link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
-	<link rel="alternate" type="application/rss+xml" href="/posts/index.xml" title="Bongjun Jang">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-	
-	
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6DZH7MWQ71"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+<!-- 2026-08-23 Sun 00:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blog</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
-		gtag('config', 'G-6DZH7MWQ71');
-	</script>
-	
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
 </head>
 <body>
-	<header>
-  <center>
-    <a href="https://bongjunj.github.io/">
-      Bongjun Jang
-    </a>
-  </center>
-  
-</header>
-	
-<main>
-  
-  <div>
-    
-    <h1>Posts</h1>
-     
-  </div>
-    <article>
-  <time>2025 Aug 24</time> -
-  <a href="https://bongjunj.github.io/posts/why-dynamic-typing-doesnt-exist/">동적 타입은 존재하지 않는다</a>
-</article>
-  <article>
-  <time>2025 May 17</time> -
-  <a href="https://bongjunj.github.io/posts/understanding-superoptimization/">Understanding Superoptimization</a>
-</article>
-  <article>
-  <time>2025 May 16</time> -
-  <a href="https://bongjunj.github.io/posts/the-next-revolution/">The Next Revolution</a>
-</article>
-  <article>
-  <time>2024 Nov 17</time> -
-  <a href="https://bongjunj.github.io/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a>
-</article>
-  <article>
-  <time>2024 Feb 2</time> -
-  <a href="https://bongjunj.github.io/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a>
-</article>
-  <article>
-  <time>2023 Dec 12</time> -
-  <a href="https://bongjunj.github.io/posts/what-is-random/">What is Randomness?</a>
-</article>
-  <article>
-  <time>2023 Feb 1</time> -
-  <a href="https://bongjunj.github.io/posts/2023-02-01-every-new-framework-is-new-language/">모든 프레임워크는 새로운 언어다</a>
-</article>
-  <article>
-  <time>2021 Nov 29</time> -
-  <a href="https://bongjunj.github.io/posts/actor-model-in-practice/">액터 모델 실습</a>
-</article>
-  <article>
-  <time>2021 Nov 22</time> -
-  <a href="https://bongjunj.github.io/posts/what-runs-bitcoin-network/">비트코인을 지탱하는 원동력</a>
-</article>
-  <article>
-  <time>2021 Nov 17</time> -
-  <a href="https://bongjunj.github.io/posts/baby-sitting-coupon-experiment/">베이비 시팅 쿠폰 실험</a>
-</article>
- 
-</main>
-<aside>
-	<div>
-		<div>
-			<h3>LATEST POSTS</h3>
-		</div>
-		<div>
-			<ul>
-				
-				<li><a href="/posts/why-dynamic-typing-doesnt-exist/">동적 타입은 존재하지 않는다</a></li>
-				
-				<li><a href="/posts/understanding-superoptimization/">Understanding Superoptimization</a></li>
-				
-				<li><a href="/posts/the-next-revolution/">The Next Revolution</a></li>
-				
-				<li><a href="/posts/my-first-paper-submission/">태어나서 처음 논문 제출</a></li>
-				
-				<li><a href="/posts/machine-learning-and-fuzzing/">기계 학습과 지향성 실행탐험기</a></li>
-				
-			</ul>
-		</div>
-	</div>
-</aside>
- 
-	<footer>
-	<p>&copy; 2026 <a href="https://bongjunj.github.io/">Bongjun Jang</a></p>
-</footer>
-
+<div id="content" class="content">
+<h1 class="title">Blog</h1>
+<ul class="org-ul">
+<li><a href="why-dynamic-typing-doesnt-exist.html">동적 타입은 존재하지 않는다</a></li>
+<li><a href="korea-meritocracy/index.html">Korea Meritocracy</a></li>
+<li><a href="understanding-superoptimization/index.html">Understanding Superoptimization</a></li>
+<li><a href="the-next-revolution.html">The Next Revolution</a></li>
+<li><a href="pyinfra-lets-you-go-to-bed.html">pyinfra lets you go to bed</a></li>
+<li><a href="just-use-argparse.html">Just Use Argparse</a></li>
+<li><a href="my-first-paper-submission.html">태어나서 처음 논문 제출</a></li>
+<li><a href="machine-learning-and-fuzzing/index.html">기계 학습과 지향성 실행탐험기</a></li>
+<li><a href="what-is-random.html">What is Randomness?</a></li>
+<li><a href="breaking-extended-vigenere-cipher/index.html">Breaking Extended Vigenere Cipher</a></li>
+<li><a href="using-zig-with-c-1/index.html">Odroid 개발보드에서 Zig와 C를 같이 사용하기</a></li>
+<li><a href="2023-02-01-every-new-framework-is-new-language.html">모든 프레임워크는 새로운 언어다</a></li>
+<li><a href="actor-model-in-practice/index.html">액터 모델 실습</a></li>
+<li><a href="what-runs-bitcoin-network/index.html">비트코인을 지탱하는 원동력</a></li>
+<li><a href="baby-sitting-coupon-experiment/index.html">베이비 시팅 쿠폰 실험</a></li>
+<li><a href="2019-vagabonder-3/index.html">2019 유라시아 일주 - 아름다운 이르쿠츠크를 떠나 노보시비르스크로</a></li>
+<li><a href="2019-vagabonder-2/index.html">2019 유라시아 일주 - 바이칼 호수 여행기</a></li>
+<li><a href="2019-vagabonder-1/index.html">2019 유라시아 일주 - 여행의 시작, 블라디보스토크에서</a></li>
+<li><a href="cookie-run-kingdom-server-architecture-3/index.html">쿠키런 킹덤 서버 아키텍처 3</a></li>
+<li><a href="cookie-run-kingdom-server-architecture-2/index.html">쿠키런 킹덤 서버 아키텍처 2</a></li>
+<li><a href="cookie-run-kingdom-server-architecture-1/index.html">쿠키런 킹덤 서버 아키텍처 1</a></li>
+<li><a href="computer-and-time/index.html">컴퓨터와 시간</a></li>
+</ul>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2026-08-23 Sun 00:06</p>
+</div>
 </body>
 </html>

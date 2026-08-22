@@ -6,7 +6,7 @@
 <!-- 2026-08-23 Sun 00:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bongjun Jang</title>
+<title>쿠키런 킹덤 서버 아키텍처 2</title>
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -196,95 +196,211 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Bongjun Jang</h1>
-<div id="outline-container-org6a7538b" class="outline-2">
-<h2 id="org6a7538b">Contacts</h2>
-<div class="outline-text-2" id="text-org6a7538b">
-<ul class="org-ul">
-<li><a href="https://github.com/bongjunj">Github</a></li>
-<li>Email: bongjun.jang@kaist.ac.kr</li>
-</ul>
+<h1 class="title">쿠키런 킹덤 서버 아키텍처 2</h1>
+<p>
+이번 포스트에서 다룰 내용은 CRUD와 Event Sourcing이다. 이 주제는
+데이터를 다루는 방법에 대한 이야기다.
+</p>
+
+<p>
+가장 간단한 예로 은행 계좌를 관리하는 어플리케이션을 생각해보자. 은행
+계좌는 잔액를 관리해야하며 계좌 간의 송금 기능을 구현해야 한다. 이를
+CRUD와 Event Sourcing으로 각각 구현해보자.
+</p>
+<div id="outline-container-orged0ba6c" class="outline-2">
+<h2 id="orged0ba6c">CRUD</h2>
+<div class="outline-text-2" id="text-orged0ba6c">
+<p>
+CRUD는 Create, Read, Update and Delete의 약어로 데이터를 생성하고 읽고
+수정하고 삭제하는 기능을 말한다. F#으로 CRUD를 나타내보면 다음과 같은
+코드로 나타낼 수 있을 것이다.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-fsharp">// 1. Create
+let mutable account = BankAccount(500)
+// 2. Read
+printfn "Balance: %d USD" account.Balance
+// 3. Update
+account.Deposit(100)
+account.SendTo(otherAccount, 200)
+// 4. Delete
+account.Destroy()
+</pre>
+</div>
+
+<p>
+CRUD는 어플리케이션의 구조가 가장 직관적이라는 장점이 있다. 실제
+세계에서 은행 계좌를 개설하고, 입출금하고 송금하고, 계좌를 폐쇄하는
+것처럼 프로그램을 작성할 때도 그대로 기능을 구현하면 되기 때문에
+이해하기가 쉽다.
+</p>
+
+<p>
+하지만 분산 환경, 동시성 컴퓨팅 환경에서는 이야기가 많이 달라질 수 있다.
+한번에 하나의 연산만이 일어나는 것이 보장되는 환경에서는 CRUD
+어플리케이션은 가장 단순하고 직관적이며 성능도 매우 뛰어나다.
+</p>
+
+<p>
+하지만 한번에 다수의 연산이 동시에 일어나는 분산, 동시성 환경에서는
+데이터를 읽는 도중에 데이터가 수정 또는 삭제되거나 아직 생성되지 않은
+데이터를 읽거나 수정하거나 삭제하는 등 문제가 매우 복잡해진다. 그래서
+Mutex, Semaphor와 같은 Locking Mechanism이 도입을 하게 되는데 이러한
+매커니즘은 dead lock, live lock 등의 문제를 발생시키거나 시스템이 커짐에
+따라 scalable하지 않다는 문제가 있다.
+</p>
 </div>
 </div>
-<div id="outline-container-org97d8dd7" class="outline-2">
-<h2 id="org97d8dd7">Research Interest</h2>
-<div class="outline-text-2" id="text-org97d8dd7">
-<ul class="org-ul">
-<li>Artificial Intelligence with Programming Languages and Logics</li>
-</ul>
+<div id="outline-container-org08691f9" class="outline-2">
+<h2 id="org08691f9">Event Sourcing</h2>
+<div class="outline-text-2" id="text-org08691f9">
+<p>
+Event Sourcing은 CRUD와 다른 방식으로 데이터를 다룬다. CRUD 이외에
+데이터를 다루는 방법이 있다는 것부터 생소한 개념이다. CRUD의 직관적인
+모델과는 다른 면이 있다.
+</p>
+
+
+<div id="org4c20b47" class="figure">
+<p><img src="event_sourcing_transition.png" alt="event_sourcing_transition.png" width="50%" />
+</p>
+<p><span class="figure-number">Figure 1: </span>"event<sub>sourcing</sub><sub>transition.png</sub>"</p>
+</div>
+
+<p>
+Event Sourcing에는 상태(state)와 이벤트(event)라는 개념이 있다. 상태는
+이벤트를 만나 새로운 상태로 변화(transition)한다.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-fsharp">type Account = Account of int
+type Event =
+    | Deposited of int
+    | Withdrawn of int
+
+let initAccount = Account 0
+
+let transition state event =
+    match state, event with
+    | Account balance, Deposited n -&gt; Account (balance + n)
+    | Account balance, Withdrawn n -&gt; Account (balance - n)
+
+let replayFrom event state =
+    events
+    |&gt; List.fold transition state
+
+let replay events = replayFrom initAccount
+</pre>
+</div>
+
+<p>
+Event Sourcing의 핵심은 여기서 상태를 저장하는 것이 아니라 이벤트를
+저장하는 것이다. 그리고 현재 상태를 알기 위해서는 미리 설정된 최초의
+상태를 저장된 모든 이벤트들을 이용해서 현재 상태까지 변화시킨다. (이를
+replay라고 한다) 하지만 모든 read 요청에 replay를 하려면 성능상의 문제가
+있기 때문에 실제 운영 상황에서는 최근 state을 저장하는 snapshot을
+구현한다.
+</p>
+
+<p>
+그런데 이벤트는 항상 valid해야 한다. 잔고가 100 USD인데 120USD가
+출금되는 이벤트는 발생하면 안된다는 뜻이다. 여기서 Command라는 개념이
+나온다.
+</p>
+
+
+<div id="org424bd3c" class="figure">
+<p><img src="event_sourcing_command_execution.png" alt="event_sourcing_command_execution.png" width="50%" />
+</p>
+</div>
+
+<p>
+Command는 현재 상태를 변화시키기 위한 명령이다. 현재 상태에서 해당
+command를 실행할 수 있으면 event를 반환하고 그렇지 않다면 error를
+반환한다. 그래서 보통 event는 command에 ‘의해’ 발생된 것이기 때문에
+event는 과거분사 형태로 이름짓고 command는 명령형 형태로 이름을 짓는다.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-fsharp">type Command =
+    | Deposit of int
+    | Withdraw of int
+
+let deposit amount state =
+    match state with
+    | Account balance -&gt; Account (balance + amount) |&gt; Ok
+
+let withdraw amount state =
+    match state with
+    | Account balance -&gt;
+        if balance &lt; amount then "Not enough balance to withdraw" |&gt; Error
+        else Account (balance - amount) |&gt; Ok
+
+let execute command state =
+    match command with
+    | Deposit amount -&gt; deposit amount state
+    | Withdraw amount -&gt; withdraw amount state
+</pre>
 </div>
 </div>
-<div id="outline-container-org8384f45" class="outline-2">
-<h2 id="org8384f45">Publications</h2>
-<div class="outline-text-2" id="text-org8384f45">
-<ul class="org-ul">
-<li>Optimization-Directed Compiler Fuzzing for Continuous Translation
-Validation
-<ul class="org-ul">
-<li>Jaeseong Kwon, <b>Bongjun Jang</b>, Juneyoung Lee, and Kihong Heo</li>
-<li>[<a href="https://prosys.kaist.ac.kr/publications/pldi25.pdf">paper</a>] [<a href="https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf">slides</a>] [<a href="https://www.youtube.com/watch?v=ihi_cdjLJZo">presentation</a>]</li>
-<li><a href="https://pldi25.sigplan.org/">PLDI 2025: ACM SIGPLAN Conference on Programming Language Design and Implementation</a></li>
-</ul></li>
-</ul>
+</div>
+<div id="outline-container-org13f3e0c" class="outline-2">
+<h2 id="org13f3e0c">Why Event Sourcing?</h2>
+<div class="outline-text-2" id="text-org13f3e0c">
+<p>
+CRUD와 같은 기능을 구현하기 위해서 동원되는 개념만 해도 event sourcing이
+복잡한 기술이라는 것을 알 수 있다. 복잡한 만큼 강력하지만 그만큼
+신경쓰고 관리해야하는 부분도 많은만큼 개발팀에 많은 부담을 주기
+마련이다. 그럼에도 event sourcing을 선택하는 이유는 뭘까?
+</p>
+
+<p>
+첫번째, Domain Driven Modeling이 매우 용이하다. 위에 코드에서 보았듯이
+사용자의 use case가 곧 command가 된다. 그리고 거기서 발생하는 event들을
+정의함으로써 도메인 지식을 코드에 그대로 기술할 수 있다. 따라서 도메인
+지식 탐색에 매우 도움이 되며 소프트웨어와 운영 상황의 불일치를 해소할 수
+있다. (CRUD를 이용하면 데이터베이스 자체가 어플리케이션이 되어버리는
+일이 매우 빈번하다.)
+</p>
+
+<p>
+두번째, Concurrency 환경에서의 강력함. 아마도 쿠키런 개발팀이 Event
+Sourcing을 선택한 이유가 아닐까 싶다. Event sourcing은 태생적으로 동시성
+환경에서 매우 강력하다. 지금까지 살펴봤으니 알겠지만 event sourcing에는
+데이터를 생성하고 읽는 작업밖에 없다. 데이터가 수정되거나 삭제되는 일이
+없다. 따라서 CRUD에서 언급한 각종 문제가 발생하지 않는다.
+</p>
+
+<p>
+또한 event sourcing은 actor model과 상당히 잘 어울리는 장점이 있다.
+Actor는 message queue인 mailbox를 통해 command를 순차적으로 받을 수
+있다. 따라서 event도 순차적으로 발생하며 actor의 state가 한번에 한번씩
+transition된다. State 관리에 복잡한 매커니즘을 도입할 필요가 없어지는
+것이다. 실제로 이러한 장점 때문에 Akka에서는 event sourcing을 통해
+actor의 state를 관리하는 방법을 제공한다.
+</p>
 </div>
 </div>
-<div id="outline-container-orgec6a5f1" class="outline-2">
-<h2 id="orgec6a5f1">Education</h2>
-<div class="outline-text-2" id="text-orgec6a5f1">
-<ul class="org-ul">
-<li><b>M.S.</b> in Computer Science, KAIST, Korea (2025 Feb. - 2027 Feb.
-expected)</li>
-<li><b>B.S.</b> in Computer Science, KAIST, Korea (2018 - 2025. Feb)
-<ul class="org-ul">
-<li>Minor in Cybersecurity, NYU (2023 Fall)</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd8ce4ed" class="outline-2">
-<h2 id="orgd8ce4ed">Experience</h2>
-<div class="outline-text-2" id="text-orgd8ce4ed">
-<ul class="org-ul">
-<li>Bytecode Alliance Recognized Contributor (2026 Jan - present) [<a href="https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17">roaster</a>]</li>
-<li>Best TA Award, CS.30408: Introduction to Information Security, KAIST
-School of Computing (2025 Spring)</li>
-<li>Programming Systems Laboratory, KAIST (2024 Jan - present)</li>
-<li>Software Developer, Datamaker (2020)</li>
-<li>Served as a KATUSA tanker in Republic of Korea Army (2021 Feb - 2022 Aug)</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd57adea" class="outline-2">
-<h2 id="orgd57adea">Posts</h2>
-<div class="outline-text-2" id="text-orgd57adea">
-<ul class="org-ul">
-<li><a href="posts/why-dynamic-typing-doesnt-exist.html">동적 타입은 존재하지 않는다</a></li>
-<li><a href="posts/korea-meritocracy/index.html">Korea Meritocracy</a></li>
-<li><a href="posts/understanding-superoptimization/index.html">Understanding Superoptimization</a></li>
-<li><a href="posts/the-next-revolution.html">The Next Revolution</a></li>
-<li><a href="posts/pyinfra-lets-you-go-to-bed.html">pyinfra lets you go to bed</a></li>
-<li><a href="posts/just-use-argparse.html">Just Use Argparse</a></li>
-<li><a href="posts/my-first-paper-submission.html">태어나서 처음 논문 제출</a></li>
-<li><a href="posts/machine-learning-and-fuzzing/index.html">기계 학습과 지향성 실행탐험기</a></li>
-<li><a href="posts/what-is-random.html">What is Randomness?</a></li>
-<li><a href="posts/breaking-extended-vigenere-cipher/index.html">Breaking Extended Vigenere Cipher</a></li>
-<li><a href="posts/using-zig-with-c-1/index.html">Odroid 개발보드에서 Zig와 C를 같이 사용하기</a></li>
-<li><a href="posts/2023-02-01-every-new-framework-is-new-language.html">모든 프레임워크는 새로운 언어다</a></li>
-<li><a href="posts/actor-model-in-practice/index.html">액터 모델 실습</a></li>
-<li><a href="posts/what-runs-bitcoin-network/index.html">비트코인을 지탱하는 원동력</a></li>
-<li><a href="posts/baby-sitting-coupon-experiment/index.html">베이비 시팅 쿠폰 실험</a></li>
-<li><a href="posts/2019-vagabonder-3/index.html">2019 유라시아 일주 - 아름다운 이르쿠츠크를 떠나 노보시비르스크로</a></li>
-<li><a href="posts/2019-vagabonder-2/index.html">2019 유라시아 일주 - 바이칼 호수 여행기</a></li>
-<li><a href="posts/2019-vagabonder-1/index.html">2019 유라시아 일주 - 여행의 시작, 블라디보스토크에서</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-3/index.html">쿠키런 킹덤 서버 아키텍처 3</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-2/index.html">쿠키런 킹덤 서버 아키텍처 2</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-1/index.html">쿠키런 킹덤 서버 아키텍처 1</a></li>
-<li><a href="posts/computer-and-time/index.html">컴퓨터와 시간</a></li>
-</ul>
+<div id="outline-container-org28fdd2d" class="outline-2">
+<h2 id="org28fdd2d">But still&#x2026;</h2>
+<div class="outline-text-2" id="text-org28fdd2d">
+<p>
+하지만 Event Sourcing이 복잡한 기술인 것은 틀림없다. 직관적인 모델이
+아니라 이해하는 데 많은 노력이 필요하고, 운영 상에 어려움도 많아진다.
+</p>
+
+<p>
+쿠키런 킹덤 개발팀도 언급했듯이 DB에서 데이터를 직접 수정할 수 없기
+때문에 상태 관리를 위해서는 다른 툴을 개발하거나, 게임 서버를 통해
+이벤트를 발생시켜야하기 때문에 불편함이 있다고 한다. 달리는 자동차의
+바퀴를 갈아끼는 게 더 어려워진 것 같다. 웁스.
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
+<p class="date">Date: 2021-08-30 Mon 00:00</p>
 <p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>

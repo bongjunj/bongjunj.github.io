@@ -1,0 +1,23 @@
+:root {
+    --body-font: "Source Serif 4", sans-serif;
+    --code-font: "Iosevka", "Cascadia Code", "SFMono-Regular", monospace;
+}
+
+body {
+    font-family: var(--body-font);
+}
+
+code, pre {
+    font-family: var(--code-font);
+}
+
+header {
+    font-family: var(--body-font);
+}
+
+body .content .figure {
+    img {
+        max-width: 65%;
+        height: auto;
+    }
+}

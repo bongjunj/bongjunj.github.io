@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-08-23 Sun 00:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Breaking Extended Vigenere Cipher</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Breaking Extended Vigenere Cipher</h1>
+<p>
+For Appliced cryptography Course for this semester in NYU Tandon, I have
+been assigned a project to break a vigenere cipher but an extended
+version. Since I had already done a homework in KAIST, which was to
+write Kasiski examination program in OCaml, I thought it was going to be
+a piece of cake. However, the little tweak in the encryption scheme made
+it a lot more interesting. It was quite painful to come up with other
+techniques to break the cipher, but knowledges gained the hard way dies
+hard. And I want to share my thought process!
+</p>
+
+<p>
+The cryptanalysis program I had to write has access to information
+below:
+</p>
+
+<ol class="org-ol">
+<li>The ciphertext</li>
+<li>The (partial) knowledge of the encryption scheme</li>
+<li>A set of plaintexts</li>
+</ol>
+
+<p>
+The extension of Vigenere cipher is that a pseudo-random character can
+be inserted at a random location in the ciphertext, with a known
+probability. And other encryption process was exactly the same as the
+Vigenere cipher. For example, each character in the ciphertext has a 5%
+chance of being a random character.
+</p>
+<div id="outline-container-guessing-the-key-length" class="outline-2">
+<h2 id="guessing-the-key-length">Guessing the key length</h2>
+<div class="outline-text-2" id="text-guessing-the-key-length">
+<p>
+Guessing a key length in Vigenere cipher is a well-known attack. Kasiski
+examination and index of coincidence are two of the most famous
+techniques. Since I had an experience of writing a Kasiski examination
+program in OCaml, I thought it would be a good idea to try it first. But
+it turned out that Kasiski examination can't perform well to this case.
+The random character extension was enough to make the guess fail.
+</p>
+
+<p>
+Similarly, index of coincidence also failed to guess the key length,
+probably with a similar reason. So I had to come up with another idea.
+</p>
+</div>
+</div>
+<div id="outline-container-chosen-plaintext-attack" class="outline-2">
+<h2 id="chosen-plaintext-attack">Chosen plaintext attack</h2>
+<div class="outline-text-2" id="text-chosen-plaintext-attack">
+<p>
+Attacking a key length was inherently difficult because it only uses the
+ciphertext and the knowledge of the encryption scheme. However, if you
+look closely to the information you can access, you will find that you
+can actually use the plaintexts as well.
+</p>
+
+<p>
+In modern cipher, having access to plaintexts is not a big deal because
+the encryption scheme is designed to be secure even if the attacker has
+access to plaintexts, proven by the computational indistinguishability.
+</p>
+
+<p>
+But, in this scheme, the encryption is too weak to be attacked by the
+chosen plaintext attack. This first thing I tried was to <b>substract the
+ciphertext by a plaintext</b>. Since it is poly-alphabetic substitution
+cipher, the result of the substraction will be a key stream. If you get
+the key, you just decrypt the whole ciphertext, right?
+</p>
+
+<p>
+The example below shows the result of substraction of ciphertext by
+plaintexts. The repeating <code>2, 3, 4, 1</code> cleary shows that that is the
+key.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">C: [4, 4, 22, 14, 11, 8, 23, 21, 2, 11, 5, 20, 22, 8, 23, 1, 21, 19, 5, 5]
+P: [2, 1, 18, 13, 9, 5, 19, 20, 0, 8, 1, 19, 20, 5, 19, 0, 19, 16, 1, 4]
+D: [2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1]
+</pre>
+</div>
+
+<p>
+But this example is more interesting: there is no repeating pattern in
+the difference. But if you remove the 4-th character (0-based) in the
+ciphertext, you can see the repeating pattern. We now can tell that is
+the random character inserted!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">C: [6, 8, 18, 22, 11, 16, 6, 13, 2, 22, 12, 13, 19, 15, 2, 6, 12, 19, 17, 14]
+P: [4, 5, 14, 21, 14, 3, 9, 1, 20, 9, 15, 14, 0, 3, 8, 18, 15, 14, 1, 24]
+D: [2, 3, 4, 1, 24, 13, 24, 12, 9, 13, 24, 26, 19, 12, 21, 15, 24, 5, 16, 17]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-attacking-the-random-characters" class="outline-2">
+<h2 id="attacking-the-random-characters">Attacking the random characters</h2>
+<div class="outline-text-2" id="text-attacking-the-random-characters">
+<p>
+Thus, if we are able to tell whether a character is a random character
+or not, it is now so trivial to decrypt the ciphertext. Then how can we
+tell that?
+</p>
+
+<p>
+I used two methods for the question:
+</p>
+
+<ol class="org-ol">
+<li>Information Entropy, and</li>
+<li>Fourier Transform</li>
+</ol>
+
+<p>
+Information entropy is a measure of the randomness, or the uncertainty
+of a random variable. The higher the entropy is, the more random the
+variable is (it gets harder to tell outcome of the next event.)
+Therefore, if we remove the random characters, the entropy of the
+ciphertext will decrease.
+</p>
+
+<p>
+And Fourier Transform is a method to decompose a signal into its
+frequency components. Looking at the frequency components of the
+ciphertext, we can tell whether removing characters reveals a periodic
+pattern or not. (A key is used repeatedly in Vigenere cipher)
+</p>
+
+<p>
+Now we have ideas. And it's time to demonstrate them!
+</p>
+</div>
+</div>
+<div id="outline-container-test-cases" class="outline-2">
+<h2 id="test-cases">Test cases</h2>
+<div class="outline-text-2" id="text-test-cases">
+<p>
+To prove our idea is valid, I needed to test it with some test cases. To
+generate test cases, I wrote a Python program that generates ciphertexts
+from a set of plaintexts, with an input key. Surely, it insertes random
+characters with a given probability.
+</p>
+
+<p>
+For keys of length 4~24 (inclusive), I generated 5 ciphertexts for each
+key length,, since the number of plaintexts in the set is 5. That is,
+i-th ciphertext of key length k is encrypted from i-th plaintext of the
+set.
+</p>
+</div>
+</div>
+<div id="outline-container-is-entropy-a-good-method" class="outline-2">
+<h2 id="is-entropy-a-good-method">Is entropy a good method?</h2>
+<div class="outline-text-2" id="text-is-entropy-a-good-method">
+<p>
+{{}}
+</p>
+
+<p>
+The plot shows how many cases can be guessed correctly measuring
+entropy. For each difference (substration of ciphertext to plaintext), I
+calculated entropy of the difference of the first 30(N) characters. I
+only calculated ones of the first ones because the characters are likely
+to be random characters as it is placed at the rear part of the
+ciphertext.
+</p>
+
+<p>
+And for each ciphertext, I measured entropy to each plaintext, and
+picked the one with the lowest entropy, if it is significantly lower
+than the others. For the significance, I used mean and standard
+deviation. A difference whose entropy is lowerthan
+<code>mean - multiplier * std</code> is considered to be significantly lower.
+</p>
+
+<p>
+The multiplier is chosen to be 0.186, because it eliminates all false
+positive cases.
+</p>
+
+<p>
+Just using entropy, we decrypted 16 cases of 105, which was interesting.
+But it was not enough to decrypt all the cases! The failing cases are
+due to random characters at the beginning of a ciphertext, because it
+increases entropies of all the differences derived from the ciphertext.
+</p>
+
+<p>
+Then we needed to find a way to eliminate the random characters at the
+beginning of a ciphertext.
+</p>
+</div>
+</div>
+<div id="outline-container-again-entropy" class="outline-2">
+<h2 id="again-entropy">Again, entropy</h2>
+<div class="outline-text-2" id="text-again-entropy">
+<p>
+So, to recover the repeating pattern in the difference, I used again
+entropy! A simple idea that if a random character is removed entropy
+will decrease is used here.
+</p>
+
+<p>
+{{}}
+</p>
+
+<p>
+The left plot shows that mere entropy test does not tell anything about
+the entropy here. (The correct answer is 3, but the entropy of that one
+is the largest!) But the test fails because we set the multiplier not to
+accept this result.
+</p>
+
+<p>
+The right plot shows how entropy changes if i-th character is removed.
+We can observe a V-shaped local minimum around the correct answer, which
+removes 8-th character.
+</p>
+
+<p>
+Removing characters at the local minima, we might reveal the hidden
+repeating pattern. But we need more evidence the numbers are repeating
+or not.
+</p>
+</div>
+</div>
+<div id="outline-container-fourier-transform" class="outline-2">
+<h2 id="fourier-transform">Fourier Transform</h2>
+<div class="outline-text-2" id="text-fourier-transform">
+<p>
+{{}}
+</p>
+
+<p>
+This figure shows magnitudes of Fourier Transform computed on the
+difference which shows the repeating pattern. You see how many
+zero-magnitude frequencies are there in the plot? I don't know how
+Fourier Transform works, but it was a clear pattern when the difference
+has a repeating pattern.
+</p>
+</div>
+</div>
+<div id="outline-container-result-1" class="outline-2">
+<h2 id="result-1">Result 1</h2>
+<div class="outline-text-2" id="text-result-1">
+<p>
+So the pipeline now looks like this:
+</p>
+
+<ol class="org-ol">
+<li>Run entropy test to see if there is a significantly low entropy.</li>
+<li>If not, try removing a character with entropy change and run FFT
+test.</li>
+<li>If failed to find a repeating pattern, just pick the one with the
+lowest entropy.</li>
+</ol>
+
+<p>
+{{}}
+</p>
+
+<p>
+It now correctly decrypts 47.62 percent of all test cases just in 100
+miliseconds. Looks good! But, I wanted to go further.
+</p>
+</div>
+</div>
+<div id="outline-container-going-further" class="outline-2">
+<h2 id="going-further">Going further</h2>
+<div class="outline-text-2" id="text-going-further">
+<p>
+After looking at failing cases, I found that if there are more than two
+random characters inserted, the method has no way to decrypt the
+ciphertext. So I allowed the program to remove 2~4 characters, only if
+the entropy change is significant.
+</p>
+
+<p>
+When I allowed removing 4 characters, the program started to suffer from
+poor performance. Scrutinizing the algorithm used, I found that
+computing differences was a performance bottleneck. But I realized from
+the removed ciphertext and palintexts can be precomputed. Since removing
+a character shifts all the characters after, the difference can be
+computed by just removing the first character. The difference contains
+difference we looking for. Now all we have to do is just taking a slice
+of it.
+</p>
+
+<p>
+So the additional test layer is added to the pipeline:
+</p>
+
+<p>
+For the first 48 characters of the ciphertext (which is the minimum
+length for the repeating pattern to appear even for the longest key
+length, or 24), run entropy test to ciphertexts with 2~4 characters
+removed. If there is a significantly low entropy, run FFT test.
+</p>
+
+<p>
+Now the result is more satisfactory.
+</p>
+
+<p>
+{{}}
+</p>
+
+<p>
+It correctly decrypts 63.81% of all test cases with maximum 17s running
+time.
+</p>
+</div>
+</div>
+<div id="outline-container-conclusion" class="outline-2">
+<h2 id="conclusion">Conclusion</h2>
+<div class="outline-text-2" id="text-conclusion">
+<p>
+I have demonstrated how to break an extended Vigenere cipher with a
+chosen plaintext attack. The idea was to use entropy and Fourier
+Transform to find a repeating pattern in the difference of ciphertext
+and plaintext. The program I wrote correctly decrypts 63.81% of all test
+cases with maximum 17s running time on my laptop.
+</p>
+
+<p>
+I explored the notion of entropy and Fourier Transform, and skills to
+improve performance of a program by precomputation (nice refresh for
+performance optimization!)
+</p>
+
+<p>
+The full report can be found here:
+<a href="https://docs.google.com/document/d/e/2PACX-1vTomgI21nstUMmi3HSI8N7bbqmHNSCSRXoyfFq23_fWK5_f9VmcmNwj4pe22cFeR562FZ2lhKqt_S-B/pub">https://docs.google.com/document/d/e/2PACX-1vTomgI21nstUMmi3HSI8N7bbqmHNSCSRXoyfFq23_fWK5_f9VmcmNwj4pe22cFeR562FZ2lhKqt_S-B/pub</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2023-10-13 Fri 00:00</p>
+<p class="date">Created: 2026-08-23 Sun 00:06</p>
+</div>
+</body>
+</html>

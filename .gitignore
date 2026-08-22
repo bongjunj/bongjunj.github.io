@@ -7,6 +7,5 @@
 .hugo_build.lock
 resources/_gen
 *.lock
-public
 
 *~

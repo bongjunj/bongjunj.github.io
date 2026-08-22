@@ -6,7 +6,7 @@
 <!-- 2026-08-23 Sun 00:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bongjun Jang</title>
+<title>pyinfra lets you go to bed</title>
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -196,95 +196,134 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Bongjun Jang</h1>
-<div id="outline-container-org6a7538b" class="outline-2">
-<h2 id="org6a7538b">Contacts</h2>
-<div class="outline-text-2" id="text-org6a7538b">
+<h1 class="title">pyinfra lets you go to bed</h1>
+<p>
+This is a story how <code>pyinfra</code> let me go to bed.
+</p>
+
+<p>
+Working as a TA, I was tasked to set up 170 virtual machines for
+students' development environment (My professor runs a huge course.) As
+the dominance of x86 is fading away, students started to have more
+diverse pool of machines. They have (classic) x86, aarch64 with an
+amazing variety of OS (windows, macos, ubuntu, and arch?). So it is
+better to set a “standard” to avoid unnecessary headaches due to
+environment mismatch. (Worst scenario: “it works on my machine”) Also,
+it is convenient that we can just <code>ssh</code> to their machine and see how we
+can help them, just in case.
+</p>
+
+<p>
+Anyway, the requirements were:
+</p>
+
 <ul class="org-ul">
-<li><a href="https://github.com/bongjunj">Github</a></li>
-<li>Email: bongjun.jang@kaist.ac.kr</li>
+<li>Install system packages: <code>cmake</code>, <code>curl</code>, &#x2026;</li>
+<li>Create student's account in the system</li>
+<li>Install LLVM, OCaml dev environment and other interesting softwares,
+&#x2026;</li>
 </ul>
+
+<p>
+It seemed straightforward at the beginning. I thought just using the
+bash scripts which have been used for generations (by previous TAs)
+would get the job done. But, it quickly turned out to be dead false. I
+couldn't even get to the very first requirement! I investigated what was
+going on and figured out that <code>apt update &amp;&amp; apt install ...</code> <i>was NOT
+working</i> for some machines and <i>WAS working</i> for some machines (WHAT?)
+</p>
+<div id="outline-container-fighting-network-failures" class="outline-2">
+<h2 id="fighting-network-failures">Fighting network failures</h2>
+<div class="outline-text-2" id="text-fighting-network-failures">
+<p>
+It turned out that the problem was network failures. Some machines
+couldn't get connection to the apt repository due to rate-limiting. <b>The
+virtual machines was behind same NAT,</b> which would make the apt
+repository see them as a single machine with different ports. I was
+commiting <b>DDOS</b> attack to the repository with 170 machines!
+</p>
+
+<p>
+Not to bother the repository again, I really needed more than just bash
+scripts, which just unleash all the machines to race to the repository
+simultaneously. I wanted to set a limit for the parallelism, skip if
+installation was done already, and retry until the setup is completed
+for all the machines. Doing all these by adding new features to the bash
+scripts would take several days and nights. Luckily, I found <code>pyinfra</code>,
+which have all the features I wanted.
+</p>
+
+<p>
+Setting a parallelism limit and skipping were just a piece of cake. To
+get the job done, you define an operation just like below:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"># system-setup.py
+
+apt.packages(
+    name="Ensure essential system packages are installed",
+    packages=SYSTEM_PACKAGES, # ["make", "git", "cmake", "curl", ...]
+    update=True,
+    cache_time=60 * 60 * 24, # update every 24 hours
+    _parallel=4, # Try not to DDOS the apt repository
+)
+</pre>
+</div>
+
+<p>
+It runs <code>apt update</code> once a day and the command is run on only up to 4
+machines. And it runs <code>apt install &lt;SYSTEM_PACKAGES&gt;</code> or skips the
+command if the installations are already there. But still, some machines
+can fail. (They can fail for any reason. LISTEN to me. They will.)
+</p>
+
+<p>
+So need to have them retry until they finish their work. For that, you
+do:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">until pyinfra machines.py system-setup.py -y; do
+    echo "retry...";
+    sleep 30; # take a rest for a while (for what I don't know)
+end
+</pre>
 </div>
 </div>
-<div id="outline-container-org97d8dd7" class="outline-2">
-<h2 id="org97d8dd7">Research Interest</h2>
-<div class="outline-text-2" id="text-org97d8dd7">
-<ul class="org-ul">
-<li>Artificial Intelligence with Programming Languages and Logics</li>
-</ul>
 </div>
+<div id="outline-container-the-ugly-duckling" class="outline-2">
+<h2 id="the-ugly-duckling">The ugly duckling</h2>
+<div class="outline-text-2" id="text-the-ugly-duckling">
+<p>
+There was the ugly duckling machine. The machine was notoriously slow at
+building some packages. While other machines finished building them
+within just 10-ish minutes, the machine was stuck over an hour.
+Solution? Just simply set a timeout just like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">server.shell(
+    name="install ocaml packages",
+    commands=[
+        f'opam install -y utop dune llvm ...',
+    ],
+    _timeout=60 * 60, # an hour
+    _env={'OPAMYES': '1', 'OPAMSWITCH': OPAM_SWITCH},
+)
+</pre>
 </div>
-<div id="outline-container-org8384f45" class="outline-2">
-<h2 id="org8384f45">Publications</h2>
-<div class="outline-text-2" id="text-org8384f45">
-<ul class="org-ul">
-<li>Optimization-Directed Compiler Fuzzing for Continuous Translation
-Validation
-<ul class="org-ul">
-<li>Jaeseong Kwon, <b>Bongjun Jang</b>, Juneyoung Lee, and Kihong Heo</li>
-<li>[<a href="https://prosys.kaist.ac.kr/publications/pldi25.pdf">paper</a>] [<a href="https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf">slides</a>] [<a href="https://www.youtube.com/watch?v=ihi_cdjLJZo">presentation</a>]</li>
-<li><a href="https://pldi25.sigplan.org/">PLDI 2025: ACM SIGPLAN Conference on Programming Language Design and Implementation</a></li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgec6a5f1" class="outline-2">
-<h2 id="orgec6a5f1">Education</h2>
-<div class="outline-text-2" id="text-orgec6a5f1">
-<ul class="org-ul">
-<li><b>M.S.</b> in Computer Science, KAIST, Korea (2025 Feb. - 2027 Feb.
-expected)</li>
-<li><b>B.S.</b> in Computer Science, KAIST, Korea (2018 - 2025. Feb)
-<ul class="org-ul">
-<li>Minor in Cybersecurity, NYU (2023 Fall)</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd8ce4ed" class="outline-2">
-<h2 id="orgd8ce4ed">Experience</h2>
-<div class="outline-text-2" id="text-orgd8ce4ed">
-<ul class="org-ul">
-<li>Bytecode Alliance Recognized Contributor (2026 Jan - present) [<a href="https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17">roaster</a>]</li>
-<li>Best TA Award, CS.30408: Introduction to Information Security, KAIST
-School of Computing (2025 Spring)</li>
-<li>Programming Systems Laboratory, KAIST (2024 Jan - present)</li>
-<li>Software Developer, Datamaker (2020)</li>
-<li>Served as a KATUSA tanker in Republic of Korea Army (2021 Feb - 2022 Aug)</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgd57adea" class="outline-2">
-<h2 id="orgd57adea">Posts</h2>
-<div class="outline-text-2" id="text-orgd57adea">
-<ul class="org-ul">
-<li><a href="posts/why-dynamic-typing-doesnt-exist.html">동적 타입은 존재하지 않는다</a></li>
-<li><a href="posts/korea-meritocracy/index.html">Korea Meritocracy</a></li>
-<li><a href="posts/understanding-superoptimization/index.html">Understanding Superoptimization</a></li>
-<li><a href="posts/the-next-revolution.html">The Next Revolution</a></li>
-<li><a href="posts/pyinfra-lets-you-go-to-bed.html">pyinfra lets you go to bed</a></li>
-<li><a href="posts/just-use-argparse.html">Just Use Argparse</a></li>
-<li><a href="posts/my-first-paper-submission.html">태어나서 처음 논문 제출</a></li>
-<li><a href="posts/machine-learning-and-fuzzing/index.html">기계 학습과 지향성 실행탐험기</a></li>
-<li><a href="posts/what-is-random.html">What is Randomness?</a></li>
-<li><a href="posts/breaking-extended-vigenere-cipher/index.html">Breaking Extended Vigenere Cipher</a></li>
-<li><a href="posts/using-zig-with-c-1/index.html">Odroid 개발보드에서 Zig와 C를 같이 사용하기</a></li>
-<li><a href="posts/2023-02-01-every-new-framework-is-new-language.html">모든 프레임워크는 새로운 언어다</a></li>
-<li><a href="posts/actor-model-in-practice/index.html">액터 모델 실습</a></li>
-<li><a href="posts/what-runs-bitcoin-network/index.html">비트코인을 지탱하는 원동력</a></li>
-<li><a href="posts/baby-sitting-coupon-experiment/index.html">베이비 시팅 쿠폰 실험</a></li>
-<li><a href="posts/2019-vagabonder-3/index.html">2019 유라시아 일주 - 아름다운 이르쿠츠크를 떠나 노보시비르스크로</a></li>
-<li><a href="posts/2019-vagabonder-2/index.html">2019 유라시아 일주 - 바이칼 호수 여행기</a></li>
-<li><a href="posts/2019-vagabonder-1/index.html">2019 유라시아 일주 - 여행의 시작, 블라디보스토크에서</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-3/index.html">쿠키런 킹덤 서버 아키텍처 3</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-2/index.html">쿠키런 킹덤 서버 아키텍처 2</a></li>
-<li><a href="posts/cookie-run-kingdom-server-architecture-1/index.html">쿠키런 킹덤 서버 아키텍처 1</a></li>
-<li><a href="posts/computer-and-time/index.html">컴퓨터와 시간</a></li>
-</ul>
+
+<p>
+The timeout will let you know which machines are ugly ducklings. Sadly,
+you need to replace that machine. At the end of the day, it's just a
+virtual machine whose CPU cores are not doing their job&#x2026;
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
+<p class="date">Date: 2025-03-03 Mon 00:00</p>
 <p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-08-23 Sun 00:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>액터 모델 실습</title>
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">액터 모델 실습</h1>
+<p>
+요즘 나의 프로그래밍 공부는 Elixir를 공부하는 데 치중되어 있다. Elixir는
+강타입(Strongly typed), 동적타입(Dynamically typed), 함수형(Functional)
+프로그래밍 언어다. 컴파일(<code>elixirc</code>) 뿐 아니라 인터랙티브 쉘(<code>iex</code>)과
+스크립팅(<code>exs</code>)도 지원하기 때문에 함수형 언어인 것만 제외하면 파이썬이나
+루비와 같은 스크립트 언어처럼 사용할 수 있다. 실제로 문법도 루비와 매우
+흡사하기 때문에 파이썬이나 루비를 배웠던 사람이라면 큰 어려움없이 흡수할
+수 있다.
+</p>
+
+<p>
+함수형 언어에 한번 빠지니 다시 돌아가기가 너무 어렵다. Elixir 전에는
+F#을 주로 썼는데 F#은 아쉬운 점이 많았다. Pattern Matching, Active
+Pattern이나 Algebraic Data Type 등 언어의 기능이 매우 강력해서 원하는
+로직을 구현하는 것이 아주 즐거웠지만, 실제로 시스템을 구현하기 위해
+C#으로 구현된 닷넷 에코시스템에 의존해야 했기 때문이다. F#에서 C#으로
+작성된 라이브러리를 사용할 수 있기는 하지만 Interop이 부자연스럽고
+불편한 점이 많았다. 게다가 F#으로 작성된 라이브러리는 완성도가 낮은
+경우가 많았다. 프로젝트를 실제로 진행하기에는 껄끄러운 점이 많았던 게
+사실이다. 차라리 함수형 패러다임을 기꺼이 버리고 C#을 사용하는 게 나을
+지경이다.
+</p>
+
+<p>
+한편 Elixir는 erlang을 기반으로 작성되었고 동적 타입이라는 큰 차이점을
+제외하면 F#처럼 언어적 특성이 매우 뛰어나다. Phoenix, Ecto, Oban 등
+Elixir로 작성된 프레임워크가 완성도가 매우 높고 프로젝트에서 실제로
+사용하기에 무리가 없다. Python이나 Ruby를 사용한 경험이 있다면 사고의
+경계를 확장하기 위해 다음 언어로 Elixir를 배우는 것은 아주 좋은 선택이
+될 것 같다.
+</p>
+<div id="outline-container-actor-model-in-elixir" class="outline-2">
+<h2 id="actor-model-in-elixir">Actor Model in Elixir</h2>
+<div class="outline-text-2" id="text-actor-model-in-elixir">
+<p>
+Elixir는 언어적 단계에서 Actor Model을 지원한다. Akka와 같은
+프레임워크가 필요없다. Actor가 필요한 Stateful 시스템을 구현한다면
+Elixir만큼 편리한 언어가 없을 것이다.
+</p>
+
+<p>
+Elixir는 기본적으로 <code>Process</code> 모듈을 통해 프로세스를 관리한다. 여기서
+프로세스란 OS에서 제공되는 프로세스가 아니라 어플리케이션 레벨의 경량
+프로세스를 말한다. =Process=는 각자 상태(State), 메시지 큐(Message
+Queue), 메시지 전송(Message Sending) 기능을 가지고 있고 다른 프로세스와
+고립되어(기본적으로 에러를 전파하지 않는다) Elixir Actor Model의 가장
+기초적인 뼈대가 된다.
+</p>
+
+<p>
+다음을 통해 =Process=를 이해해보자.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir"># This spawns a process which
+# print "hello!" and dies immediately
+pid = spawn(fn -&gt; IO.puts "hello!" end)
+# It prints "hello!"
+
+# This returns `false`
+Process.alive?(pid)
+
+# The main process itself is also a process
+# `self()` returns the pid of the calling process
+mother_process = self()
+# `spawn` returns the pid of the spawned process
+child = spawn(fn -&gt; send(mother_process, {self(), "hi! mom"}) end)
+
+# A process can receive a message from other processes
+# with `receive` keyword
+receive do
+  {^child, msg} -&gt; IO.puts "A letter from the child: #{msg}"
+end
+</pre>
+</div>
+
+<p>
+하지만 <code>Process=에는 너무 기본적인 기능만 구현되어 있어서 사용하기 쉽지
+않다. 그렇기 때문에 =Process=가 서로 메시지를 주고 받을 수 있고,메시지
+큐를 처리하며, 서로 고립되어 있다는 특성만 알고 넘어가자. 대신, 실제로
+유용하게 사용할 수 있는 =Agent</code>, <code>GenServer</code>, <code>Task</code> 등을 살펴보자.
+여기서는 Actor Model을 이해하는 데 유용한 =Agent=와 =GenServer=를 소개할
+것이다.
+</p>
+</div>
+</div>
+<div id="outline-container-agent" class="outline-2">
+<h2 id="agent">Agent</h2>
+<div class="outline-text-2" id="text-agent">
+<p>
+<code>Elixir=의 =Agent=를 이용하면 Actor Model의 상태 관리를 쉽게 구현할 수
+있다. =Agent=는 =Process</code> 모듈을 이용해 상태 관리를 편리하게 만든
+모듈이다.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir">{:ok, pid} = Agent.start(fn -&gt; [] end)
+
+# The update function here returns :ok
+Agent.update(pid, fn state -&gt; [1 | state] end)
+
+# The get function here return [1]
+Agent.get(pid, fn state -&gt; state end)
+</pre>
+</div>
+
+<ol class="org-ol">
+<li><code>start=(또는 =start_link</code>): 프로세스를 주어진 초기상태와 함께
+시작시킨다.</li>
+<li><code>update</code>: 프로세스의 상태를 변경한다.</li>
+<li><code>get</code>: 프로세스의 상태를 얻는다.</li>
+
+<li>상태를 초기화하고 변경하기 위해 모두 함수가 인자로 전달되었다.</li>
+<li>=start=를 사용해 시작된 프로세스는 Crash가 발생할 경우 부모 프로세스에
+Crash가 전파되지 않는다 그러나 =start<sub>link</sub>=를 사용하면 부모 프로세스에
+crash가 전파된다.</li>
+</ol>
+
+<p>
+<code>Agent=를 이용해 간단한 스택을 관리하는 프로세스를 구현해보자. =get</code>,
+<code>update</code>, =get<sub>and</sub><sub>update</sub>=로 상태 관리를 쉽게 구현할 수 있다.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir">defmodule Stack do
+  def start_link(opts \\ []) do
+    Agent.start_link(fn -&gt; [] end, opts)
+  end
+
+  def push(pid, item) do
+    Agent.update(pid, fn stack -&gt; [item | stack] end)
+  end
+
+  def pop(pid) do
+    Agent.get_and_update(pid, &amp;do_pop/1)
+  end
+
+  defp do_pop([]), do: {nil, []}
+  defp do_pop([hd | tl]), do: {hd, tl}
+end
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-genserver" class="outline-2">
+<h2 id="genserver">GenServer</h2>
+<div class="outline-text-2" id="text-genserver">
+<p>
+<code>Agent=를 이용해 상태 관리를 위한 Actor Model를 구현했다. 하지만 =Agent</code>
+모듈에는 Actor Model의 메시지 큐(Message Queue, 혹은 메일 박스) 개념이
+잘 드러나 있지 않다. 이에 반해 =GenServer=는 Actor Model의 메시지 큐,
+행동방식(Behavior)까지 쉽게 구현할 수 있게 되어있다.
+</p>
+
+<p>
+{{}}
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir">defmodule Stack do
+  use GenServer
+
+  # Client API
+  # This helps a client interact easily with
+  # this GenServer
+
+  def start_link(opts \\ []) do
+    GenServer.start_link(__MODULE__, [], opts)
+  end
+
+  def pop(server) do
+    GenServer.call(server, :pop)
+  end
+
+  def push(server, item) do
+    GenServer.cast(server, {:push, item})
+  end
+
+  # GenServer callbacks
+
+  @impl true
+  def init(state) do
+    {:ok, state}
+  end
+
+  @impl true
+  def handle_call(:pop, _from, []]) do
+    {:reply, nil, []}
+  end
+
+  @impl true
+  def handle_call(:pop, _from, [hd | tl]) do
+    {:reply, hd, tl}
+  end
+
+  @impl true
+  def handle_cast({:push, item}, stack) do
+    {:noreply, [item | stack]}
+  end
+end
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>init</code> : 초기 상태를 정의한다.</li>
+<li><code>handle_call</code> : 클라이언트의 동기 호출(Synchronous Call)을 담당한다.
+<ul class="org-ul">
+<li>Message, Caller, State를 함수 인자로 받는다.</li>
+<li>Caller는 값이 반환될 때까지 대기한다(Waiting).</li>
+<li>={:reply, Response, New State}=을 반환한다.</li>
+</ul></li>
+<li><code>handle_cast</code> : 클라이언트의 비동기 호출(Asynchronous Call)을
+담당한다.
+<ul class="org-ul">
+<li>Message, State를 함수 인자로 받는다.</li>
+<li>Caller는 값이 반환되는 것을 대기하지 않는다.</li>
+<li>={:noreply, New State}=을 반환한다.</li>
+</ul></li>
+</ul>
+
+<p>
+이런 방식으로 <code>GenServer=의 콜백함수들을 정의함으로써 메시지에 따른
+Actor Model의 행동방식을 정의할 수 있다. 구체적으로 여기서 메시지는
+=:pop</code>, <code>{:push, item}=이고 그에 따른 행동방식이 =handle_*</code> 함수 안에
+정의되어 있다. 물론 먼저 들어온 순서에 따라서 메시지가 처리된다.
+</p>
+
+<p>
+=GenServer=의 강점은 이처럼 Actor Model의 구현 방식이 제시되어 있어 그
+틀을 따라가기만 하면 쉽게 구현할 수 있다는 점도 있지만, Server(메시지를
+받아 처리하는 측)와 Client(메시지를 보내는 측)의 코드를 분리해 구현할 수
+있다는 점도 크다. 예를 들어 =Process=나 =Agent=를 사용하면 다음과 같은
+코드를 작성하기 쉽다.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elixir">def update_state(pid) do
+  # Code here runs on the client side
+  Agent.update(pid, fn state -&gt;
+    # Code here runs on the server side
+  end)
+end
+</pre>
+</div>
+
+<p>
+기능이 작동하는 데는 문제는 없으나 Client와 Server에서 작동하는 코드가
+하나의 함수에 작성되기 떄문에, 구분이 불명확해져 Client와 Server의
+행동을 해석하기 어렵게 만든다. Server에 의도치않게 동기식으로 무거운
+연산을 올리는 등의 실수를 유발하기 쉽다.
+</p>
+
+<p>
+=GenServer=에서의 콜백 함수는 철저히 Server에서 작동하는 코드다. Client
+측이 사용하는 함수는 위의 예제처럼 따로 작성하면 된다. Server와 Client의
+경계가 구분된 함수로 명확하게 들어나면서 시스템의 요구사항에 맞는 설계를
+하기 쉬워진다.
+</p>
+</div>
+<div id="outline-container-마치면서" class="outline-3">
+<h3 id="마치면서">마치면서</h3>
+<div class="outline-text-3" id="text-마치면서">
+<p>
+Actor Model의 특성을 Elixir의 <code>Process</code>, <code>Agent</code>, =GenServer=를 통해
+이해해봤다. Actor라는 작은 단위를 이해했으니 전체 시스템을 이해하기 위해
+Actor들이 서로 협력하는 법을 살펴봐야할 차례다. Akka에서와 같이
+Elixir에서도 Supervisor와 Supervision Tree 개념이 있다. 다음에는 이
+부분을 살펴볼 예정이다.
+</p>
+</div>
+</div>
+<div id="outline-container-참고-자료" class="outline-3">
+<h3 id="참고-자료">참고 자료</h3>
+<div class="outline-text-3" id="text-참고-자료">
+<ol class="org-ol">
+<li>Elixir Agent:
+<a href="https://elixir-lang.org/getting-started/mix-otp/agent.html">https://elixir-lang.org/getting-started/mix-otp/agent.html</a></li>
+<li>Elixir GenServer:
+<a href="https://elixir-lang.org/getting-started/mix-otp/genserver.html">https://elixir-lang.org/getting-started/mix-otp/genserver.html</a></li>
+<li>Elixir GenServer: <a href="https://hexdocs.pm/elixir/GenServer.html#content">https://hexdocs.pm/elixir/GenServer.html#content</a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2021-11-29 Mon 00:00</p>
+<p class="date">Created: 2026-08-23 Sun 00:06</p>
+</div>
+</body>
+</html>

@@ -12,7 +12,7 @@
       '(("posts"
          :base-directory "./org/posts"
          :base-extension "org"
-         :publishing-directory "./public/posts"
+         :publishing-directory "./docs/posts"
          :recursive t
          :publishing-function org-html-publish-to-html
 
@@ -32,7 +32,7 @@
          :recursive t
          :base-directory "./org"
          :base-extension "org"
-         :publishing-directory "./public"
+         :publishing-directory "./docs"
          :publishing-function org-html-publish-to-html
          :section-numbers nil
          :exclude "posts/"
@@ -45,7 +45,7 @@
         ("static"
          :base-directory "./org"
          :base-extension "css\\|js\\|png\\|jpg\\|jpeg\\|gif\\|svg\\|webp"
-         :publishing-directory "./public"
+         :publishing-directory "./docs"
          :recursive t
          :publishing-function org-publish-attachment)
 
