@@ -1,0 +1,5 @@
+** Good Introductions
+:PROPERTIES:
+:CUSTOM_ID: good-introductions
+:END:
+- Symbolic Execution: https://dl.acm.org/doi/pdf/10.1145/2408776.2408795

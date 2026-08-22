@@ -1,5 +1,15 @@
-.PHONY: build
+.PHONY: all org-build build
 
-build:
-	hugo -d docs
+all: org-build
 
+org-build:
+	emacs -Q -script ./publish.el
+
+clean:
+	rm -rf public
+	mkdir -p public
+
+serve:
+	npx browser-sync start --server "public" --files "public/**/*"
+# build:
+# 	hugo -d docs

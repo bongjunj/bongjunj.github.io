@@ -1,0 +1,6 @@
+** I want to ...
+:PROPERTIES:
+:CUSTOM_ID: i-want-to
+:END:
+- change the default shell for integrated terminal in vscode:
+  https://stackoverflow.com/questions/44435697/change-the-default-terminal-in-visual-studio-code

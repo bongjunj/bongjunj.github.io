@@ -1,0 +1,33 @@
+#+title: Bongjun Jang
+
+* Contacts
+- [[https://github.com/bongjunj][Github]]
+- Email: bongjun.jang@kaist.ac.kr
+
+* Research Interest
+- Artificial Intelligence with Programming Languages and Logics
+
+* Publications
+- Optimization-Directed Compiler Fuzzing for Continuous Translation
+  Validation
+  - Jaeseong Kwon, *Bongjun Jang*, Juneyoung Lee, and Kihong Heo
+  - [[[https://prosys.kaist.ac.kr/publications/pldi25.pdf][paper]]] [[[https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf][slides]]] [[[https://www.youtube.com/watch?v=ihi_cdjLJZo][presentation]]]
+  - [[https://pldi25.sigplan.org/][PLDI 2025: ACM SIGPLAN Conference on Programming Language Design and Implementation]]
+
+* Education
+- *M.S.* in Computer Science, KAIST, Korea (2025 Feb. - 2027 Feb.
+  expected)
+- *B.S.* in Computer Science, KAIST, Korea (2018 - 2025. Feb)
+  - Minor in Cybersecurity, NYU (2023 Fall)
+
+* Experience
+- Bytecode Alliance Recognized Contributor (2026 Jan - present) [[[https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17][roaster]]]
+- Best TA Award, CS.30408: Introduction to Information Security, KAIST
+  School of Computing (2025 Spring)
+- Programming Systems Laboratory, KAIST (2024 Jan - present)
+- Software Developer, Datamaker (2020)
+- Served as a KATUSA tanker in Republic of Korea Army (2021 Feb - 2022 Aug)
+
+* Posts
+
+#+include: "posts/index.org" :lines "3-"

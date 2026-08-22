@@ -1,0 +1,6 @@
+** I want to ...
+:PROPERTIES:
+:CUSTOM_ID: i-want-to
+:END:
+- build the site: Just run =hugo=
+- see how the site looks: =hugo serve= and go to =localhost:1313=
