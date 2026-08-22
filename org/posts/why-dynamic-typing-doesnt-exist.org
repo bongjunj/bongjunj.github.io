@@ -9,10 +9,8 @@ The English version appears below the Korean one.
 대규모 프로그램 개발에 사용되면서, 미처 포착하지 못하는 프로그램
 오류들을 사전에 방지하기 위한 기술이 필요해지고 있기 때문이다. 타입
 검사기는 그 중에서도 실행 중 타입 오류를 예방하는 일을 한다. 대표적인
-파이썬 타입 검사기인
-[[https://github.com/microsoft/pyright/blob/main/README.md][PyRight]]의
-설명을 읽어보면 파이썬을 위한 *정적* 타입 검사기 (static type
-checker)라고 소개하고 있다.
+파이썬 타입 검사기인 [[https://github.com/microsoft/pyright/blob/main/README.md][PyRight]]의 설명을 읽어보면 파이썬을 위한
+*정적* 타입 검사기 (static type checker)라고 소개하고 있다.
 
 하지만 *동적* 타입 언어의 *정적* 타입 검사기는 도대체 무슨 뜻일까?
 곰곰히 생각해보면 동적 타입 언어는 그 뜻부터 모호하다. 타입 검사(Type
@@ -26,11 +24,11 @@ Checking)란 프로그램 실행 전에 프로그램에 타입 오류가 없음�
 하지만 동적 타입 검사란 단지 더 이상 계산할 방법이 없어 계산이 멈추는
 untyped λ-calculus의 연산 실패에 불과하다. 동적 타입 언어는 값에
 “타입”이라는 또 다른 값을 덧붙인다. 예를 들어, =1 + "hello"= 프로그램을
-계산할 때, =1=을 =(1, int)=로, ="hello"=는 =("hello", str)=로 계산한다.
-여기서 =+=을 계산하려면 =int=와 =str= 사이에 정의된 덧셈 연산이 있어야
+계산할 때, =1= 을 =(1, int)= 로, ="hello"= 는 =("hello", str)= 로 계산한다.
+여기서 =+= 을 계산하려면 =int= 와 =str= 사이에 정의된 덧셈 연산이 있어야
 하는데, 그런 연산은 없다. (Python이라고 생각해보자.) 따라서 더 이상
 연산이 정의되지 않은 상태에 도달해 프로그램이 멈춘다. (Python은
-=TypeError=를 내뱉는다.) 이 과정을 다시 살펴보면, untyped λ-calculus의
+=TypeError= 를 내뱉는다.) 이 과정을 다시 살펴보면, untyped λ-calculus의
 연산 실패와 정확히 같으며 전혀 새로울 것이 없다.
 
 그러므로 파이썬 정적 타입 검사기가 하고자 하는 것은 untyped λ-calculus
@@ -73,17 +71,15 @@ Update: 2025-08-25
 Analysis). 다음같은 예시를 생각해보자.
 
 #+begin_src python
-
-1: x: None = None
-2: if ...:
-3:     x = 5
-4: else:
-5:     x = "hello"
-
-6: print(x)
+  x: None = None // Line 1
+  if ...:        // Line 2
+    x = 5          // Line 3
+  else:          // Line 4
+    x = "hello"    // Line 5
+  print(x)       // Lint 6
 #+end_src
 
-PyRight 타입 검사기는 =x=에 =5=나 ="hello"=를 대입할 수 없다고 보고한다.
+PyRight 타입 검사기는 =x= 에 =5= 나 ="hello"= 를 대입할 수 없다고 보고한다.
 그런데 사실 이는 실행가능한 파이썬 프로그램이다.
 
 흐름을 무시하는 요약해석은 이런 허위보고를 일으킨다. Line 1에서 정의된
@@ -100,8 +96,7 @@ for techniques to prevent program errors that might otherwise go
 unnoticed. Type checkers, in particular, aim to prevent type errors
 during runtime.
 
-A prime example is
-[[https://github.com/microsoft/pyright/blob/main/README.md][PyRight]], a
+A prime example is [[https://github.com/microsoft/pyright/blob/main/README.md][PyRight]], a
 representative Python type checker whose description introduces it as a
 static type checker for Python.
 
@@ -119,8 +114,8 @@ However, dynamic type checking is merely the failure of an operation in
 the untyped λ-calculus, where the calculation stops because there's no
 way to proceed. Dynamically typed languages attach another value, a
 “type,” to their values. For example, when evaluating the program
-=1 + "hello"=, 1 is evaluated as =(1, int)= and “hello” as
-=("hello", str)=. To evaluate the =+= operator, there must be a defined
+=1 + "hello"= , 1 is evaluated as =(1, int)= and “hello” as
+=("hello", str)= . To evaluate the =+= operator, there must be a defined
 addition operation between int and str, but no such operation exists
 (think about Python). The program therefore reaches a state where no
 further operations are defined and stops (Python raises a =TypeError=).

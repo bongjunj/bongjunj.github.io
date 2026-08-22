@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 00:06 -->
+<!-- 2026-08-23 Sun 00:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Odroid 개발보드에서 Zig와 C를 같이 사용하기</title>
@@ -195,6 +195,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
 </head>
 <body>
+<div id="preamble" class="status">
+<header class="site-header"><a href="/">Bongjun Jang's Blog</a><div>2023-06-29 Thu 00:00</div></header>
+</div>
 <div id="content" class="content">
 <h1 class="title">Odroid 개발보드에서 Zig와 C를 같이 사용하기</h1>
 <p>
@@ -266,7 +269,7 @@ BlueZ 라이브러리를 Zig 코드와 통합해보자. 일단
 구조는 다음과 같다. (<code>tree -L 2</code>)
 </p>
 
-<pre class="example" id="org74aeb1f">
+<pre class="example" id="orgdbbf325">
 .
 |-- build.zig
 |-- libs
@@ -416,31 +419,31 @@ LIBC(GLIBC)를 사용한다는 뜻이다. 다음과 같이 Makefile을 작성해
 </p>
 
 <div class="org-src-container">
-<pre class="src src-makefile">TARGET_BINARY = ./zig-out/bin/opera
-TARGET_MACHINE = /* REDACTED */
+<pre class="src src-makefile"><span style="font-weight: bold; font-style: italic;">TARGET_BINARY</span> = ./zig-out/bin/opera
+<span style="font-weight: bold; font-style: italic;">TARGET_MACHINE</span> = /* REDACTED */
 
-.PHONY: build send run connect
+<span style="font-weight: bold;">.PHONY</span>: build send run connect
 
-all: build send run
+<span style="font-weight: bold;">all</span>: build send run
 
-build:
+<span style="font-weight: bold;">build</span>:
     zig build -Dtarget=aarch64-linux-gnu
-    @echo "Build complete."
+    @echo <span style="font-style: italic;">"Build complete."</span>
 
-send:
-    scp $(TARGET_BINARY) $(TARGET_MACHINE):~
-    @echo "Binary sent to target machine."
+<span style="font-weight: bold;">send</span>:
+    <span style="font-weight: bold;">scp $(</span><span style="font-weight: bold; font-style: italic;">TARGET_BINARY</span><span style="font-weight: bold;">) $(</span><span style="font-weight: bold; font-style: italic;">TARGET_MACHINE</span><span style="font-weight: bold;">)</span>:~
+    @echo <span style="font-style: italic;">"Binary sent to target machine."</span>
 
-run:
-    ssh $(TARGET_MACHINE) ~/opera
-    @echo "Target binary executed on target machine."
+<span style="font-weight: bold;">run</span>:
+    ssh $(<span style="font-weight: bold; font-style: italic;">TARGET_MACHINE</span>) ~/opera
+    @echo <span style="font-style: italic;">"Target binary executed on target machine."</span>
 
-connect:
-    ssh $(TARGET_MACHINE)
+<span style="font-weight: bold;">connect</span>:
+    ssh $(<span style="font-weight: bold; font-style: italic;">TARGET_MACHINE</span>)
 </pre>
 </div>
 
-<pre class="example" id="org41aa3f1">
+<pre class="example" id="org22575eb">
 &gt;&gt; make
 dev_id = 0, sock = 3
 </pre>
@@ -460,10 +463,6 @@ dev_id = 0, sock = 3
 </ul>
 </div>
 </div>
-</div>
-<div id="postamble" class="status">
-<p class="date">Date: 2023-06-29 Thu 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>
 </html>

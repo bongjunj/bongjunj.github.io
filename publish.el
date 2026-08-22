@@ -1,3 +1,9 @@
+(require 'package)
+(package-initialize)
+
+(unless (require 'htmlize nil t)
+  (error "htmlize >= 1.34 is required to export source blocks"))
+
 (require 'ox-publish)
 
 (setq org-html-validation-link nil)
@@ -15,6 +21,8 @@
          :publishing-directory "./docs/posts"
          :recursive t
          :publishing-function org-html-publish-to-html
+         :html-preamble-format (("en" "<header class=\"site-header\"><a href=\"/\">Bongjun Jang's Blog</a><div>%d</div></header>"))
+         :html-postamble nil
 
          :with-toc nil
          :with-author nil
@@ -34,6 +42,7 @@
          :base-extension "org"
          :publishing-directory "./docs"
          :publishing-function org-html-publish-to-html
+         :html-postamble nil
          :section-numbers nil
          :exclude "posts/"
 

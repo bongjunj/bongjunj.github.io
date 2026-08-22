@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 00:06 -->
+<!-- 2026-08-23 Sun 00:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>동적 타입은 존재하지 않는다</title>
@@ -227,6 +227,9 @@
 </script>
 </head>
 <body>
+<div id="preamble" class="status">
+<header class="site-header"><a href="/">Bongjun Jang's Blog</a><div>2025-08-24 Sun 00:00</div></header>
+</div>
 <div id="content" class="content">
 <h1 class="title">동적 타입은 존재하지 않는다</h1>
 <p>
@@ -240,10 +243,8 @@ The English version appears below the Korean one.
 대규모 프로그램 개발에 사용되면서, 미처 포착하지 못하는 프로그램
 오류들을 사전에 방지하기 위한 기술이 필요해지고 있기 때문이다. 타입
 검사기는 그 중에서도 실행 중 타입 오류를 예방하는 일을 한다. 대표적인
-파이썬 타입 검사기인
-<a href="https://github.com/microsoft/pyright/blob/main/README.md">PyRight</a>의
-설명을 읽어보면 파이썬을 위한 <b>정적</b> 타입 검사기 (static type
-checker)라고 소개하고 있다.
+파이썬 타입 검사기인 <a href="https://github.com/microsoft/pyright/blob/main/README.md">PyRight</a>의 설명을 읽어보면 파이썬을 위한
+<b>정적</b> 타입 검사기 (static type checker)라고 소개하고 있다.
 </p>
 
 <p>
@@ -261,11 +262,11 @@ Checking)란 프로그램 실행 전에 프로그램에 타입 오류가 없음�
 하지만 동적 타입 검사란 단지 더 이상 계산할 방법이 없어 계산이 멈추는
 untyped λ-calculus의 연산 실패에 불과하다. 동적 타입 언어는 값에
 “타입”이라는 또 다른 값을 덧붙인다. 예를 들어, <code>1 + "hello"</code> 프로그램을
-계산할 때, <code>1=을 =(1, int)=로, ="hello"=는 =("hello", str)=로 계산한다.
-여기서 =+=을 계산하려면 =int=와 =str</code> 사이에 정의된 덧셈 연산이 있어야
+계산할 때, <code>1</code> 을 <code>(1, int)</code> 로, <code>"hello"</code> 는 <code>("hello", str)</code> 로 계산한다.
+여기서 <code>+</code> 을 계산하려면 <code>int</code> 와 <code>str</code> 사이에 정의된 덧셈 연산이 있어야
 하는데, 그런 연산은 없다. (Python이라고 생각해보자.) 따라서 더 이상
 연산이 정의되지 않은 상태에 도달해 프로그램이 멈춘다. (Python은
-=TypeError=를 내뱉는다.) 이 과정을 다시 살펴보면, untyped λ-calculus의
+<code>TypeError</code> 를 내뱉는다.) 이 과정을 다시 살펴보면, untyped λ-calculus의
 연산 실패와 정확히 같으며 전혀 새로울 것이 없다.
 </p>
 
@@ -323,19 +324,17 @@ Analysis). 다음같은 예시를 생각해보자.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-1: x: None = None
-2: if ...:
-3:     x = 5
-4: else:
-5:     x = "hello"
-
-6: print(x)
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">x</span>: <span style="font-weight: bold; text-decoration: underline;">None</span> = <span style="font-weight: bold; text-decoration: underline;">None</span> // Line 1
+<span style="font-weight: bold;">if</span> ...:        // Line 2
+  <span style="font-weight: bold; font-style: italic;">x</span> = 5          // Line 3
+<span style="font-weight: bold;">else</span>:          // Line 4
+  <span style="font-weight: bold; font-style: italic;">x</span> = <span style="font-style: italic;">"hello"</span>    // Line 5
+<span style="font-weight: bold;">print</span>(x)       // Lint 6
 </pre>
 </div>
 
 <p>
-PyRight 타입 검사기는 =x=에 =5=나 ="hello"=를 대입할 수 없다고 보고한다.
+PyRight 타입 검사기는 <code>x</code> 에 <code>5</code> 나 <code>"hello"</code> 를 대입할 수 없다고 보고한다.
 그런데 사실 이는 실행가능한 파이썬 프로그램이다.
 </p>
 
@@ -358,8 +357,7 @@ during runtime.
 </p>
 
 <p>
-A prime example is
-<a href="https://github.com/microsoft/pyright/blob/main/README.md">PyRight</a>, a
+A prime example is <a href="https://github.com/microsoft/pyright/blob/main/README.md">PyRight</a>, a
 representative Python type checker whose description introduces it as a
 static type checker for Python.
 </p>
@@ -381,8 +379,8 @@ However, dynamic type checking is merely the failure of an operation in
 the untyped λ-calculus, where the calculation stops because there's no
 way to proceed. Dynamically typed languages attach another value, a
 “type,” to their values. For example, when evaluating the program
-<code>1 + "hello"</code>, 1 is evaluated as <code>(1, int)</code> and “hello” as
-<code>("hello", str)</code>. To evaluate the <code>+</code> operator, there must be a defined
+<code>1 + "hello"</code> , 1 is evaluated as <code>(1, int)</code> and “hello” as
+<code>("hello", str)</code> . To evaluate the <code>+</code> operator, there must be a defined
 addition operation between int and str, but no such operation exists
 (think about Python). The program therefore reaches a state where no
 further operations are defined and stops (Python raises a <code>TypeError</code>).
@@ -437,10 +435,6 @@ the same term “type checking,” discussions can't help but become
 unclear. Instead of calling it “dynamic typing,” let's find a more
 accurate term. How about “tagging”?
 </p>
-</div>
-<div id="postamble" class="status">
-<p class="date">Date: 2025-08-24 Sun 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>
 </html>

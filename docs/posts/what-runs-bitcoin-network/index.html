@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 00:06 -->
+<!-- 2026-08-23 Sun 00:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>비트코인을 지탱하는 원동력</title>
@@ -195,6 +195,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
 </head>
 <body>
+<div id="preamble" class="status">
+<header class="site-header"><a href="/">Bongjun Jang's Blog</a><div>2021-11-22 Mon 00:00</div></header>
+</div>
 <div id="content" class="content">
 <h1 class="title">비트코인을 지탱하는 원동력</h1>
 <p>
@@ -296,18 +299,18 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp">CAmount GetBlockSubsidy(int nHeight, const Consensus::Params&amp; consensusParams)
+<pre class="src src-cpp"><span style="font-weight: bold; text-decoration: underline;">CAmount</span> <span style="font-weight: bold;">GetBlockSubsidy</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">nHeight</span>, <span style="font-weight: bold;">const</span> <span style="font-weight: bold; text-decoration: underline;">Consensus</span>::<span style="font-weight: bold; text-decoration: underline;">Params</span>&amp; <span style="font-weight: bold; font-style: italic;">consensusParams</span>)
 {
-    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
-    // Force block reward to zero when right shift is undefined.
-    if (halvings &gt;= 64)
-        return 0;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">halvings</span> = nHeight / consensusParams.nSubsidyHalvingInterval;
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Force block reward to zero when right shift is undefined.
+</span>    <span style="font-weight: bold;">if</span> (halvings &gt;= 64)
+        <span style="font-weight: bold;">return</span> 0;
 
 
-    CAmount nSubsidy = 50 * COIN;
-    // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
-    nSubsidy &gt;&gt;= halvings;
-    return nSubsidy;
+    <span style="font-weight: bold; text-decoration: underline;">CAmount</span> <span style="font-weight: bold; font-style: italic;">nSubsidy</span> = 50 * COIN;
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
+</span>    nSubsidy &gt;&gt;= halvings;
+    <span style="font-weight: bold;">return</span> nSubsidy;
 }
 </pre>
 </div>
@@ -400,10 +403,6 @@
 </div>
 </div>
 </div>
-</div>
-<div id="postamble" class="status">
-<p class="date">Date: 2021-11-22 Mon 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>
 </html>

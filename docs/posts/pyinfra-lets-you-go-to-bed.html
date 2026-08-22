@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 00:06 -->
+<!-- 2026-08-23 Sun 00:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>pyinfra lets you go to bed</title>
@@ -195,6 +195,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
 </head>
 <body>
+<div id="preamble" class="status">
+<header class="site-header"><a href="/">Bongjun Jang's Blog</a><div>2025-03-03 Mon 00:00</div></header>
+</div>
 <div id="content" class="content">
 <h1 class="title">pyinfra lets you go to bed</h1>
 <p>
@@ -259,15 +262,15 @@ get the job done, you define an operation just like below:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"># system-setup.py
-
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">system-setup.py
+</span>
 apt.packages(
-    name="Ensure essential system packages are installed",
-    packages=SYSTEM_PACKAGES, # ["make", "git", "cmake", "curl", ...]
-    update=True,
-    cache_time=60 * 60 * 24, # update every 24 hours
-    _parallel=4, # Try not to DDOS the apt repository
-)
+    name=<span style="font-style: italic;">"Ensure essential system packages are installed"</span>,
+    packages=SYSTEM_PACKAGES, <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">["make", "git", "cmake", "curl", ...]
+</span>    update=<span style="font-weight: bold; text-decoration: underline;">True</span>,
+    cache_time=60 * 60 * 24, <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">update every 24 hours
+</span>    _parallel=4, <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Try not to DDOS the apt repository
+</span>)
 </pre>
 </div>
 
@@ -284,10 +287,10 @@ do:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">until pyinfra machines.py system-setup.py -y; do
-    echo "retry...";
-    sleep 30; # take a rest for a while (for what I don't know)
-end
+<pre class="src src-sh"><span style="font-weight: bold;">until</span> pyinfra machines.py system-setup.py -y; <span style="font-weight: bold;">do</span>
+    <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"retry..."</span>;
+    sleep 30; <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">take a rest for a while (for what I don't know)
+</span>end
 </pre>
 </div>
 </div>
@@ -304,12 +307,12 @@ Solution? Just simply set a timeout just like this:
 
 <div class="org-src-container">
 <pre class="src src-python">server.shell(
-    name="install ocaml packages",
+    name=<span style="font-style: italic;">"install ocaml packages"</span>,
     commands=[
-        f'opam install -y utop dune llvm ...',
+        f<span style="font-style: italic;">'opam install -y utop dune llvm ...'</span>,
     ],
-    _timeout=60 * 60, # an hour
-    _env={'OPAMYES': '1', 'OPAMSWITCH': OPAM_SWITCH},
+    _timeout=60 * 60, <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">an hour
+</span>    _env={<span style="font-style: italic;">'OPAMYES'</span>: <span style="font-style: italic;">'1'</span>, <span style="font-style: italic;">'OPAMSWITCH'</span>: OPAM_SWITCH},
 )
 </pre>
 </div>
@@ -321,10 +324,6 @@ virtual machine whose CPU cores are not doing their job&#x2026;
 </p>
 </div>
 </div>
-</div>
-<div id="postamble" class="status">
-<p class="date">Date: 2025-03-03 Mon 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>
 </html>

@@ -21,3 +21,15 @@ body .content .figure {
         height: auto;
     }
 }
+
+.site-header {
+    text-align: center;
+    margin: 0 auto 3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.site-header a {
+    color: inherit;
+    text-decoration: none;
+}

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 00:06 -->
+<!-- 2026-08-23 Sun 00:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>쿠키런 킹덤 서버 아키텍처 3</title>
@@ -195,6 +195,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
 </head>
 <body>
+<div id="preamble" class="status">
+<header class="site-header"><a href="/">Bongjun Jang's Blog</a><div>2021-08-31 Tue 00:00</div></header>
+</div>
 <div id="content" class="content">
 <h1 class="title">쿠키런 킹덤 서버 아키텍처 3</h1>
 <p>
@@ -207,7 +210,7 @@
 <h2 id="org44e1d44">Pure Function(순수 함수)</h2>
 <div class="outline-text-2" id="text-org44e1d44">
 
-<div id="org4920500" class="figure">
+<div id="orgc26f450" class="figure">
 <p><img src="pure_function.png" alt="&quot;pure function diagram&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 1: </span>"pure function diagram"</p>
@@ -227,7 +230,7 @@
 </p>
 
 
-<div id="org6ed7e3e" class="figure">
+<div id="org51cda9b" class="figure">
 <p><img src="impure_function_unseen_input.png" alt="&quot;impure function&quot;" width="75%" />
 </p>
 <p><span class="figure-number">Figure 2: </span>"impure function"</p>
@@ -248,7 +251,7 @@ let currentTime () = System.DateTime.UtcNow
 </p>
 
 
-<div id="orgfd55bcf" class="figure">
+<div id="orga777b12" class="figure">
 <p><img src="inpure_function_db_conn.png" alt="&quot;impure function of connecting db&quot;" width="&quot;75%&quot;" />
 </p>
 <p><span class="figure-number">Figure 3: </span>impure function of connecting db</p>
@@ -297,7 +300,7 @@ let currentTime () = System.DateTime.UtcNow
 </p>
 
 
-<div id="orgad76d57" class="figure">
+<div id="org64088c7" class="figure">
 <p><img src="pure_program.png" alt="&quot;pure program does not have a side effect&quot;" width="&quot;75%&quot;" />
 </p>
 <p><span class="figure-number">Figure 4: </span>"pure program does not have a side effect"</p>
@@ -511,10 +514,6 @@ enumerator의 값을 골라내는 기능을 구현할 수도 있다. =map=과 =f
 </div>
 </div>
 </div>
-</div>
-<div id="postamble" class="status">
-<p class="date">Date: 2021-08-31 Tue 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>
 </html>

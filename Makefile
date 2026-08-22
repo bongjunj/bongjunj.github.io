@@ -10,6 +10,5 @@ clean:
 	mkdir -p public
 
 serve:
-	npx browser-sync start --server "public" --files "public/**/*"
-# build:
-# 	hugo -d docs
+	npx browser-sync start --server "docs" --files "docs/**/*"
+

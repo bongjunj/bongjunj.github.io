@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 00:06 -->
+<!-- 2026-08-23 Sun 00:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Just Use Argparse</title>
@@ -195,6 +195,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
 </head>
 <body>
+<div id="preamble" class="status">
+<header class="site-header"><a href="/">Bongjun Jang's Blog</a><div>2025-02-08 Sat 00:00</div></header>
+</div>
 <div id="content" class="content">
 <h1 class="title">Just Use Argparse</h1>
 <p>
@@ -218,22 +221,22 @@ below:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">parser = argparse.ArgumentParser()
-parser.add_argument('name', type=str, help="what's your name?")
-args = parser.parse_args()
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">parser</span> = argparse.ArgumentParser()
+parser.add_argument(<span style="font-style: italic;">'name'</span>, <span style="font-weight: bold;">type</span>=<span style="font-weight: bold;">str</span>, <span style="font-weight: bold;">help</span>=<span style="font-style: italic;">"what's your name?"</span>)
+<span style="font-weight: bold; font-style: italic;">args</span> = parser.parse_args()
 
-def hello(name):
-    print(name)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">hello</span>(name):
+    <span style="font-weight: bold;">print</span>(name)
 
 hello(args.name)
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python">@click.command()
-@click.argument('name')
-def hello(name):
-    click.echo(f"Hello {name}!")
+<pre class="src src-python"><span style="font-weight: bold; text-decoration: underline;">@click.command</span>()
+<span style="font-weight: bold; text-decoration: underline;">@click.argument</span>(<span style="font-style: italic;">'name'</span>)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">hello</span>(name):
+    click.echo(f<span style="font-style: italic;">"Hello </span>{name}<span style="font-style: italic;">!"</span>)
 </pre>
 </div>
 
@@ -289,7 +292,7 @@ This way, you can manage CLI applications just like using
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">tool/command.py [args] # instead of ./tool.py command [args]
+<pre class="src src-sh">tool/command.py [args] <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">instead of ./tool.py command [args]</span>
 </pre>
 </div>
 
@@ -297,10 +300,6 @@ This way, you can manage CLI applications just like using
 And your python utils are just python functions which do not need an
 extra <code>ctx</code> object and they come with decent editor supports!
 </p>
-</div>
-<div id="postamble" class="status">
-<p class="date">Date: 2025-02-08 Sat 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 00:06</p>
 </div>
 </body>
 </html>
