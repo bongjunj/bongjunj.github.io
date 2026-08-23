@@ -1,6 +1,6 @@
 #+title: Bongjun Jang
 
-I'm a master student at KAIST School of Computing.
+I'm a Master's student at KAIST School of Computing.
 I'm interested in applying formal methods (PL, Logics) and AI to
 real-world systems. So far, I have focused on compiler research:
 automatically finding [[https://www.youtube.com/watch?v=ihi_cdjLJZo][optimization bugs]] and generating [[https://github.com/bytecodealliance/governance/pull/142][optimizations rules]]
