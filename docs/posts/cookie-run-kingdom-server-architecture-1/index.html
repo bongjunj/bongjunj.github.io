@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 00:58 -->
+<!-- 2026-08-23 Sun 14:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>쿠키런 킹덤 서버 아키텍처 1</title>
@@ -192,11 +192,11 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/style.css" type="text/css"/>
 </head>
 <body>
 <div id="preamble" class="status">
-<header class="site-header"><a href="/">Bongjun Jang's Blog</a><div>2021-08-29 Sun 00:00</div></header>
+<header class="site-header"><a href="/">Bongjun Jang's Blog</a></header>
 </div>
 <div id="content" class="content">
 <h1 class="title">쿠키런 킹덤 서버 아키텍처 1</h1>
@@ -267,11 +267,11 @@ Stateful 서버와 Stateless 서버의 장단점을 살펴보자.
 <h3 id="orgdd2948d">Stateless Server</h3>
 <div class="outline-text-3" id="text-orgdd2948d">
 </div>
-<div id="outline-container-org5ff8b87" class="outline-4">
-<h4 id="org5ff8b87">Pros</h4>
-<div class="outline-text-4" id="text-org5ff8b87">
+<div id="outline-container-orgaa24fa4" class="outline-4">
+<h4 id="orgaa24fa4">Pros</h4>
+<div class="outline-text-4" id="text-orgaa24fa4">
 
-<div id="orgef99bb1" class="figure">
+<div id="orgf2cf369" class="figure">
 <p><img src="pure_function.png" alt="&quot;pure function&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 1: </span>"pure function"</p>
@@ -286,7 +286,7 @@ Output이 항상 동일해지기 때문에 서버를 아무런 제약없이 복�
 </p>
 
 
-<div id="org52da9d7" class="figure">
+<div id="org202e6be" class="figure">
 <p><img src="pure_function_scaling_out.png" alt="&quot;pure function scaling out&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 2: </span>"pure function scaling out"</p>
@@ -302,11 +302,11 @@ State Management: 서버마다 다른 상태를 가지고 있지 않기 때문�
 </p>
 </div>
 </div>
-<div id="outline-container-orga78c4ce" class="outline-4">
-<h4 id="orga78c4ce">Cons</h4>
-<div class="outline-text-4" id="text-orga78c4ce">
+<div id="outline-container-org70d5119" class="outline-4">
+<h4 id="org70d5119">Cons</h4>
+<div class="outline-text-4" id="text-org70d5119">
 
-<div id="orgb89cba5" class="figure">
+<div id="org341e51c" class="figure">
 <p><img src="stateless_db_bottleneck.png" alt="&quot;stateless database connection bottleneck&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 3: </span>"stateless database connection bottleneck"</p>
@@ -327,11 +327,11 @@ DB에 연결하면 병목현상이 발생할 뿐더러 시스템 전체의 성�
 <h3 id="org5d09921">Stateful Server</h3>
 <div class="outline-text-3" id="text-org5d09921">
 </div>
-<div id="outline-container-org21548d0" class="outline-4">
-<h4 id="org21548d0">Pros</h4>
-<div class="outline-text-4" id="text-org21548d0">
+<div id="outline-container-org828a0c2" class="outline-4">
+<h4 id="org828a0c2">Pros</h4>
+<div class="outline-text-4" id="text-org828a0c2">
 
-<div id="orgd8358d9" class="figure">
+<div id="orgfaa50be" class="figure">
 <p><img src="memory_and_db_perf_diff.png" alt="&quot;a memory is faster than a db&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 4: </span>"a memory is faster than a db"</p>
@@ -346,11 +346,11 @@ Stateful Server는 서버 프로세스에 직접 데이터를 저장한다. 따�
 </p>
 </div>
 </div>
-<div id="outline-container-org809303e" class="outline-4">
-<h4 id="org809303e">Cons</h4>
-<div class="outline-text-4" id="text-org809303e">
+<div id="outline-container-org9c22060" class="outline-4">
+<h4 id="org9c22060">Cons</h4>
+<div class="outline-text-4" id="text-org9c22060">
 
-<div id="orgfa1fa16" class="figure">
+<div id="orgf61b2e9" class="figure">
 <p><img src="stateful_servers.png" alt="&quot;stateful servers has different states&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 5: </span>"stateful servers has different states"</p>
@@ -372,7 +372,7 @@ Stateful Server는 서버 프로세스에 직접 데이터를 저장한다. 따�
 </p>
 
 
-<div id="org3c7a5a5" class="figure">
+<div id="org1ad8092" class="figure">
 <p><img src="stateful_server_fail_to_balance.png" alt="&quot;stateful server failure&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 6: </span>"stateful server failure"</p>
@@ -420,7 +420,7 @@ Actor Model은 무엇이고 Akka 프레임워크란 무엇인지 살펴보자. A
 <h3 id="org62511b9">What is an Actor?</h3>
 <div class="outline-text-3" id="text-org62511b9">
 
-<div id="org50c5b03" class="figure">
+<div id="org88efbc6" class="figure">
 <p><img src="actor_model.png" alt="&quot;overview of actor model&quot;" width="&quot;75%&quot;" />
 </p>
 <p><span class="figure-number">Figure 7: </span>"overview of actor model"</p>
@@ -449,7 +449,7 @@ Mailbox에 Message를 보내는 것 뿐이다. OOP에서 객체가 오직 메서
 </p>
 
 
-<div id="org97f16aa" class="figure">
+<div id="orgbb18335" class="figure">
 <p><img src="ErrorKernel.png" alt="&quot;actor system&quot;" width="75%" />
 </p>
 <p><span class="figure-number">Figure 8: </span>출처: <a href="https://getakka.net/articles/concepts/actor-systems.html">https://getakka.net/articles/concepts/actor-systems.html</a></p>
@@ -535,6 +535,10 @@ Sourcing에 대해 정리해보자. F#의 MailboxProcessor를 통해 Actor 모�
 </p>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2021-08-29 Sun 00:00</p>
+<p class="date">Created: 2026-08-23 Sun 14:08</p>
 </div>
 </body>
 </html>

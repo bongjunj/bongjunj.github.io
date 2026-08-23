@@ -33,3 +33,7 @@ body .content .figure {
     color: inherit;
     text-decoration: none;
 }
+
+#postamble {
+    text-align: center;
+}

@@ -11,6 +11,7 @@
       (concat
        "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">"
        "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>"
+       "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
        "<link href=\"https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap\" rel=\"stylesheet\">"
        "<link rel=\"stylesheet\" href=\"/css/style.css\" type=\"text/css\"/>"))
 
@@ -21,8 +22,7 @@
          :publishing-directory "./docs/posts"
          :recursive t
          :publishing-function org-html-publish-to-html
-         :html-preamble-format (("en" "<header class=\"site-header\"><a href=\"/\">Bongjun Jang's Blog</a><div>%d</div></header>"))
-         :html-postamble nil
+         :html-preamble-format (("en" "<header class=\"site-header\"><a href=\"/\">Bongjun Jang</a></header>"))
 
          :with-toc nil
          :with-author nil
@@ -42,7 +42,7 @@
          :base-extension "org"
          :publishing-directory "./docs"
          :publishing-function org-html-publish-to-html
-         :html-postamble nil
+         ;; :html-postamble nil
          :section-numbers nil
          :exclude "posts/"
 
