@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 22:10 -->
+<!-- 2026-08-29 Sat 21:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>쿠키런 킹덤 서버 아키텍처 2</title>
@@ -56,6 +56,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -70,7 +71,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -210,9 +211,9 @@
 계좌는 잔액를 관리해야하며 계좌 간의 송금 기능을 구현해야 한다. 이를
 CRUD와 Event Sourcing으로 각각 구현해보자.
 </p>
-<div id="outline-container-orged0ba6c" class="outline-2">
-<h2 id="orged0ba6c">CRUD</h2>
-<div class="outline-text-2" id="text-orged0ba6c">
+<div id="outline-container-org56c59ff" class="outline-2">
+<h2 id="org56c59ff">CRUD</h2>
+<div class="outline-text-2" id="text-org56c59ff">
 <p>
 CRUD는 Create, Read, Update and Delete의 약어로 데이터를 생성하고 읽고
 수정하고 삭제하는 기능을 말한다. F#으로 CRUD를 나타내보면 다음과 같은
@@ -220,7 +221,7 @@ CRUD는 Create, Read, Update and Delete의 약어로 데이터를 생성하고 �
 </p>
 
 <div class="org-src-container">
-<pre class="src src-fsharp">// 1. Create
+<pre class="src src-fsharp"><code>// 1. Create
 let mutable account = BankAccount(500)
 // 2. Read
 printfn "Balance: %d USD" account.Balance
@@ -229,7 +230,7 @@ account.Deposit(100)
 account.SendTo(otherAccount, 200)
 // 4. Delete
 account.Destroy()
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -255,9 +256,9 @@ Mutex, Semaphor와 같은 Locking Mechanism이 도입을 하게 되는데 이러
 </p>
 </div>
 </div>
-<div id="outline-container-org08691f9" class="outline-2">
-<h2 id="org08691f9">Event Sourcing</h2>
-<div class="outline-text-2" id="text-org08691f9">
+<div id="outline-container-orgd859e6a" class="outline-2">
+<h2 id="orgd859e6a">Event Sourcing</h2>
+<div class="outline-text-2" id="text-orgd859e6a">
 <p>
 Event Sourcing은 CRUD와 다른 방식으로 데이터를 다룬다. CRUD 이외에
 데이터를 다루는 방법이 있다는 것부터 생소한 개념이다. CRUD의 직관적인
@@ -265,7 +266,7 @@ Event Sourcing은 CRUD와 다른 방식으로 데이터를 다룬다. CRUD 이�
 </p>
 
 
-<div id="org82aaee8" class="figure">
+<div id="orgd142bc5" class="figure">
 <p><img src="event_sourcing_transition.png" alt="event_sourcing_transition.png" width="50%" />
 </p>
 <p><span class="figure-number">Figure 1: </span>"event<sub>sourcing</sub><sub>transition.png</sub>"</p>
@@ -277,7 +278,7 @@ Event Sourcing에는 상태(state)와 이벤트(event)라는 개념이 있다. �
 </p>
 
 <div class="org-src-container">
-<pre class="src src-fsharp">type Account = Account of int
+<pre class="src src-fsharp"><code>type Account = Account of int
 type Event =
     | Deposited of int
     | Withdrawn of int
@@ -294,7 +295,7 @@ let replayFrom event state =
     |&gt; List.fold transition state
 
 let replay events = replayFrom initAccount
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -313,7 +314,7 @@ replay라고 한다) 하지만 모든 read 요청에 replay를 하려면 성능�
 </p>
 
 
-<div id="orgf606d98" class="figure">
+<div id="org6a0b5f2" class="figure">
 <p><img src="event_sourcing_command_execution.png" alt="event_sourcing_command_execution.png" width="50%" />
 </p>
 </div>
@@ -326,7 +327,7 @@ event는 과거분사 형태로 이름짓고 command는 명령형 형태로 이�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-fsharp">type Command =
+<pre class="src src-fsharp"><code>type Command =
     | Deposit of int
     | Withdraw of int
 
@@ -344,13 +345,13 @@ let execute command state =
     match command with
     | Deposit amount -&gt; deposit amount state
     | Withdraw amount -&gt; withdraw amount state
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org13f3e0c" class="outline-2">
-<h2 id="org13f3e0c">Why Event Sourcing?</h2>
-<div class="outline-text-2" id="text-org13f3e0c">
+<div id="outline-container-org2efd805" class="outline-2">
+<h2 id="org2efd805">Why Event Sourcing?</h2>
+<div class="outline-text-2" id="text-org2efd805">
 <p>
 CRUD와 같은 기능을 구현하기 위해서 동원되는 개념만 해도 event sourcing이
 복잡한 기술이라는 것을 알 수 있다. 복잡한 만큼 강력하지만 그만큼
@@ -385,9 +386,9 @@ actor의 state를 관리하는 방법을 제공한다.
 </p>
 </div>
 </div>
-<div id="outline-container-org28fdd2d" class="outline-2">
-<h2 id="org28fdd2d">But still&#x2026;</h2>
-<div class="outline-text-2" id="text-org28fdd2d">
+<div id="outline-container-org2cb9e65" class="outline-2">
+<h2 id="org2cb9e65">But still&hellip;</h2>
+<div class="outline-text-2" id="text-org2cb9e65">
 <p>
 하지만 Event Sourcing이 복잡한 기술인 것은 틀림없다. 직관적인 모델이
 아니라 이해하는 데 많은 노력이 필요하고, 운영 상에 어려움도 많아진다.
@@ -404,7 +405,7 @@ actor의 state를 관리하는 방법을 제공한다.
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-08-30 Mon 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 22:10</p>
+<p class="date">Created: 2026-08-29 Sat 21:15</p>
 </div>
 </body>
 </html>

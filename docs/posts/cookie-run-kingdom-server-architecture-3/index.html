@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 22:10 -->
+<!-- 2026-08-29 Sat 21:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>쿠키런 킹덤 서버 아키텍처 3</title>
@@ -56,6 +56,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -70,7 +71,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -206,11 +207,11 @@
 개념과 동일하다. 또한 Scala의 DSL 기능이 보이는데, 어떻게 작동하는지
 다시 살펴보자. 기억이 가물가물하다.
 </p>
-<div id="outline-container-org44e1d44" class="outline-2">
-<h2 id="org44e1d44">Pure Function(순수 함수)</h2>
-<div class="outline-text-2" id="text-org44e1d44">
+<div id="outline-container-orge386160" class="outline-2">
+<h2 id="orge386160">Pure Function(순수 함수)</h2>
+<div class="outline-text-2" id="text-orge386160">
 
-<div id="org01e71fd" class="figure">
+<div id="org44167ac" class="figure">
 <p><img src="pure_function.png" alt="&quot;pure function diagram&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 1: </span>"pure function diagram"</p>
@@ -230,20 +231,20 @@
 </p>
 
 
-<div id="orgf6e4abe" class="figure">
+<div id="org4152e81" class="figure">
 <p><img src="impure_function_unseen_input.png" alt="&quot;impure function&quot;" width="75%" />
 </p>
 <p><span class="figure-number">Figure 2: </span>"impure function"</p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-fsharp">// a와 b가 같다면 add a b의 값은 항상 같다 (순수 함수)
+<pre class="src src-fsharp"><code>// a와 b가 같다면 add a b의 값은 항상 같다 (순수 함수)
 let add a b = a + b
 
 // 5초마다 이 함수를 실행해본다고 생각해보자, 함수의 결과값이 항상 달라진다.
 // 흘러가고 있는 시간이 이 함수의 '보이지 않는 입력'이다.
 let currentTime () = System.DateTime.UtcNow
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -251,19 +252,19 @@ let currentTime () = System.DateTime.UtcNow
 </p>
 
 
-<div id="org583f3a2" class="figure">
+<div id="orgf5f7e52" class="figure">
 <p><img src="inpure_function_db_conn.png" alt="&quot;impure function of connecting db&quot;" width="&quot;75%&quot;" />
 </p>
 <p><span class="figure-number">Figure 3: </span>impure function of connecting db</p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-fsharp">let insertUser user =
+<pre class="src src-fsharp"><code>let insertUser user =
     // DbConnection can fail
     use db = DbConnection ()
     // Insert also can fail
     db.insertInto("users").values([user]).execute()
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -300,7 +301,7 @@ let currentTime () = System.DateTime.UtcNow
 </p>
 
 
-<div id="org08fff7c" class="figure">
+<div id="org1581208" class="figure">
 <p><img src="pure_program.png" alt="&quot;pure program does not have a side effect&quot;" width="&quot;75%&quot;" />
 </p>
 <p><span class="figure-number">Figure 4: </span>"pure program does not have a side effect"</p>
@@ -314,9 +315,9 @@ let currentTime () = System.DateTime.UtcNow
 </p>
 </div>
 </div>
-<div id="outline-container-org1573bc8" class="outline-2">
-<h2 id="org1573bc8">DSL(Domain Specific Language)</h2>
-<div class="outline-text-2" id="text-org1573bc8">
+<div id="outline-container-orgde0c5e3" class="outline-2">
+<h2 id="orgde0c5e3">DSL(Domain Specific Language)</h2>
+<div class="outline-text-2" id="text-orgde0c5e3">
 <p>
 영상에서 쿠키런 개발팀이 Scala의 for comprehension를 이용해 콘텐츠
 로직을 작성하는 장면이 나온다. 영상의 설명에 따르면 이 기능을 통해
@@ -350,9 +351,9 @@ DSL을 사용하면 다음과 같은 장점이 있다.
 수 있다.</li>
 </ol>
 </div>
-<div id="outline-container-org0d5d07f" class="outline-3">
-<h3 id="org0d5d07f">Scala's for comprehension</h3>
-<div class="outline-text-3" id="text-org0d5d07f">
+<div id="outline-container-orgca95224" class="outline-3">
+<h3 id="orgca95224">Scala's for comprehension</h3>
+<div class="outline-text-3" id="text-orgca95224">
 <p>
 쿠키런 개발팀이 사용중인 Scala의 for comprehension을 어떻게 DSL 구현에
 사용할 수 있는지 살펴보자. Scala의 for comprehension을 사용하기 위해서는
@@ -385,10 +386,10 @@ numbers)</li>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-fsharp">val map: ('T -&gt; 'U) -&gt; Wrap&lt;'T&gt; -&gt; Wrap&lt;'U&gt;
+<pre class="src src-fsharp"><code>val map: ('T -&gt; 'U) -&gt; Wrap&lt;'T&gt; -&gt; Wrap&lt;'U&gt;
 val flatMap: (Wrap&lt;'T&gt; -&gt; Wrap&lt;'U&gt;) -&gt; Wrap&lt;Wrap&lt;'T&gt;&gt; -&gt; Wrap&lt;'U&gt;
 // 좀 더 일반적이고 간결하게 ('T -&gt; Wrap&lt;'U&gt;) -&gt; 'T -&gt; Wrap&lt;'U&gt; 로 쓸 수도 있다. ('T를 Wrap&lt;'T&gt;로 치환하면 동등하다)
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -397,11 +398,11 @@ int로 map하는 예다.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-fsharp">let floats = [1.5; 2.3; 9.7; 6.4]
+<pre class="src src-fsharp"><code>let floats = [1.5; 2.3; 9.7; 6.4]
 floats
 |&gt; List.map (fun r -&gt; int r)
 // returns [1; 2; 9; 6]
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -410,11 +411,11 @@ floats
 </p>
 
 <div class="org-src-container">
-<pre class="src src-fsharp">let floats = [[1.5; 2.3]; [9.7; 6.4]]
+<pre class="src src-fsharp"><code>let floats = [[1.5; 2.3]; [9.7; 6.4]]
 floats
 |&gt; List.collect (fun xs -&gt; xs |&gt; List.map int)
 // returns [1; 2; 9; 6]
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -423,11 +424,11 @@ floats
 </p>
 
 <div class="org-src-container">
-<pre class="src src-scala">for {
+<pre class="src src-scala"><code>for {
     i &lt;- numbers1
     j &lt;- numbers2
 } yield max(i, j)
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -435,8 +436,8 @@ floats
 </p>
 
 <div class="org-src-container">
-<pre class="src src-scala">numbers1.flatMap(i =&gt; numbers2.map(j =&gt; max(i, j)))
-</pre>
+<pre class="src src-scala"><code>numbers1.flatMap(i =&gt; numbers2.map(j =&gt; max(i, j)))
+</code></pre>
 </div>
 
 <p>
@@ -445,17 +446,17 @@ comprehension에 넣어도 valid한 코드가 된다.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-scala">for {
+<pre class="src src-scala"><code>for {
     i &lt;- numbers1
     j &lt;- numbers2
     k &lt;- numbers3
 } yield max(i, j, k)
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-scala">numbers1.flatMap(i =&gt; numbers2.flatMap(j =&gt; numbers3.map(j =&gt; max(i, j, k))))
-</pre>
+<pre class="src src-scala"><code>numbers1.flatMap(i =&gt; numbers2.flatMap(j =&gt; numbers3.map(j =&gt; max(i, j, k))))
+</code></pre>
 </div>
 
 <p>
@@ -476,7 +477,7 @@ enumerator의 값을 골라내는 기능을 구현할 수도 있다. =map=과 =f
 </p>
 
 <div class="org-src-container">
-<pre class="src src-scala">for {
+<pre class="src src-scala"><code>for {
     quest &lt;- getNormalQuest(questId)
     questData &lt;- inquireQuest(quest.dataId)
     _ &lt;- assertQuestClearable(quest).unlessA(ignoreRequirements)
@@ -484,7 +485,7 @@ enumerator의 값을 골라내는 기능을 구현할 수도 있다. =map=과 =f
     rewards &lt;- receive(questData.rewards, CurrencyInfo.free, InventoryPolicy.Ignore)
     _ &lt;- liftEvent(QuestCleared(questId, quest.dataId))
 } yield ClearQuestResult(questId, rewards, payments)
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -496,9 +497,9 @@ enumerator의 값을 골라내는 기능을 구현할 수도 있다. =map=과 =f
 </p>
 </div>
 </div>
-<div id="outline-container-org504781b" class="outline-3">
-<h3 id="org504781b">F#'s computation expression</h3>
-<div class="outline-text-3" id="text-org504781b">
+<div id="outline-container-orgabc46fb" class="outline-3">
+<h3 id="orgabc46fb">F#'s computation expression</h3>
+<div class="outline-text-3" id="text-orgabc46fb">
 <p>
 영상의 내용에는 나오지 않았지만 F#의 computation expression을 이용하면
 좀 더 expressive한 DSL을 구현할 수 있다. 글이 길어지니 참고 자료만
@@ -517,7 +518,7 @@ enumerator의 값을 골라내는 기능을 구현할 수도 있다. =map=과 =f
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-08-31 Tue 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 22:10</p>
+<p class="date">Created: 2026-08-29 Sat 21:15</p>
 </div>
 </body>
 </html>

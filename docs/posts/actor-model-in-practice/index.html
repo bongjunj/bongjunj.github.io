@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 22:10 -->
+<!-- 2026-08-29 Sat 21:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>액터 모델 실습</title>
@@ -56,6 +56,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -70,7 +71,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -254,7 +255,7 @@ Queue), 메시지 전송(Message Sending) 기능을 가지고 있고 다른 프�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elixir"># This spawns a process which
+<pre class="src src-elixir"><code># This spawns a process which
 # print "hello!" and dies immediately
 pid = spawn(fn -&gt; IO.puts "hello!" end)
 # It prints "hello!"
@@ -273,7 +274,7 @@ child = spawn(fn -&gt; send(mother_process, {self(), "hi! mom"}) end)
 receive do
   {^child, msg} -&gt; IO.puts "A letter from the child: #{msg}"
 end
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -296,14 +297,14 @@ end
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elixir">{:ok, pid} = Agent.start(fn -&gt; [] end)
+<pre class="src src-elixir"><code>{:ok, pid} = Agent.start(fn -&gt; [] end)
 
 # The update function here returns :ok
 Agent.update(pid, fn state -&gt; [1 | state] end)
 
 # The get function here return [1]
 Agent.get(pid, fn state -&gt; state end)
-</pre>
+</code></pre>
 </div>
 
 <ol class="org-ol">
@@ -324,7 +325,7 @@ crash가 전파된다.</li>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elixir">defmodule Stack do
+<pre class="src src-elixir"><code>defmodule Stack do
   def start_link(opts \\ []) do
     Agent.start_link(fn -&gt; [] end, opts)
   end
@@ -340,7 +341,7 @@ crash가 전파된다.</li>
   defp do_pop([]), do: {nil, []}
   defp do_pop([hd | tl]), do: {hd, tl}
 end
-</pre>
+</code></pre>
 </div>
 </div>
 </div>
@@ -359,7 +360,7 @@ end
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elixir">defmodule Stack do
+<pre class="src src-elixir"><code>defmodule Stack do
   use GenServer
 
   # Client API
@@ -400,7 +401,7 @@ end
     {:noreply, [item | stack]}
   end
 end
-</pre>
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -436,13 +437,13 @@ Actor Model의 행동방식을 정의할 수 있다. 구체적으로 여기서 �
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elixir">def update_state(pid) do
+<pre class="src src-elixir"><code>def update_state(pid) do
   # Code here runs on the client side
   Agent.update(pid, fn state -&gt;
     # Code here runs on the server side
   end)
 end
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -487,7 +488,7 @@ Elixir에서도 Supervisor와 Supervision Tree 개념이 있다. 다음에는 �
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-11-29 Mon 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 22:10</p>
+<p class="date">Created: 2026-08-29 Sat 21:15</p>
 </div>
 </body>
 </html>

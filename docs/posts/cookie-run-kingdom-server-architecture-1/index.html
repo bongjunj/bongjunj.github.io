@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 22:10 -->
+<!-- 2026-08-29 Sat 21:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>쿠키런 킹덤 서버 아키텍처 1</title>
@@ -56,6 +56,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -70,7 +71,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -227,9 +228,9 @@ Actor Model에 대해서 정리하며 포스트를 쓰려다가 예전에 봤던
 이번 포스트에서는 첫번째 내용을 다뤄보려고 한다. 첫번째 내용만 해도 다룰
 이야기가 참 많다.
 </p>
-<div id="outline-container-orgbd95bcc" class="outline-2">
-<h2 id="orgbd95bcc">Stateful vs. Stateless</h2>
-<div class="outline-text-2" id="text-orgbd95bcc">
+<div id="outline-container-orgb93fb72" class="outline-2">
+<h2 id="orgb93fb72">Stateful vs. Stateless</h2>
+<div class="outline-text-2" id="text-orgb93fb72">
 <p>
 Stateful 서버와 Stateless 서버는 서버가 상태(state)를 저장하는지로
 구분한다. 서버라고 하면 백엔드 시스템 전체를 말하는 것인지, API 요청을
@@ -263,15 +264,15 @@ Stateless 서버의 구분 지점이다. Stateful 서버는 웹 어플리케이�
 Stateful 서버와 Stateless 서버의 장단점을 살펴보자.
 </p>
 </div>
-<div id="outline-container-orgdd2948d" class="outline-3">
-<h3 id="orgdd2948d">Stateless Server</h3>
-<div class="outline-text-3" id="text-orgdd2948d">
+<div id="outline-container-org6c76ff8" class="outline-3">
+<h3 id="org6c76ff8">Stateless Server</h3>
+<div class="outline-text-3" id="text-org6c76ff8">
 </div>
-<div id="outline-container-orgf6272c3" class="outline-4">
-<h4 id="orgf6272c3">Pros</h4>
-<div class="outline-text-4" id="text-orgf6272c3">
+<div id="outline-container-org48832f5" class="outline-4">
+<h4 id="org48832f5">Pros</h4>
+<div class="outline-text-4" id="text-org48832f5">
 
-<div id="orgbd2464f" class="figure">
+<div id="org3007f17" class="figure">
 <p><img src="pure_function.png" alt="&quot;pure function&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 1: </span>"pure function"</p>
@@ -286,7 +287,7 @@ Output이 항상 동일해지기 때문에 서버를 아무런 제약없이 복�
 </p>
 
 
-<div id="orge4cdc59" class="figure">
+<div id="org67ea3e8" class="figure">
 <p><img src="pure_function_scaling_out.png" alt="&quot;pure function scaling out&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 2: </span>"pure function scaling out"</p>
@@ -302,11 +303,11 @@ State Management: 서버마다 다른 상태를 가지고 있지 않기 때문�
 </p>
 </div>
 </div>
-<div id="outline-container-orgf1a16b7" class="outline-4">
-<h4 id="orgf1a16b7">Cons</h4>
-<div class="outline-text-4" id="text-orgf1a16b7">
+<div id="outline-container-orgdf6d8e8" class="outline-4">
+<h4 id="orgdf6d8e8">Cons</h4>
+<div class="outline-text-4" id="text-orgdf6d8e8">
 
-<div id="org1e4e84f" class="figure">
+<div id="org5a5cfea" class="figure">
 <p><img src="stateless_db_bottleneck.png" alt="&quot;stateless database connection bottleneck&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 3: </span>"stateless database connection bottleneck"</p>
@@ -323,15 +324,15 @@ DB에 연결하면 병목현상이 발생할 뿐더러 시스템 전체의 성�
 </div>
 </div>
 </div>
-<div id="outline-container-org5d09921" class="outline-3">
-<h3 id="org5d09921">Stateful Server</h3>
-<div class="outline-text-3" id="text-org5d09921">
+<div id="outline-container-org28f24e3" class="outline-3">
+<h3 id="org28f24e3">Stateful Server</h3>
+<div class="outline-text-3" id="text-org28f24e3">
 </div>
-<div id="outline-container-orga9f642b" class="outline-4">
-<h4 id="orga9f642b">Pros</h4>
-<div class="outline-text-4" id="text-orga9f642b">
+<div id="outline-container-orgf39904a" class="outline-4">
+<h4 id="orgf39904a">Pros</h4>
+<div class="outline-text-4" id="text-orgf39904a">
 
-<div id="orge271a17" class="figure">
+<div id="orgc80eafb" class="figure">
 <p><img src="memory_and_db_perf_diff.png" alt="&quot;a memory is faster than a db&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 4: </span>"a memory is faster than a db"</p>
@@ -346,11 +347,11 @@ Stateful Server는 서버 프로세스에 직접 데이터를 저장한다. 따�
 </p>
 </div>
 </div>
-<div id="outline-container-org63009bd" class="outline-4">
-<h4 id="org63009bd">Cons</h4>
-<div class="outline-text-4" id="text-org63009bd">
+<div id="outline-container-org17924b1" class="outline-4">
+<h4 id="org17924b1">Cons</h4>
+<div class="outline-text-4" id="text-org17924b1">
 
-<div id="org1387a44" class="figure">
+<div id="orgce9c66f" class="figure">
 <p><img src="stateful_servers.png" alt="&quot;stateful servers has different states&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 5: </span>"stateful servers has different states"</p>
@@ -372,7 +373,7 @@ Stateful Server는 서버 프로세스에 직접 데이터를 저장한다. 따�
 </p>
 
 
-<div id="org7b4869f" class="figure">
+<div id="orga9ffc1d" class="figure">
 <p><img src="stateful_server_fail_to_balance.png" alt="&quot;stateful server failure&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 6: </span>"stateful server failure"</p>
@@ -391,9 +392,9 @@ Stateful Server는 서버 프로세스에 직접 데이터를 저장한다. 따�
 </div>
 </div>
 </div>
-<div id="outline-container-orgd8c57fd" class="outline-2">
-<h2 id="orgd8c57fd">Actor Model</h2>
-<div class="outline-text-2" id="text-orgd8c57fd">
+<div id="outline-container-org09eafcc" class="outline-2">
+<h2 id="org09eafcc">Actor Model</h2>
+<div class="outline-text-2" id="text-org09eafcc">
 <p>
 쿠키런 킹덤 개발팀은 Stateful Server를 택했다. 게임 어플리케이션의
 특성상 잦은 상태 변화를 관리할 수 있는 해결 방법이 필요했기 때문이다.
@@ -416,11 +417,11 @@ Actor Model은 무엇이고 Akka 프레임워크란 무엇인지 살펴보자. A
 있는 문제를 해결하는 데 도움을 준다.
 </p>
 </div>
-<div id="outline-container-org62511b9" class="outline-3">
-<h3 id="org62511b9">What is an Actor?</h3>
-<div class="outline-text-3" id="text-org62511b9">
+<div id="outline-container-org043dac5" class="outline-3">
+<h3 id="org043dac5">What is an Actor?</h3>
+<div class="outline-text-3" id="text-org043dac5">
 
-<div id="orgdec5639" class="figure">
+<div id="org10fc150" class="figure">
 <p><img src="actor_model.png" alt="&quot;overview of actor model&quot;" width="&quot;75%&quot;" />
 </p>
 <p><span class="figure-number">Figure 7: </span>"overview of actor model"</p>
@@ -449,7 +450,7 @@ Mailbox에 Message를 보내는 것 뿐이다. OOP에서 객체가 오직 메서
 </p>
 
 
-<div id="org7491e10" class="figure">
+<div id="org42d0db4" class="figure">
 <p><img src="ErrorKernel.png" alt="&quot;actor system&quot;" width="75%" />
 </p>
 <p><span class="figure-number">Figure 8: </span>출처: <a href="https://getakka.net/articles/concepts/actor-systems.html">https://getakka.net/articles/concepts/actor-systems.html</a></p>
@@ -463,9 +464,9 @@ Mailbox에 Message를 보내는 것 뿐이다. OOP에서 객체가 오직 메서
 </p>
 </div>
 </div>
-<div id="outline-container-orge3ceb5a" class="outline-3">
-<h3 id="orge3ceb5a">Akka Cluster Sharding</h3>
-<div class="outline-text-3" id="text-orge3ceb5a">
+<div id="outline-container-org5a82698" class="outline-3">
+<h3 id="org5a82698">Akka Cluster Sharding</h3>
+<div class="outline-text-3" id="text-org5a82698">
 <p>
 Akka Cluster Sharding은 Actor Model 개념의 일부라기 보다는, Actor
 Model을 활용하기 위한 개념이다. 이전에 말했듯이 Stateful Server 구조에서
@@ -486,9 +487,9 @@ Akka Cluster Sharding을 이용하면 특정 Actor가 Cluster 상에 어떤 노�
 </p>
 </div>
 </div>
-<div id="outline-container-org6cf6c44" class="outline-3">
-<h3 id="org6cf6c44">Akka Cluster, Pros and Cons</h3>
-<div class="outline-text-3" id="text-org6cf6c44">
+<div id="outline-container-org1e1f081" class="outline-3">
+<h3 id="org1e1f081">Akka Cluster, Pros and Cons</h3>
+<div class="outline-text-3" id="text-org1e1f081">
 <p>
 여러 개의 노드가 운영되다보니 하나의 노드가 죽어도 다른 노드들이 작업을
 계속 진행할 수 있으니 서버가 안정적으로 운영된다. 기술적인 용어로
@@ -524,9 +525,9 @@ Stateless라는 단순명확한 서버구조의 강점을 포기하고 다른 �
 </div>
 </div>
 </div>
-<div id="outline-container-orge956fbb" class="outline-2">
-<h2 id="orge956fbb">마치면서</h2>
-<div class="outline-text-2" id="text-orge956fbb">
+<div id="outline-container-orgd9e888d" class="outline-2">
+<h2 id="orgd9e888d">마치면서</h2>
+<div class="outline-text-2" id="text-orgd9e888d">
 <p>
 지금까지 Stateless, Stateful, Actor Model의 개념을 살펴보고, 추가적으로
 Akka Cluster Sharding이 하는 일을 훑어봤다. 다음에는 CRUD와 Event
@@ -538,7 +539,7 @@ Sourcing에 대해 정리해보자. F#의 MailboxProcessor를 통해 Actor 모�
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-08-29 Sun 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 22:10</p>
+<p class="date">Created: 2026-08-29 Sat 21:15</p>
 </div>
 </body>
 </html>

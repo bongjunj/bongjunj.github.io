@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 22:10 -->
+<!-- 2026-08-29 Sat 21:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Just Use Argparse</title>
@@ -56,6 +56,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -70,7 +71,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -221,7 +222,7 @@ below:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">parser</span> = argparse.ArgumentParser()
+<pre class="src src-python"><code><span style="font-weight: bold; font-style: italic;">parser</span> = argparse.ArgumentParser()
 parser.add_argument(<span style="font-style: italic;">'name'</span>, <span style="font-weight: bold;">type</span>=<span style="font-weight: bold;">str</span>, <span style="font-weight: bold;">help</span>=<span style="font-style: italic;">"what's your name?"</span>)
 <span style="font-weight: bold; font-style: italic;">args</span> = parser.parse_args()
 
@@ -229,15 +230,15 @@ parser.add_argument(<span style="font-style: italic;">'name'</span>, <span style
     <span style="font-weight: bold;">print</span>(name)
 
 hello(args.name)
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="font-weight: bold; text-decoration: underline;">@click.command</span>()
+<pre class="src src-python"><code><span style="font-weight: bold; text-decoration: underline;">@click.command</span>()
 <span style="font-weight: bold; text-decoration: underline;">@click.argument</span>(<span style="font-style: italic;">'name'</span>)
 <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">hello</span>(name):
     click.echo(f<span style="font-style: italic;">"Hello </span>{name}<span style="font-style: italic;">!"</span>)
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -270,7 +271,7 @@ with the drawbacks I described earlier, using <code>click</code> can help
 developing projects. However, at the point you want to publish your
 work, you need to consider dependencies. For this, no other options can
 beat <code>argparse</code>! Because <code>argparse</code> is built-in, users don't need to
-install anything. Using <code>click</code> means potential setup issues&#x2014;leading
+install anything. Using <code>click</code> means potential setup issues&mdash;leading
 to unexpected GitHub issues or extra emails to your inbox.
 </p>
 
@@ -292,8 +293,8 @@ This way, you can manage CLI applications just like using
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">tool/command.py [args] <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">instead of ./tool.py command [args]</span>
-</pre>
+<pre class="src src-sh"><code>tool/command.py [args] <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">instead of ./tool.py command [args]</span>
+</code></pre>
 </div>
 
 <p>
@@ -303,7 +304,7 @@ extra <code>ctx</code> object and they come with decent editor supports!
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2025-02-08 Sat 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 22:10</p>
+<p class="date">Created: 2026-08-29 Sat 21:15</p>
 </div>
 </body>
 </html>

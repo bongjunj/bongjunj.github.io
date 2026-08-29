@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-23 Sun 22:10 -->
+<!-- 2026-08-29 Sat 21:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Understanding Superoptimization</title>
@@ -56,6 +56,7 @@
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
   pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -70,7 +71,7 @@
   pre.src-haskell:before { content: 'Haskell'; }
   pre.src-hledger:before { content: 'hledger'; }
   pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
+  pre.src-js:before { content: 'JavaScript'; }
   pre.src-latex:before { content: 'LaTeX'; }
   pre.src-ledger:before { content: 'Ledger'; }
   pre.src-lisp:before { content: 'Lisp'; }
@@ -232,9 +233,9 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Understanding Superoptimization</h1>
-<div id="outline-container-orga83c3a0" class="outline-2">
-<h2 id="orga83c3a0">Compiler Optimizer</h2>
-<div class="outline-text-2" id="text-orga83c3a0">
+<div id="outline-container-orgac56836" class="outline-2">
+<h2 id="orgac56836">Compiler Optimizer</h2>
+<div class="outline-text-2" id="text-orgac56836">
 <p>
 Optimization problem, in general, a problem to seek the <i>best</i> solution
 given a few constraints. The linear programming is a good example. You
@@ -284,9 +285,9 @@ instructions.
 </p>
 </div>
 </div>
-<div id="outline-container-org2a06410" class="outline-2">
-<h2 id="org2a06410">Superoptimizer</h2>
-<div class="outline-text-2" id="text-org2a06410">
+<div id="outline-container-org6955e84" class="outline-2">
+<h2 id="org6955e84">Superoptimizer</h2>
+<div class="outline-text-2" id="text-org6955e84">
 <p>
 In contrast, a compiler superoptimizer makes more sense in the
 mathematical meaning of “optimization”. It tries to find the <b>optimal</b>
@@ -328,9 +329,9 @@ search for the better-than-better answer.
 </p>
 </div>
 </div>
-<div id="outline-container-org57b8bcb" class="outline-2">
-<h2 id="org57b8bcb">Why Superoptimizers Can Produce Better programs?</h2>
-<div class="outline-text-2" id="text-org57b8bcb">
+<div id="outline-container-org2e01533" class="outline-2">
+<h2 id="org2e01533">Why Superoptimizers Can Produce Better programs?</h2>
+<div class="outline-text-2" id="text-org2e01533">
 <p>
 Now we understand that superoptimizers can produce better target
 programs than regular optimizers. But why compiler optimizers fail to
@@ -339,7 +340,7 @@ this, let's frame the superoptimization problem as a search problem.
 </p>
 
 
-<div id="org09c540a" class="figure">
+<div id="org67d5953" class="figure">
 <p><img src="./search-space.png" alt="search-space.png" />
 </p>
 </div>
@@ -428,9 +429,9 @@ superoptimization could be improved a lot.
 </p>
 </div>
 </div>
-<div id="outline-container-org7871db9" class="outline-2">
-<h2 id="org7871db9">References</h2>
-<div class="outline-text-2" id="text-org7871db9">
+<div id="outline-container-org57481d6" class="outline-2">
+<h2 id="org57481d6">References</h2>
+<div class="outline-text-2" id="text-org57481d6">
 <ol class="org-ol">
 <li><a href="https://blog.regehr.org/archives/923">https://blog.regehr.org/archives/923</a></li>
 <li><a href="https://blog.regehr.org/archives/1252">https://blog.regehr.org/archives/1252</a></li>
@@ -441,7 +442,7 @@ superoptimization could be improved a lot.
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2025-05-17 Sat 00:00</p>
-<p class="date">Created: 2026-08-23 Sun 22:10</p>
+<p class="date">Created: 2026-08-29 Sat 21:15</p>
 </div>
 </body>
 </html>
