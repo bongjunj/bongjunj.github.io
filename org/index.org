@@ -1,4 +1,5 @@
 #+title: Bongjun Jang
+#+OPTIONS: num:nil toc:nil
 
 I'm a Master's student at KAIST School of Computing.
 I'm interested in applying formal methods (PL, Logics) and AI to
@@ -9,18 +10,18 @@ with formal guarantees.
 You can find me on [[https://github.com/bongjunj][Github]], or email me via bongjun.jang@kaist.ac.kr.
 I sometimes write [[file:posts/index.org][blog]] posts on what I have read, my thoughts and experiences.
 
+* Education
+- *M.S.* in Computer Science, KAIST, Korea (2025 Feb. - 2027 Feb.
+  expected)
+- *B.S.* in Computer Science, KAIST, Korea (2018 - 2025. Feb)
+  - Minor in Cybersecurity, NYU (2023 Fall)
+
 * Publications
 - Optimization-Directed Compiler Fuzzing for Continuous Translation
   Validation
   - Jaeseong Kwon, *Bongjun Jang*, Juneyoung Lee, and Kihong Heo
   - [[[https://prosys.kaist.ac.kr/publications/pldi25.pdf][paper]]] [[[https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf][slides]]] [[[https://www.youtube.com/watch?v=ihi_cdjLJZo][presentation]]]
   - [[https://pldi25.sigplan.org/][PLDI 2025: ACM SIGPLAN Conference on Programming Language Design and Implementation]]
-
-* Education
-- *M.S.* in Computer Science, KAIST, Korea (2025 Feb. - 2027 Feb.
-  expected)
-- *B.S.* in Computer Science, KAIST, Korea (2018 - 2025. Feb)
-  - Minor in Cybersecurity, NYU (2023 Fall)
 
 * Experience
 - Bytecode Alliance Recognized Contributor (2026 Jan - present) [[[https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17][roaster]]]
