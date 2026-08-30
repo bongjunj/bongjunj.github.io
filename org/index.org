@@ -35,5 +35,5 @@ I sometimes write [[file:posts/index.org][blog]] posts on what I have read, my t
 - Programming Systems Laboratory, KAIST (2024 Jan - present)
 - Software Developer, Datamaker (2020)
 ** Military Service
-- Served as a Korean Augumented to US Army (KATUSA) tanker in Republic of Korea Army (202b1 Feb - 2022 Aug)
+- Served as a Korean Augumented to US Army (KATUSA) tanker in Republic of Korea Army (2021 Feb - 2022 Aug)
 
