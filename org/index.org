@@ -23,14 +23,17 @@ I sometimes write [[file:posts/index.org][blog]] posts on what I have read, my t
   - [[[https://prosys.kaist.ac.kr/publications/pldi25.pdf][paper]]] [[[https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf][slides]]] [[[https://www.youtube.com/watch?v=ihi_cdjLJZo][presentation]]]
   - [[https://pldi25.sigplan.org/][PLDI 2025: ACM SIGPLAN Conference on Programming Language Design and Implementation]]
 
+* Teaching
+- *Best TA Award*: Introduction to Information Security (CS.30408), KAIST School of Computing (2025 Spring)
+- Program Reasoning (CS.40204), KAIST School of Computing (2026 Fall)
+
 * Experience
-- Bytecode Alliance Recognized Contributor (2026 Jan - present) [[[https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17][roaster]]]
-- Best TA Award, CS.30408: Introduction to Information Security, KAIST
-  School of Computing (2025 Spring)
+** Open Source Software
+- Cranelift Compiler: Bytecode Alliance Recognized Contributor (2026 Jan - present) [[[https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17][roaster]]]
+- LLVM: 55 Miscompilation Bugs Reported [[[https://github.com/llvm/llvm-project/issues?q=is%3Aissue%20state%3Aclosed%20author%3Abongjunj][Github]]]
+** Research and Work
 - Programming Systems Laboratory, KAIST (2024 Jan - present)
 - Software Developer, Datamaker (2020)
-- Served as a KATUSA tanker in Republic of Korea Army (2021 Feb - 2022 Aug)
+** Military Service
+- Served as a Korean Augumented to US Army (KATUSA) tanker in Republic of Korea Army (202b1 Feb - 2022 Aug)
 
-# * Posts
-
-# #+include: "posts/index.org" :lines "3-"
