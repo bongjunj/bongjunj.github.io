@@ -1,19 +1,35 @@
 #+title: Bongjun Jang
 #+OPTIONS: num:nil toc:nil
 
+#+begin_export html
+<p>
 I'm a Master's student at KAIST School of Computing.
 I'm interested in applying formal methods (PL, Logics) and AI to
 real-world systems. So far, I have focused on compiler research:
-automatically finding [[https://www.youtube.com/watch?v=ihi_cdjLJZo][optimization bugs]] and generating [[https://github.com/bytecodealliance/governance/pull/142][optimizations rules]]
+automatically finding
+<a href="https://www.youtube.com/watch?v=ihi_cdjLJZo">optimization bugs</a>
+and generating
+<a href="https://github.com/bytecodealliance/governance/pull/142">
+optimization rules
+</a>
 with formal guarantees.
 
-You can find me on [[https://github.com/bongjunj][Github]], or email me via bongjun.jang@kaist.ac.kr.
+I sometimes write
+<a href="posts/index.html">blog</a>
+posts on what I have read, my thoughts and experiences.
+</p>
+#+end_export
+
 I sometimes write [[file:posts/index.org][blog]] posts on what I have read, my thoughts and experiences.
 
+* Contact
+- Personmal Email: [[mailto:malloc099@gmail.com]]
+- Work Email: [[mailto:bongjun.jang@kaist.ac.kr]]
+- Github: [[https://github.com/bongjunj][Github]]
+
 * Education
-- *M.S.* in Computer Science, KAIST, Korea (2025 Feb. - 2027 Feb.
-  expected)
-- *B.S.* in Computer Science, KAIST, Korea (2018 - 2025. Feb)
+- *M.S.*, School of Computing, KAIST, Korea (2025 Feb. - 2027 Feb. expected)
+- *B.S.*, School of Computing, KAIST, Korea (2018 Feb. - 2025. Feb)
   - Minor in Cybersecurity, NYU (2023 Fall)
 
 * Publications
@@ -24,16 +40,20 @@ I sometimes write [[file:posts/index.org][blog]] posts on what I have read, my t
   - [[https://pldi25.sigplan.org/][PLDI 2025: ACM SIGPLAN Conference on Programming Language Design and Implementation]]
 
 * Teaching
-- *Best TA Award*: Introduction to Information Security (CS.30408), KAIST School of Computing (2025 Spring)
-- Program Reasoning (CS.40204), KAIST School of Computing (2026 Fall)
+- *Best TA Award*: Introduction to Information Security (CS.30408), KAIST School of Computing (2025 Spring) [[[https://github.com/prosyslab-classroom/cs348-information-security][course]]]
+- Program Reasoning (CS.40204), KAIST School of Computing (2026 Fall) [[[https://github.com/prosyslab-classroom/cs424-program-reasoning][course]]]
 
 * Experience
 ** Open Source Software
 - Cranelift Compiler: Bytecode Alliance Recognized Contributor (2026 Jan - present) [[[https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17][roaster]]]
+  - Over 800 optimization rules submitted
+  - Found a critical performance bug which slowed down compiled programs by 66%
 - LLVM: 55 Miscompilation Bugs Reported [[[https://github.com/llvm/llvm-project/issues?q=is%3Aissue%20state%3Aclosed%20author%3Abongjunj][Github]]]
+
 ** Research and Work
 - Programming Systems Laboratory, KAIST (2024 Jan - present)
 - Software Developer, Datamaker (2020)
+
 ** Military Service
-- Served as a Korean Augumented to US Army (KATUSA) tanker in Republic of Korea Army (2021 Feb - 2022 Aug)
+- Served as a Korean Augumented to US Army (KATUSA) in Republic of Korea Army (2021 Feb. - 2022 Aug.)
 
