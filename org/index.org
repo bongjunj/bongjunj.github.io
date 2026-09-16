@@ -1,5 +1,15 @@
 #+title: Bongjun Jang
-#+OPTIONS: num:nil toc:nil
+#+OPTIONS: num:nil toc:nil author:nil date:nil
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [10pt]
+#+LATEX_HEADER: \usepackage[margin=0.65in]{geometry}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \setlist{nosep,leftmargin=*}
+#+LATEX_HEADER: \setlength{\parskip}{0pt}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \titlespacing*{\section}{0pt}{1ex}{0.5ex}
+#+LATEX_HEADER: \titlespacing*{\subsection}{0pt}{0.7ex}{0.3ex}
 
 #+begin_export html
 <p>
@@ -19,8 +29,6 @@ I sometimes write
 posts on what I have read, my thoughts and experiences.
 </p>
 #+end_export
-
-I sometimes write [[file:posts/index.org][blog]] posts on what I have read, my thoughts and experiences.
 
 * Contact
 - Personmal Email: [[mailto:malloc099@gmail.com]]
