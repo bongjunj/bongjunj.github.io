@@ -1,15 +1,20 @@
-#+title: Bongjun Jang
-#+OPTIONS: num:nil toc:nil author:nil date:nil
+#+title: *Bongjun Jang*
+#+OPTIONS: num:nil toc:nil author:nil date:nil pagenumber:nil
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS: [10pt]
-#+LATEX_HEADER: \usepackage[margin=0.65in]{geometry}
+#+LATEX_HEADER: \usepackage[margin=0.75in]{geometry}
 #+LATEX_HEADER: \usepackage{enumitem}
-#+LATEX_HEADER: \setlist{nosep,leftmargin=*}
-#+LATEX_HEADER: \setlength{\parskip}{0pt}
+#+LATEX_HEADER: \setlist{nosep,leftmargin=1.2em}
+#+LATEX_HEADER: \setlength{\parskip}{0.3em}
 #+LATEX_HEADER: \setlength{\parindent}{0pt}
 #+LATEX_HEADER: \usepackage{titlesec}
-#+LATEX_HEADER: \titlespacing*{\section}{0pt}{1ex}{0.5ex}
-#+LATEX_HEADER: \titlespacing*{\subsection}{0pt}{0.7ex}{0.3ex}
+#+LATEX_HEADER: \titlespacing*{\section}{0pt}{2ex}{1.5ex}
+#+LATEX_HEADER: \titlespacing*{\subsection}{0.5ex}{1ex}{0.5ex}
+#+LATEX_HEADER: \hypersetup{hidelinks}
+#+LATEX_HEADER: \pagenumbering{gobble}
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \titleformat{\section}{\large\bfseries}{}{0em}{}[\vspace{0.4ex}\titlerule]
+#+LATEX_HEADER: \titlespacing*{\section}{0pt}{2ex}{1.2ex}
 
 #+begin_export html
 <p>
@@ -31,37 +36,35 @@ posts on what I have read, my thoughts and experiences.
 #+end_export
 
 * Contact
-- Personmal Email: [[mailto:malloc099@gmail.com]]
-- Work Email: [[mailto:bongjun.jang@kaist.ac.kr]]
-- Github: [[https://github.com/bongjunj][Github]]
+- Personal Email: [[mailto:malloc099@gmail.com][malloc099@gmail.com]]
+- Work Email: [[mailto:bongjun.jang@kaist.ac.kr][bongjun.jang@kaist.ac.kr]]
+- GitHub: [[https://github.com/bongjunj][bongjunj]]
 
 * Education
-- *M.S.*, School of Computing, KAIST, Korea (2025 Feb. - 2027 Feb. expected)
-- *B.S.*, School of Computing, KAIST, Korea (2018 Feb. - 2025. Feb)
-  - Minor in Cybersecurity, NYU (2023 Fall)
+- *M.S., School of Computing*, KAIST, Korea (Feb. 2025 -- Feb. 2027, expected)
+- *B.S., School of Computing*, KAIST, Korea (Feb. 2018 -- Feb. 2025)
+  - Minor in Cybersecurity, New York University (Fall 2023)
 
 * Publications
-- Optimization-Directed Compiler Fuzzing for Continuous Translation
-  Validation
+- Optimization-Directed Compiler Fuzzing for Continuous Translation Validation ([[https://pldi25.sigplan.org/][PLDI 2025]])
   - Jaeseong Kwon, *Bongjun Jang*, Juneyoung Lee, and Kihong Heo
-  - [[[https://prosys.kaist.ac.kr/publications/pldi25.pdf][paper]]] [[[https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf][slides]]] [[[https://www.youtube.com/watch?v=ihi_cdjLJZo][presentation]]]
-  - [[https://pldi25.sigplan.org/][PLDI 2025: ACM SIGPLAN Conference on Programming Language Design and Implementation]]
+  - [[[https://prosys.kaist.ac.kr/publications/pldi25.pdf][Paper]]] [[[https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf][Slides]]] [[[https://www.youtube.com/watch?v=ihi_cdjLJZo][Talk]]]
+
+* Experiences
+- Programming Systems Laboratory, KAIST (Jan. 2024 -- Present) [[[https://prosys.kaist.ac.kr/][Website]]]
+  - Advisor: Prof. Kihong Heo
+  - Focused on compiler research: Translation Validation, Peephole Optimization
+
+* Open Source Contributions
+- Cranelift Compiler: Bytecode Alliance Recognized Contributor (Jan. 2026 -- Present) [[[https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17][Roster]]]
+  - Contributed more than 800 optimization rules for its mid-end optimizer
+  - Found a critical performance bug that caused a 66% slowdown in compiled programs [[[https://github.com/bytecodealliance/wasmtime/issues/12106][GitHub]]]
+- LLVM: Reported 55 Miscompilation Bugs [[[https://github.com/llvm/llvm-project/issues?q=is%3Aissue%20state%3Aclosed%20author%3Abongjunj][GitHub]]]
 
 * Teaching
-- *Best TA Award*: Introduction to Information Security (CS.30408), KAIST School of Computing (2025 Spring) [[[https://github.com/prosyslab-classroom/cs348-information-security][course]]]
-- Program Reasoning (CS.40204), KAIST School of Computing (2026 Fall) [[[https://github.com/prosyslab-classroom/cs424-program-reasoning][course]]]
+- Introduction to Information Security (CS.30408), KAIST (Spring 2025) [[[https://github.com/prosyslab-classroom/cs348-information-security][Course]]] -- *Best TA Award*
+- Program Reasoning (CS.40204), KAIST (Fall 2026) [[[https://github.com/prosyslab-classroom/cs424-program-reasoning][Course]]]
 
-* Experience
-** Open Source Software
-- Cranelift Compiler: Bytecode Alliance Recognized Contributor (2026 Jan - present) [[[https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17][roaster]]]
-  - Over 800 optimization rules submitted
-  - Found a critical performance bug which slowed down compiled programs by 66%
-- LLVM: 55 Miscompilation Bugs Reported [[[https://github.com/llvm/llvm-project/issues?q=is%3Aissue%20state%3Aclosed%20author%3Abongjunj][Github]]]
-
-** Research and Work
-- Programming Systems Laboratory, KAIST (2024 Jan - present)
-- Software Developer, Datamaker (2020)
-
-** Military Service
-- Served as a Korean Augumented to US Army (KATUSA) in Republic of Korea Army (2021 Feb. - 2022 Aug.)
+* Military Service
+- Korean Augmentation to the United States Army (KATUSA), Republic of Korea Army (Feb. 2021 -- Aug. 2022)
 

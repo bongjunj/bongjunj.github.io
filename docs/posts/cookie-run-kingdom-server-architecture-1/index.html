@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-16 Wed 22:03 -->
+<!-- 2026-09-16 Wed 22:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>쿠키런 킹덤 서버 아키텍처 1</title>
@@ -268,11 +268,11 @@ Stateful 서버와 Stateless 서버의 장단점을 살펴보자.
 <h3 id="org6c76ff8">Stateless Server</h3>
 <div class="outline-text-3" id="text-org6c76ff8">
 </div>
-<div id="outline-container-org292ae0e" class="outline-4">
-<h4 id="org292ae0e">Pros</h4>
-<div class="outline-text-4" id="text-org292ae0e">
+<div id="outline-container-org626856a" class="outline-4">
+<h4 id="org626856a">Pros</h4>
+<div class="outline-text-4" id="text-org626856a">
 
-<div id="orgafc14f9" class="figure">
+<div id="org709b480" class="figure">
 <p><img src="pure_function.png" alt="&quot;pure function&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 1: </span>"pure function"</p>
@@ -287,7 +287,7 @@ Output이 항상 동일해지기 때문에 서버를 아무런 제약없이 복�
 </p>
 
 
-<div id="orgcd5d798" class="figure">
+<div id="org00f002a" class="figure">
 <p><img src="pure_function_scaling_out.png" alt="&quot;pure function scaling out&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 2: </span>"pure function scaling out"</p>
@@ -303,11 +303,11 @@ State Management: 서버마다 다른 상태를 가지고 있지 않기 때문�
 </p>
 </div>
 </div>
-<div id="outline-container-org289af7b" class="outline-4">
-<h4 id="org289af7b">Cons</h4>
-<div class="outline-text-4" id="text-org289af7b">
+<div id="outline-container-org226495a" class="outline-4">
+<h4 id="org226495a">Cons</h4>
+<div class="outline-text-4" id="text-org226495a">
 
-<div id="orgcf4ed65" class="figure">
+<div id="orgc5463da" class="figure">
 <p><img src="stateless_db_bottleneck.png" alt="&quot;stateless database connection bottleneck&quot;" width="50%" />
 </p>
 <p><span class="figure-number">Figure 3: </span>"stateless database connection bottleneck"</p>
@@ -328,11 +328,11 @@ DB에 연결하면 병목현상이 발생할 뿐더러 시스템 전체의 성�
 <h3 id="org28f24e3">Stateful Server</h3>
 <div class="outline-text-3" id="text-org28f24e3">
 </div>
-<div id="outline-container-org626856a" class="outline-4">
-<h4 id="org626856a">Pros</h4>
-<div class="outline-text-4" id="text-org626856a">
+<div id="outline-container-orge590d06" class="outline-4">
+<h4 id="orge590d06">Pros</h4>
+<div class="outline-text-4" id="text-orge590d06">
 
-<div id="org711c478" class="figure">
+<div id="org8846034" class="figure">
 <p><img src="memory_and_db_perf_diff.png" alt="&quot;a memory is faster than a db&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 4: </span>"a memory is faster than a db"</p>
@@ -347,11 +347,11 @@ Stateful Server는 서버 프로세스에 직접 데이터를 저장한다. 따�
 </p>
 </div>
 </div>
-<div id="outline-container-org226495a" class="outline-4">
-<h4 id="org226495a">Cons</h4>
-<div class="outline-text-4" id="text-org226495a">
+<div id="outline-container-orgf9106ed" class="outline-4">
+<h4 id="orgf9106ed">Cons</h4>
+<div class="outline-text-4" id="text-orgf9106ed">
 
-<div id="org4e2fc0a" class="figure">
+<div id="orge98f3d5" class="figure">
 <p><img src="stateful_servers.png" alt="&quot;stateful servers has different states&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 5: </span>"stateful servers has different states"</p>
@@ -373,7 +373,7 @@ Stateful Server는 서버 프로세스에 직접 데이터를 저장한다. 따�
 </p>
 
 
-<div id="orgc1411a1" class="figure">
+<div id="org6599e92" class="figure">
 <p><img src="stateful_server_fail_to_balance.png" alt="&quot;stateful server failure&quot;" width="&quot;50%&quot;" />
 </p>
 <p><span class="figure-number">Figure 6: </span>"stateful server failure"</p>
@@ -421,7 +421,7 @@ Actor Model은 무엇이고 Akka 프레임워크란 무엇인지 살펴보자. A
 <h3 id="org043dac5">What is an Actor?</h3>
 <div class="outline-text-3" id="text-org043dac5">
 
-<div id="org957d2b1" class="figure">
+<div id="org0c7fbb2" class="figure">
 <p><img src="actor_model.png" alt="&quot;overview of actor model&quot;" width="&quot;75%&quot;" />
 </p>
 <p><span class="figure-number">Figure 7: </span>"overview of actor model"</p>
@@ -450,7 +450,7 @@ Mailbox에 Message를 보내는 것 뿐이다. OOP에서 객체가 오직 메서
 </p>
 
 
-<div id="org106d84e" class="figure">
+<div id="org2139597" class="figure">
 <p><img src="ErrorKernel.png" alt="&quot;actor system&quot;" width="75%" />
 </p>
 <p><span class="figure-number">Figure 8: </span>출처: <a href="https://getakka.net/articles/concepts/actor-systems.html">https://getakka.net/articles/concepts/actor-systems.html</a></p>
@@ -539,7 +539,7 @@ Sourcing에 대해 정리해보자. F#의 MailboxProcessor를 통해 Actor 모�
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-08-29 Sun 00:00</p>
-<p class="date">Created: 2026-09-16 Wed 22:03</p>
+<p class="date">Created: 2026-09-16 Wed 22:53</p>
 </div>
 </body>
 </html>
