@@ -46,6 +46,8 @@ posts on what I have read, my thoughts and experiences.
   - Minor in Cybersecurity, New York University (Fall 2023)
 
 * Publications
+- Automated Transplantation of Peephole Optimizations (Under Major Revision, ICSE 2027)
+  - *Bongjun Jang*, Hyunbin Kim, Kihong Heo
 - Optimization-Directed Compiler Fuzzing for Continuous Translation Validation ([[https://pldi25.sigplan.org/][PLDI 2025]])
   - Jaeseong Kwon, *Bongjun Jang*, Juneyoung Lee, and Kihong Heo
   - [[[https://prosys.kaist.ac.kr/publications/pldi25.pdf][Paper]]] [[[https://prosys.kaist.ac.kr/publications/pldi25-slides.pdf][Slides]]] [[[https://www.youtube.com/watch?v=ihi_cdjLJZo][Talk]]]
@@ -57,9 +59,10 @@ posts on what I have read, my thoughts and experiences.
 
 * Open Source Contributions
 - Cranelift Compiler: Bytecode Alliance Recognized Contributor (Jan. 2026 -- Present) [[[https://github.com/bytecodealliance/governance/blob/main/recognized-contributors.md?plain=1#L17][Roster]]]
-  - Contributed more than 800 optimization rules for its mid-end optimizer
+  - Contributed 1,015 optimization rules for its mid-end optimizer
   - Found a critical performance bug that caused a 66% slowdown in compiled programs [[[https://github.com/bytecodealliance/wasmtime/issues/12106][GitHub]]]
-- LLVM: Reported 55 Miscompilation Bugs [[[https://github.com/llvm/llvm-project/issues?q=is%3Aissue%20state%3Aclosed%20author%3Abongjunj][GitHub]]]
+  - Found an unsoundness bug in its rule verifier [[[https://github.com/bytecodealliance/wasmtime/issues/14957][GitHub]]]
+- LLVM: Reported 56 Miscompilation Bugs [[[https://github.com/llvm/llvm-project/issues?q=is%3Aissue%20state%3Aclosed%20author%3Abongjunj][GitHub]]]
 
 * Teaching
 - Introduction to Information Security (CS.30408), KAIST (Spring 2025) [[[https://github.com/prosyslab-classroom/cs348-information-security][Course]]] -- *Best TA Award*
